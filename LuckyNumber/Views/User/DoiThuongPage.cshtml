@@ -1,0 +1,131 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ĐỔI THƯỞNG</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/assets/css/style.css?v=22042015" type="text/css" />
+    <link rel="stylesheet" href="~/assets/css/jquery-ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="~/assets/css/jquery.dataTables.css" type="text/css" />
+    <link rel="stylesheet" href="~/assets/css/jflow.style.css" type="text/css" />
+    <script src="~/assets/js/jquery.js" type="text/javascript"></script>
+    <script src="~/assets/js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="~/assets/js/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="~/assets/js/jflow.plus.js" type="text/javascript"></script>
+    <script src="~/assets/js/main.js" type="text/javascript"></script>
+    <script src="~/assets/js/jquery.formatCurrency-1.4.0.pack.js" type="text/javascript"></script>
+    <script src="~/assets/js/jquery.formatCurrency.vi-VN.js" type="text/javascript"></script>
+    
+</head>
+
+<body>
+    <div id="reglog">
+        <span class="hello">Chào</span> <a class="button username" href="~/User/userProfile">
+    <strong>
+        @ViewBag.Name
+    </strong>
+</a> <a href="~/User/Logout" class="logout-nav">(Thoát)</a>           
+        
+
+    </div>
+    
+    
+
+    
+   
+    <div class="hr"></div>
+    <div id="content">
+        <div id="breadcumbs">
+            <a href="~/User/userProfile"><span class="not_end">Trang chủ</span></a>
+            <span>Đổi Tiền</span>
+        </div>
+        <div id="mcoin">
+            <h1 class="page_title">ĐỔI TIỀN</h1>
+            <div style="padding-right: 5%;border-right: 1px solid #E1E1E1">
+                <div style="border: 1px solid #E1E1E1">
+                    <form action="~/User/DoiThuong" method="post" class="form_withdraw">
+                        <h3 class="form_title">BƯỚC 1: CHỌN THẺ</h3><br />&nbsp;<br />&nbsp;<br />
+                        <label>Chọn loại thẻ:</label>
+                        
+                        <select id="game_select" name="game">
+                            <option value="1"> Viettel </option>
+                            <option value="1"> Vinaphone </option>
+                            <option value="1"> Mobiphone </option>
+                        </select>
+                        
+
+                        <br /><h3 class="form_title">BƯỚC 2: CHỌN MỆNH GIÁ</h3><br />&nbsp;<br />&nbsp;<br />&nbsp;<br />
+                        <label>Chọn giá trị thẻ:</label>
+                        <select id="select" name="msi">
+                            <option value="10000"> 10.000 VNĐ </option>
+                            <option value="20000"> 20.000 VNĐ </option>
+                            <option value="50000"> 50.000 VNĐ </option>
+                            <option value="100000"> 100.000 VNĐ </option>
+                            <option value="200000"> 200.000 VNĐ </option>
+                            <option value="8000000"> 500.000 VNĐ </option>
+                        </select>
+  
+                       
+                        <input class="submit" type="submit" value="Thực hiện" />
+    
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="sidebar">
+
+            <div id="account">
+                <h1 class="page_title" style="text-transform: uppercase">CÁ NHÂN</h1>
+                <div id="account_info">
+                    <label id="account_name">@ViewBag.Name</label>
+                    <label>ID:</label>
+                    <label class="value">@ViewBag.Id</label>
+                    <div class="sidebar-balance">
+                        <label>Số dư:</label>
+                        <label class="value">
+                            <span class="value-real">@ViewBag.TaiKhoan</span>
+                            VNĐ
+                        </label>
+
+                    </div>
+                </div>
+                <a href="~/DoanSo/DoanSoPage">
+                    <div class="side_function">
+                        <img src="~/assets/images/sidebar_nap.png" />
+                        <label id="change-mcoin">Đoán Số</label>
+                        <div class="hr-sidebar"></div>
+                    </div>
+                </a>
+                
+                <a href="~/User/Profile">
+                    <div class="side_function side_function_last">
+                        <img src="~/assets/images/sidebar_wallet.png" />
+                        <label>Thông Tin Cá Nhân</label>
+                    </div>
+                </a>
+
+
+                
+
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!--Start of Zopim Live Chat Script-->
+    
+
+    <!--End of Zopim Live Chat Script-->
+
+
+</body>
+</html>

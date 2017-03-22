@@ -1,0 +1,320 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Đăng Ký</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="icon" href="~/images/icon/fav_icon.png">
+    <link rel="stylesheet" href="~/css/demo.css">
+    <link rel="stylesheet" href="~/css/font-awesome-sky.css">
+    <link rel="stylesheet" href="~/css/sky-forms.css">
+
+
+    <!-- Bootstrap Core CSS -->
+    <link href="~/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="~/library/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="~/css/style.css" rel="stylesheet" type="text/css">
+
+
+    <script src="~/js/jquery.min-sky.js"></script>
+    <script src="~/js/jquery.validate.min-sky.js"></script>
+    <script src="~/js/jquery-ui.min-sky.js"></script>
+    <script src="~/js/jquery.modal.js"></script>
+    <script src="~/js/jquery.form.min-sky.js"></script>
+</head>
+
+<body class="bg-signup">
+
+    <div id="preloader">
+        <div class="loader">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <div class="body-signup body-s">
+        <form action="~/User/Create" id="sky-form" class="sky-form" method="post">
+            <header align="center">Đăng Ký</header>
+
+            <fieldset>
+                <section>
+                    <label class="input">
+                        <i class="icon-append fa fa-user"></i>
+                        <input type="text" id="User_name" name="username" placeholder="Tài Khoản">
+                        <b class="tooltip tooltip-bottom-right">Dùng để đăng nhập vào website</b>
+                    </label>
+                    <a class="submit" target="_blank" onclick="clic(this)">Kiểm tra</a>
+                    <span id="result" />
+                </section>
+
+                <section>
+                    <label class="input">
+                        <i class="icon-append fa fa-envelope-o"></i>
+                        <input type="email" name="email" placeholder="Email">
+                        <b class="tooltip tooltip-bottom-right">Dùng để liên hệ với bạn</b>
+                    </label>
+                </section>
+
+                <section>
+                    <label class="input">
+                        <i class="icon-append fa fa-lock"></i>
+                        <input type="password" name="password" placeholder="Mật Khẩu" id="password">
+                        <b class="tooltip tooltip-bottom-right">Nhập mật khẩu chính xác</b>
+                    </label>
+                </section>
+
+                <section>
+                    <label class="input">
+                        <i class="icon-append fa fa-lock"></i>
+                        <input type="password" name="passwordConfirm" placeholder="Nhập Lại Mật Khẩu">
+                        <b class="tooltip tooltip-bottom-right">Xác nhận lại mật khẩu</b>
+                    </label>
+                </section>
+
+
+            </fieldset>
+
+            <fieldset>
+
+                <section>
+                    <label class="input">
+                        <input type="text" name="nickname" placeholder="Họ và Tên">
+                    </label>
+                </section>
+
+
+
+
+
+            </fieldset>
+            <fieldset>
+                <section>
+                    <label class="checkbox">
+                        <input type="checkbox" name="terms" id="terms"><i></i>Tôi đã đọc và đồng ý tuân theo các
+                        <a href="#term" class="modal-opener">điều khoản</a> của Lucky Number
+                    </label>
+                </section>
+            </fieldset>
+            <footer>
+                <button type="submit" class="button">Đăng Ký</button>
+                <a href="~/User/Login" class="button button-secondary">Đăng Nhập</a>
+            </footer>
+        </form>
+
+        <form action="" id="term" class="sky-form sky-form-modal">
+            <header align="center">Điều Khoản Sử Dụng</header>
+
+            <fieldset>
+                <section>
+                    <p>Đăng ký tài khoản tại Lucky Number hoàn toàn MIỄN PHÍ </p>
+
+                    <p> Xin hãy dành vài phút để đọc các nội quy và các quy định của Lucky Number. </p>
+
+                    <p>Quy định Lucky Number </p>
+
+                    <p> 1) Đọc kỹ "Điều khoản và Quy Định của trang web". </p>
+                    <p> 2) Tài khoản của bạn sẽ bị xóa nếu bạn không xác nhận trong thời gian 1 ngày hoặc không đăng nhập trong vòng 365 ngày kể từ ngày đăng ký.</p>
+                    <p> 3) Vui lòng nhập đúng thông tin cá nhân để chúng tôi tiện cho việc trong giải thưởng.</p>
+                    <p>Chúc các bạn tham gia vui vẻ!!!</p>
+                </section>
+            </fieldset>
+            <footer>
+                <a href="#" class="button button-secondary modal-closer">Close</a>
+            </footer>
+        </form>
+
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            // Validation
+            $("#sky-form").validate(
+            {
+                // Rules for form validation
+                rules:
+                {
+                    username:
+                    {
+                        required: true
+                    },
+                    email:
+                    {
+                        required: true,
+                        email: true
+                    },
+                    password:
+                    {
+                        required: true,
+                        minlength: 3,
+                        maxlength: 20
+                    },
+                    passwordConfirm:
+                    {
+                        required: true,
+                        minlength: 3,
+                        maxlength: 20,
+                        equalTo: '#password'
+                    },
+                    nickname:
+                    {
+                        required: true
+                    },
+                    date:
+                    {
+                        required: true
+                    },
+                    terms:
+                    {
+                        required: true
+                    },
+                    gender:
+                    {
+                        required: true
+                    },
+                    phoneNumber:
+                    {
+                        required: true
+                    }
+                },
+
+                // Messages for form validation
+                messages:
+                {
+                    username:
+                    {
+                        required: 'Vui lòng nhập tài khoản'
+                    },
+                    email:
+                    {
+                        required: 'Vui lòng nhập email',
+                        email: 'Vui lòng nhập đúng định dạng email'
+                    },
+                    password:
+                    {
+                        required: 'Vui lòng nhập mật khẩu'
+                    },
+                    passwordConfirm:
+                    {
+                        required: 'Vui lòng nhập lại mật khẩu',
+                        equalTo: 'Mật khẩu không trùng khớp'
+                    },
+                    nickname:
+                    {
+                        required: 'Vui lòng nhập Họ và Tên'
+                    },
+                    date:
+                    {
+                        required: 'Vui lòng chọn đúng ngày sinh'
+                    },
+                    phoneNumber:
+                    {
+                        required: 'Vui lòng nhập số điện thoại'
+                    },
+                    terms:
+                    {
+                        required: 'Bạn phải đồng ý với các điều khoản của Lucky Number'
+                    },
+                    gender:
+                    {
+                        required: 'Vui lòng chọn giới tính'
+                    }
+                },
+
+                // Do not change code below
+                errorPlacement: function (error, element) {
+                    error.insertAfter(element.parent());
+                }
+            });
+        });
+    </script>
+
+    <!-- Date Picker -->
+    <script type="text/javascript">
+        $(function () {
+            // Regular datepicker
+            $('#date').datepicker({
+                dateFormat: 'dd-mm-yy',
+                prevText: '<i class="fa fa-chevron-left"></i>',
+                nextText: '<i class="fa fa-chevron-right"></i>'
+            });
+
+            // Date range
+            $('#start').datepicker({
+                dateFormat: 'dd-mm-yy',
+                prevText: '<i class="fa fa-chevron-left"></i>',
+                nextText: '<i class="fa fa-chevron-right"></i>',
+                onSelect: function (selectedDate) {
+                    $('#finish').datepicker('option', 'minDate', selectedDate);
+                }
+            });
+            $('#finish').datepicker({
+                dateFormat: 'dd-mm-yy',
+                prevText: '<i class="fa fa-chevron-left"></i>',
+                nextText: '<i class="fa fa-chevron-right"></i>',
+                onSelect: function (selectedDate) {
+                    $('#start').datepicker('option', 'maxDate', selectedDate);
+                }
+            });
+
+            // Inline datepicker
+            $('#inline').datepicker({
+                dateFormat: 'dd-mm-yy',
+                prevText: '<i class="fa fa-chevron-left"></i>',
+                nextText: '<i class="fa fa-chevron-right"></i>'
+            });
+
+            // Inline date range
+            $('#inline-start').datepicker({
+                dateFormat: 'dd-mm-yy',
+                prevText: '<i class="fa fa-chevron-left"></i>',
+                nextText: '<i class="fa fa-chevron-right"></i>',
+                onSelect: function (selectedDate) {
+                    $('#inline-finish').datepicker('option', 'minDate', selectedDate);
+                }
+            });
+            $('#inline-finish').datepicker({
+                dateFormat: 'dd-mm-yy',
+                prevText: '<i class="fa fa-chevron-left"></i>',
+                nextText: '<i class="fa fa-chevron-right"></i>',
+                onSelect: function (selectedDate) {
+                    $('#inline-start').datepicker('option', 'maxDate', selectedDate);
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function clic(element) {
+            var e = document.getElementById("User_name");
+            var inStrID = e.value;
+            var inData = { User_name: inStrID };
+            var url = "/User/CheckUserName";
+
+            $.getJSON(url, inData, function (data) {
+                alert(data);
+            });
+        }
+    </script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/js/bootstrap.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="~/js/classie.js"></script>
+    <script src="~/js/cbpAnimatedHeader.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="~/js/agency.js"></script>
+    <script type="text/javascript" src="~/js/script.js"></script>
+</body>
+
+</html>

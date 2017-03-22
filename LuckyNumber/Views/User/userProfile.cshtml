@@ -1,0 +1,547 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html class="no-js before-run" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="bootstrap admin template">
+    <meta name="author" content="">
+
+    <title>Thông Tin Cá Nhân</title>
+
+    <link rel="icon" href="~/images/icon/fav_icon.png">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="~/assets1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets1/css/bootstrap-extend.min.css">
+    <link rel="stylesheet" href="~/assets1/css/site.min.css">
+
+    <link rel="stylesheet" href="~/assets1/vendor/animsition/animsition.css">
+    <link rel="stylesheet" href="~/assets1/vendor/asscrollable/asScrollable.css">
+    <link rel="stylesheet" href="~/assets1/vendor/switchery/switchery.css">
+    <link rel="stylesheet" href="~/assets1/vendor/intro-js/introjs.css">
+    <link rel="stylesheet" href="~/assets1/vendor/slidepanel/slidePanel.css">
+    <link rel="stylesheet" href="~/assets1/vendor/flag-icon-css/flag-icon.css">
+
+    <!-- Plugin -->
+    <link rel="stylesheet" href="~/assets1/vendor/chartist-js/chartist.css">
+    <link rel="stylesheet" href="~/assets1/vendor/jvectormap/jquery-jvectormap.css">
+
+    <!-- Page
+    <! Fonts -->
+    <link rel="stylesheet" href="~/assets1/fonts/web-icons/web-icons.min.css">
+    <link rel="stylesheet" href="~/assets1/fonts/brand-icons/brand-icons.min.css">
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
+    <link href="~/css/preloader.css" rel="stylesheet" type="text/css">
+
+    <!--[if lt IE 9]>
+      <script src="../~/assets1/vendor/html5shiv/html5shiv.min.js"></script>
+      <![endif]-->
+    <!--[if lt IE 10]>
+      <script src="../~/assets1/vendor/media-match/media.match.min.js"></script>
+      <script src="../~/assets1/vendor/respond/respond.min.js"></script>
+      <![endif]-->
+    <!-- Scripts -->
+    <script src="~/assets1/vendor/modernizr/modernizr.js"></script>
+    <script src="~/assets1/vendor/breakpoints/breakpoints.js"></script>
+    <script>
+        Breakpoints();
+    </script>
+</head>
+<body class="dashboard">
+
+    <nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega" role="navigation">
+        <div id="preloader">
+            <div class="loader">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle hamburger hamburger-close navbar-toggle-left hided"
+                    data-toggle="menubar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="hamburger-bar"></span>
+            </button>
+            <button type="button" class="navbar-toggle collapsed" data-target="#site-navbar-collapse"
+                    data-toggle="collapse">
+                <i class="icon wb-more-horizontal" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="navbar-toggle collapsed" data-target="#site-navbar-search"
+                    data-toggle="collapse">
+                <span class="sr-only">Toggle Search</span>
+                <i class="icon wb-search" aria-hidden="true"></i>
+            </button>
+            <div class="navbar-brand navbar-brand-center">
+                <img class="navbar-brand-logo" src="~/assets1/images/logo.png" title="LG">
+                <span class="navbar-brand-text"> Lucky Number</span>
+            </div>
+        </div>
+
+        <div class="navbar-container container-fluid">
+            <!-- Navbar Collapse -->
+            <div class="collapse navbar-collapse navbar-collapse-toolbar" id="site-navbar-collapse">
+                <!-- Navbar Toolbar -->
+                <ul class="nav navbar-toolbar">
+                    <li class="hidden-float" id="toggleMenubar">
+                        <a data-toggle="menubar" href="#" role="button">
+                            <i class="icon hamburger hamburger-arrow-left">
+                                <span class="sr-only">Toggle menubar</span>
+                                <span class="hamburger-bar"></span>
+                            </i>
+                        </a>
+                    </li>
+                    <li class="hidden-xs" id="toggleFullscreen">
+                        <a class="icon icon-fullscreen" data-toggle="fullscreen" href="#" role="button">
+                            <span class="sr-only">Toggle fullscreen</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- End Navbar Toolbar -->
+                <!-- Navbar Toolbar Right -->
+                <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)" data-animation="slide-bottom"
+                           aria-expanded="false" role="button">
+                            @ViewBag.Name
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation">
+                                <a href="~/User/userProfile" role="menuitem">
+                                    <span class="icon wb-user"></span> Thông tin cá nhân
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a href="~/User/Logout" role="menuitem">
+                                    <span class="icon wb-power"></span> Đăng xuất
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- End Navbar Toolbar Right -->
+            </div>
+            <!-- End Navbar Collapse -->
+            <!-- End Site Navbar Seach -->
+        </div>
+    </nav>
+    <div class="site-menubar">
+        <div class="site-menubar-body">
+            <div>
+                <ul class="site-menu">
+                    <li class="site-menu-item has-sub active open">
+                        <a href="javascript:void(0)" data-slug="profile">
+                            <i class="site-menu-icon wb-user" aria-hidden="true"></i>
+                            <span class="site-menu-title">Thông Tin</span>
+                            <div class="site-menu-badge">
+                            </div>
+                        </a>
+                        <ul class="site-menu-sub">
+                            <li class="site-menu-item active">
+                                <a class="animsition-link" href="~/User/userProfile" data-slug="profile_detail">
+                                    <i class="site-menu-icon " aria-hidden="true"></i>
+                                    <span class="site-menu-title">Thông Tin Cá Nhân</span>
+                                </a>
+                            </li>
+
+
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="~/User/XacNhanSDT">
+                                    <i class="site-menu-icon " aria-hidden="true"></i>
+                                    <span class="site-menu-title">Cập Nhật Số Điện Thoại</span>
+                                </a>
+                            </li>
+
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="~/User/confirm">
+                                    <i class="site-menu-icon " aria-hidden="true"></i>
+                                    <span class="site-menu-title">Lấy Mã Xác Nhận</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Ứng Dụng -->
+                    <li class="site-menu-item has-sub">
+                        <a href="javascript:void(0)" data-slug="apps">
+                            <i class="site-menu-icon wb-grid-4" aria-hidden="true"></i>
+                            <span class="site-menu-title">Ứng Dụng</span>
+                            <span class="site-menu-arrow"></span>
+                        </a>
+                        <ul class="site-menu-sub">
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="~/User/CachChoi" data-slug="lucky_number">
+                                    <i class="site-menu-icon " aria-hidden="true"></i>
+                                    <span class="site-menu-title">Cách Chơi</span>
+                                </a>
+                            </li>
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="~/DoanSo/DoanSoPage" data-slug="lucky_number">
+                                    <i class="site-menu-icon " aria-hidden="true"></i>
+                                    <span class="site-menu-title">Đoán Số</span>
+                                </a>
+                            </li>
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="~/User/NapThePage" data-slug="lucky_number">
+                                    <i class="site-menu-icon " aria-hidden="true"></i>
+                                    <span class="site-menu-title">Nạp thẻ</span>
+                                </a>
+                            </li>
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="~/User/DoiThuongPage" data-slug="lucky_number">
+                                    <i class="site-menu-icon " aria-hidden="true"></i>
+                                    <span class="site-menu-title">Đổi Thưởng</span>
+                                </a>
+                            </li>
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="~/User/MoiBanBe" data-slug="lucky_number">
+                                    <i class="site-menu-icon " aria-hidden="true"></i>
+                                    <span class="site-menu-title">Nhập Mã Mời</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- End Ứng Dụng -->
+                    <!-- Danh Sách Trúng Thưởng -->
+                    <li class="site-menu-item has-sub">
+                        <a href="javascript:void(0)" data-slug="list">
+                            <i class="site-menu-icon wb-star" aria-hidden="true"></i>
+                            <span class="site-menu-title">Danh Sách</span>
+                            <span class="site-menu-arrow"></span>
+                        </a>
+                        <ul class="site-menu-sub">
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="~/KetQua/DanhSachTrungThuongTrongNgay" data-slug="list">
+                                    <i class="site-menu-icon " aria-hidden="true"></i>
+                                    <span class="site-menu-title">Trúng Thưởng</span>
+                                </a>
+                            </li>
+
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="~/User/LichSuDoanSo" data-slug="list">
+                                    <i class="site-menu-icon " aria-hidden="true"></i>
+                                    <span class="site-menu-title">Số Đã Đoán</span>
+                                </a>
+                            </li>
+
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="~/User/LichSuTrungThuong" data-slug="list">
+                                    <i class="site-menu-icon " aria-hidden="true"></i>
+                                    <span class="site-menu-title">Số Đã Trúng</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- End Danh Sách Trúng Thưởng -->
+                    <!-- Contact -->
+                    <li class="site-menu-item has-sub">
+                        <a href="javascript:void(0)" data-slug="contact">
+                            <i class="site-menu-icon wb-chat" aria-hidden="true"></i>
+                            <span class="site-menu-title">Liên Hệ</span>
+                            <span class="site-menu-arrow"></span>
+                        </a>
+                        <ul class="site-menu-sub">
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="~/User/LienHe" data-slug="contact_admin">
+                                    <i class="site-menu-icon " aria-hidden="true"></i>
+                                    <span class="site-menu-title">Admin</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- End Danh Sách Trúng Thưởng -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Page -->
+    <div class="page">
+        <div class="page-content padding-30 container-fluid">
+            <div class="row" data-plugin="matchHeight" data-by-row="true">
+                <div class="col-xlg-6 col-md-12">
+                    <!-- Panel Predictions -->
+                    <div class="widget widget-shadow widget-responsive" id="widgetLineareaColor">
+                        <div class="widget-content widget-radius bg-white">
+                            <div class="padding-top-30 padding-30" style="height:calc(100% - 250px);">
+                                <div class="row">
+                                    <div class="panel-heading" align="center">
+                                        <h3 class="panel-title">Thông Tin Cá Nhân</h3>
+                                    </div>
+                                    <!-- Username -->
+                                    <div>
+                                        <div class="col-md-12">
+                                            <div class="panel">
+                                                <div class="form-group">
+                                                    <li class="list-group-item">
+                                                        <div class="media">
+                                                            <p class="pull-left">ID:</p>
+                                                            <div class="media-body">
+                                                                <h4 class="media-heading">
+                                                                    <span style="padding-left: 150px;"><i style="top: -2px;"></i>@ViewBag.Id</span>
+                                                                </h4>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <h4 class="media-heading"></h4>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Username -->
+                                    <!-- Mail -->
+                                    <div>
+                                        <div class="col-md-12">
+                                            <div class="panel">
+                                                <div class="form-group">
+                                                    <li class="list-group-item">
+                                                        <div class="media">
+                                                            <p class="pull-left">E-mail:</p>
+                                                            <div class="media-body">
+                                                                <h4 class="media-heading">
+                                                                    <span style="padding-left: 120px;"><i style="top: -2px;"></i>@ViewBag.Mail</span>
+                                                                </h4>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Mail -->
+                                        <!-- SĐT -->
+                                        <div>
+                                            <div class="col-md-12">
+                                                <div class="panel">
+                                                    <div class="form-group form-material">
+                                                        <li class="list-group-item">
+                                                            <div class="media">
+                                                                <p class="pull-left">Số điện thoại:</p>
+                                                                <div class="media-body">
+                                                                    <h4 class="media-heading">
+                                                                        <span style="padding-left: 80px;"><i style="top: -2px;"></i>@ViewBag.phone</span>
+                                                                    </h4>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End SĐT -->
+                                            <!-- Password -->
+                                            <div>
+                                                <div class="col-md-12">
+                                                    <div class="panel">
+                                                        <div class="form-group">
+                                                            <li class="list-group-item">
+                                                                <div class="media">
+                                                                    <p class="pull-left">Password:</p>
+                                                                    <div class="media-body">
+                                                                        <h4 class="media-heading">
+                                                                            <span style="padding-left: 98px;"><i style="top: -2px;"></i>******</span>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <h4 class="media-heading">
+                                                                            <a href="~/User/DoiMatKhau" target="_blank"><small class="pull-right"><button class="btn btn-floating btn-primary btn-sm icon wb-edit" type="button"></button></small></a>
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Password -->
+                                            <div>
+                                                <div class="col-md-12">
+                                                    <div class="panel">
+                                                        <div class="form-group">
+                                                            <li class="list-group-item">
+                                                                <div class="media">
+                                                                    <p class="pull-left">Họ Tên:</p>
+                                                                    <div class="media-body">
+                                                                        <h4 class="media-heading">
+                                                                            <span style="padding-left: 115px;"><i style="top: -2px;"></i>@ViewBag.Name</span>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <h4 class="media-heading">
+                                                                            <small class="pull-right"><button class="btn btn-floating btn-primary btn-sm icon wb-edit" data-target="#edit_nickname" data-toggle="modal" type="button"></button></small>
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Mã Mời -->
+                                            <div>
+                                                <div class="col-md-12">
+                                                    <div class="panel">
+                                                        <div class="form-group">
+                                                            <li class="list-group-item">
+                                                                <div class="media">
+                                                                    <p class="pull-left">Mã Mời:</p>
+                                                                    <div class="media-body">
+                                                                        <h4 class="media-heading">
+                                                                            <span style="padding-left: 110px;"><i style="top: -2px;"></i>@ViewBag.MaMoi</span>
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Ma Moi -->
+                                            <!-- So Luot -->
+                                            <div>
+                                                <div class="col-md-12">
+                                                    <div class="panel">
+                                                        <div class="form-group">
+                                                            <li class="list-group-item">
+                                                                <div class="media">
+                                                                    <p class="pull-left">Số Lượt Còn Lại:</p>
+                                                                    <div class="media-body">
+                                                                        <h4 class="media-heading">
+                                                                            <span style="padding-left: 60px;"><i style="top: -2px;"></i>@ViewBag.LuotChoi</span>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <h4 class="media-heading"></h4>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End So Luot -->
+                                            <!-- So Du TK -->
+                                            <div>
+                                                <div class="col-md-12">
+                                                    <div class="panel">
+                                                        <div class="form-group">
+                                                            <li class="list-group-item">
+                                                                <div class="media">
+                                                                    <p class="pull-left">Số Dư Tài Khoản:</p>
+                                                                    <div class="media-body">
+                                                                        <h4 class="media-heading">
+                                                                            <span style="padding-left: 55px;"><i style="top: -2px;"></i>@ViewBag.SoDu</span>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <h4 class="media-heading"></h4>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End So Du TK -->
+                                            <!-- End Panel Profile -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Page -->
+            <!-- Edit Ho Ten -->
+            <div class="modal fade modal-3d-flip-horizontal" id="edit_nickname" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog"
+                 tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <h3 class="panel-title" align="center">Nickname</h3>
+                        </div>
+                        <form class="form-group" action="ChangeName" method="post">
+                            <div class="modal-body">
+
+                                <input type="text" class="form-control" name="nickname_current" autocomplete="off" placeholder="@ViewBag.Name" disabled="true">
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="newname" autocomplete="off" placeholder="Nickname Mới">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default margin-0" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- End Edit Ho Ten -->
+            <!-- Core  -->
+            <script src="~/assets1/vendor/jquery/jquery.js"></script>
+            <script src="~/assets1/vendor/bootstrap/bootstrap.js"></script>
+            <script src="~/assets1/vendor/animsition/jquery.animsition.js"></script>
+            <script src="~/assets1/vendor/asscroll/jquery-asScroll.js"></script>
+            <script src="~/assets1/vendor/mousewheel/jquery.mousewheel.js"></script>
+            <script src="~/assets1/vendor/asscrollable/jquery.asScrollable.all.js"></script>
+            <script src="~/assets1/vendor/ashoverscroll/jquery-asHoverScroll.js"></script>
+
+            <!-- Plugins -->
+            <script src="~/assets1/vendor/switchery/switchery.min.js"></script>
+            <script src="~/assets1/vendor/intro-js/intro.js"></script>
+            <script src="~/assets1/vendor/screenfull/screenfull.js"></script>
+            <script src="~/assets1/vendor/slidepanel/jquery-slidePanel.js"></script>
+
+            <script src="~/assets1/vendor/skycons/skycons.js"></script>
+            <script src="~/assets1/vendor/chartist-js/chartist.min.js"></script>
+            <script src="~/assets1/vendor/aspieprogress/jquery-asPieProgress.min.js"></script>
+            <script src="~/assets1/vendor/jvectormap/jquery-jvectormap.min.js"></script>
+            <script src="~/assets1/vendor/jvectormap/maps/jquery-jvectormap-ca-lcc-en.js"></script>
+            <script src="~/assets1/vendor/matchheight/jquery.matchHeight-min.js"></script>
+
+            <!-- Scripts -->
+            <script src="~/assets1/js/core.js"></script>
+            <script src="~/assets1/js/site.js"></script>
+
+            <script src="~/assets1/js/sections/menu.js"></script>
+            <script src="~/assets1/js/sections/menubar.js"></script>
+            <script src="~/assets1/js/sections/sidebar.js"></script>
+
+            <script src="~/assets1/js/configs/config-colors.js"></script>
+            <script src="~/assets1/js/configs/config-tour.js"></script>
+
+            <script src="~/assets1/js/components/asscrollable.js"></script>
+            <script src="~/assets1/js/components/animsition.js"></script>
+            <script src="~/assets1/js/components/slidepanel.js"></script>
+            <script src="~/assets1/js/components/switchery.js"></script>
+            <script src="~/assets1/js/components/matchheight.js"></script>
+            <script src="~/assets1/js/components/jvectormap.js"></script>
+            <!-- <script src="js/agency.js"></script>
+    <script type="text/javascript" src="js/script.js"></script> -->
+
+
+            <script>
+                (function (document, window, $) {
+                    'use strict';
+
+                    var Site = window.Site;
+                    $(document).ready(function () {
+                        Site.run();
+                    });
+                })(document, window, jQuery);
+            </script>
+            <script type="text/javascript" src="~/js/jquery-1.11.3.min.js"></script>
+            <script type="text/javascript" src="~/js/script.js"></script> <!-- Use in class: x-btn -->
+</body>
+
+</html>

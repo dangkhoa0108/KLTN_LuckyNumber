@@ -1,0 +1,690 @@
+﻿@model List<LuckyNumber.ViewModel.DanhSachTrungThuongViewModel>
+
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+
+    <!--===============
+    1 ) Head Section
+    ================-->
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no;">
+    <title>LUCKY NUMBER</title>
+
+    <!--( a ) Fav Icon -->
+
+    <link rel="icon" href="~/images/icon/fav_icon.png">
+
+    <!--( b ) CSS Stylesheets -->
+    <!-- Bootstrap -->
+    <link type="text/css" rel="stylesheet" href="~/css/bootstrap.min.css">
+
+    <!-- Library -->
+
+    <link type="text/css" rel="stylesheet" href="~/library/font-awesome/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="~/library/font-awesome/css/font-awesome-animation.min.css">
+    <link type="text/css" rel="stylesheet" href="~/library/popup/popup.css">
+    <link type="text/css" rel="stylesheet" href="~/library/owl-carousel/owl.carousel.css">
+    <link type="text/css" rel="stylesheet" href="~/library/owl-carousel/owl.theme.css">
+
+    <!-- STYLE Sheets -->
+
+    <link type="text/css" rel="stylesheet" href="~/css/style.css">
+    <link type="text/css" rel="stylesheet" href="~/css/responsive.css">
+
+    <!-- SKY -->
+    <link rel="stylesheet" href="~/css/demo.css">
+    <link rel="stylesheet" href="~/css/font-awesome.css">
+    <link rel="stylesheet" href="~/css/sky-forms.css">
+    <!--( c ) Javascript For Browser Support Issues -->
+    <!--( d ) Date Picker -->
+    <script src="~/js/jquery.min-sky.js"></script>
+    <script src="~/js/jquery-ui.min-sky.js"></script>
+
+    <script type="text/javascript" src="~/library/modernizr/modernizr.js"></script>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+    <!--===========
+    1 ) Preloader
+    ============-->
+
+    <div id="preloader">
+        <div class="loader">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <!--=========
+    2 ) Homepage
+    ==========-->
+
+    <div class="home-page">
+
+        <!--( a ) Introduction -->
+
+        <div class="introduction">
+            <img alt="" src="~/images/home_dp_test.jpg">
+            <div class="mask">
+            </div>
+
+
+            <div>
+
+            </div>
+
+            <div class="intro-content">
+                <h1>
+                    L<span>U</span>CKY<br>
+                    N<span>U</span>MBER
+                </h1>
+                <!-- <h2>K '&' N Company</h2> -->
+                <p class="social-media hidden-xs">
+                    <a href="~/User/LoginFacebook" class="btn btn-primary fa fa-facebook-official fa-2x" data-toggle="tooltip" title="Đăng nhập bằng Facebook"></a>
+                    <a href="~/User/CreateUser" class="btn btn-success fa fa-plus-circle fa-2x" data-toggle="tooltip" title="Đăng Ký"></a>
+                    <a href="~/User/Login" class="btn btn-info fa fa-sign-in fa-2x" data-toggle="tooltip" title="Đăng Nhập"></a>
+                    <!-- <<button type="button" class="btn btn-primary fa fa-facebook-official fa-2x" data-toggle="tooltip" title="Đăng nhập bằng Facebook"
+                    href="https://www.google.com.vn/"></button> -->
+                </p>
+            </div>
+        </div>
+
+        <!-- ( b ) Navigation Menu -->
+
+        <div class="menu">
+            <div class="profile-btn">
+                <img alt="" src="~/images/menu/profile_btn.jpg">
+                <div class="mask">
+                </div>
+                <div class="heading col-xs-11 col-xs-offset-1">
+                    <div class="col-xs-2 hidden-xs">
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                    <div class="col-sm-10">
+                        <h2>GI<span>Ớ</span>I TH<span>I</span>ỆU</h2>
+                        <h3>Giới Thiệu Về Trang Web.</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Navigation Menu Button [ END ]  -->
+
+            <div class="resume-btn">
+                <img alt="" src="~/images/menu/resume_btn.jpg">
+                <div class="mask">
+                </div>
+                <div class="heading col-xs-11 col-xs-offset-1">
+                    <div class="col-xs-2 hidden-xs">
+                        <i class="fa fa-question"></i>
+                    </div>
+                    <div class="col-sm-10">
+                        <h2>C<span>Á</span>CH CH<span>Ơ</span>I</h2>
+                        <h3>Hướng Dẫn Cách Chơi.</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Navigation Menu Button [ END ]  -->
+
+            <div class="portfolio-btn">
+                <img alt="" src="~/images/menu/portfolio_btn.jpg">
+                <div class="mask">
+                </div>
+                <div class="heading col-xs-11 col-xs-offset-1">
+                    <div class="col-xs-2 hidden-xs">
+                        <i class="fa fa-trophy"></i>
+                    </div>
+                    <div class="col-sm-10">
+                        <h2>K<span>Ế</span>T QU<span>Ả</span></h2>
+                        <h3>Danh Sách Người Trúng Thưởng.</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Navigation Menu Button [ END ]  -->
+
+            <div class="contact-btn">
+                <img alt="" src="~/images/menu/contact_btn.jpg">
+                <div class="mask">
+                </div>
+                <div class="heading col-xs-11 col-xs-offset-1">
+                    <div class="col-xs-2 hidden-xs">
+                        <i class="fa fa-envelope-o"></i>
+                    </div>
+                    <div class="col-sm-10">
+                        <h2>L<span>I</span>ÊN H<span>Ệ</span></h2>
+                        <h3>Liên Hệ Với Chúng Tôi Khi Bạn Cần.</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Navigation Menu Button [ END ]  -->
+
+        </div>
+    </div>
+
+    <!--=============
+    4 ) Close Button
+    ==============-->
+
+    <div class="close-btn"></div>
+
+    <!--=============
+    5 ) Profile Page
+    ==============-->
+
+    <div class="profile-page">
+
+        <!--( a ) Profile Page Fixed Image Portion -->
+
+        <div class="image-container col-md-5 col-sm-12">
+            <div class="mask">
+            </div>
+            <div class="main-heading">
+                <h1>GI<span>Ớ</span>I TH<span>I</span>ỆU</h1>
+            </div>
+        </div>
+
+        <!--( b ) Profile Page Content -->
+
+        <div class="content-container col-md-7 col-sm-12">
+
+            <!--( A ) Story of Glory -->
+
+            <div class="story clearfix">
+                <h2 class="small-heading">GIỚI THIỆU VỀ TRANG WEB</h2>
+                <div class="col-lg-11 col-lg-offset-1">
+                    <div class="story-content clearfix">
+                        <img alt="" src="~/images/logo_lk.jpg" class="col-xs-offset-1 col-sm-offset-0 col-sm-4 col-xs-10">
+                        <div class="col-sm-8 col-xs-12">
+                            <h3>LUCKY NUMBER - CON SỐ MAY MẮN</h3>
+                            <p>
+                                Con Số May Mắn. Tại sao lại là Con Số May Mắn? Chắc có lẽ có nhiều người đã đặt ra câu hỏi này? Vâng trang web này có tên là Con Số May Mắn bởi vì chính những con số mà bạn chọn, bạn ưu thích sẽ đem lại may mắn cho bạn. Và may mắn đó chính là những phần thưởng mà chúng tôi đem lại cho người giành chiến thắng. Hãy đến với chúng tôi để may mắn đến với bạn nhiều hơn nhé!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--( B ) What Can I Do -->
+
+            <div class="services-container clearfix">
+                <h2 class="small-heading">CHÚNG TÔI MANG ĐẾN CHO BẠN</h2>
+                <div class="services col-lg-4 col-md-6 col-sm-4">
+                    <i class="fa fa-eye faa-flash animated"></i>
+                    <h3>GIAO DIỆN</h3>
+                    <p>
+                        Giao diện được thiết kế để cho người dùng dễ dàng sử dụng. Không những thế Website còn tương thích với nhiều trình duyệt khác nhau như Google Chrome, Cốc Cốc, Safari,...
+                    </p>
+                </div>
+
+                <!-- Single Service Item [ END ]  -->
+
+                <div class="services col-lg-4 col-md-6 col-sm-4">
+                    <i class="fa fa-comments faa-shake animated"></i>
+                    <h3>HỖ TRỢ</h3>
+                    <p>
+                        Với đội ngũ quản trị viên chuyên nghiệp, chúng tôi sẵn sàng trả lời mọi thắc mắc của các bạn một cách sớm nhất có thể để phục vụ các bạn một cách tốt nhất.
+                    </p>
+                </div>
+
+                <!-- Single Service Item [ END ]  -->
+
+                <div class="services col-lg-4 col-md-6 col-sm-4">
+                    <i class="fa fa-trophy faa-tada animated"></i>
+                    <h3>GIẢI THƯỞNG</h3>
+                    <p>
+                        Lucky Number không chỉ giúp bạn giải trí sau những giờ làm việc mệt nhọc mà còn đem đến cho bạn những phần thưởng có giá trị khi bạn là người may mắn chiến thắng.
+                    </p>
+                </div>
+
+                <!-- Single Service Item [ END ]  -->
+
+
+            </div>
+
+            <!--( C ) Some Facts -->
+
+            <div class="facts clearfix">
+                <div class="col-xs-4">
+                    <h3>GIẢI TRÍ</h3>
+                    <!-- <h1>300+</h1> -->
+                </div>
+                <div class="col-xs-4">
+                    <h3>MAY MẮN</h3>
+                    <!-- <h1>100+</h1> -->
+                </div>
+                <div class="col-xs-4">
+                    <h3>CÓ THƯỞNG</h3>
+                    <!-- <h1>250+</h1> -->
+                </div>
+            </div>
+
+            <!--( D ) Footer -->
+
+            <div class="footer clearfix">
+                <!--                 <a>N & K Team </a> -->
+                <p>
+                    Copyright © 2016 All right reserved
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!--=============
+    6 ) Resume Page
+    ===============-->
+
+    <div class="resume-page">
+
+        <!--( a ) Resume Page Fixed Image Portion -->
+
+        <div class="image-container col-md-5 col-sm-12">
+            <div class="mask">
+            </div>
+            <div class="main-heading">
+                <h1>C<span>Á</span>CH CH<span>Ơ</span>I</h1>
+            </div>
+        </div>
+
+        <!--( b ) Resume Page Content -->
+
+        <div class="content-container col-md-7 col-sm-12">
+
+            <!--( A ) Education Section -->
+
+            <div class="education clearfix">
+                <h2 class="small-heading">HƯỚNG DẪN CÁCH CHƠI</h2>
+
+                <div class="education-container col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 col-sm-10 col-sm-offset-1">
+                    <div class="item">
+                        <div class="bullet hidden-xs">
+                        </div>
+                        <div class="education-content">
+                            <h3>Đăng Ký</h3>
+                            <p>
+                                Để tham gia Con Số May Mắn thì việc đầu tiên đó là đăng ký một tài khoản bằng cách đăng nhập thông qua Facebook.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Single Education Item [ END ] -->
+
+                    <div class="item">
+                        <div class="bullet hidden-xs">
+                        </div>
+                        <div class="education-content">
+                            <h3>Xác Nhận</h3>
+                            <p>
+                                Sau khi việc đăng ký hoàn tất thì bạn vào phần Thông Tin Cá Nhân để nhập số điện thoại dùng để xác nhận tài khoản.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Single Education Item [ END ] -->
+
+                    <div class="item">
+                        <div class="bullet hidden-xs">
+                        </div>
+                        <div class="education-content">
+                            <h3>Đoán Số</h3>
+                            <p>
+                                Sau khi đã xác nhận thành công, bạn được phép click vào "Đoán Số" để chuẩn bị tham gia trò chơi. Sau khi đã đọc xong thể lệ trò chơi người chơi nhấn vào nút "Bắt Đầu" để bắt đầu đoán số.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Single Education Item [ END ] -->
+
+                    <div class="item">
+                        <div class="bullet hidden-xs">
+                        </div>
+                        <div class="education-content">
+                            <h3>Thể Lệ Trò Chơi</h3>
+                            <p>
+                                Mỗi người chơi sẽ đoán số 1 con số bất kì từ 0 đến 999. Nếu con số mà người chơi đoán nằm trong 1 trong những con số được Ít người dự đoán nhất thì người chơi đó sẽ là người chiến thắng. Phần thường sẽ được chia đều cho những người chơi chiến thắng. Mỗi người chơi sẽ có 3 lượt đoán trong 1 ngày. Nếu người chơi muốn tăng lượt đoán thì người chơi đó phải nạp thẻ để được tăng lượt đoán cũng đồng nghĩa tăng sự may mắn của bạn. Mỗi 10 ngàn đồng sẽ qui đổi được 4 lượt đoán.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!--( B ) Footer Section -->
+
+            <div class="footer clearfix">
+                <!-- <a href="#">JOHN DOE</a> -->
+                <p>
+                    Copyright © 2016 All right reserved
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!--===============
+    7 ) Portfolio Page
+    ================-->
+
+    <div class="portfolio-page">
+
+        <!--( a ) Portfolio Page Fixed Image Portion -->
+
+        <div class="image-container col-md-5 col-sm-12">
+            <div class="mask">
+            </div>
+            <div class="main-heading">
+                <h1>KẾT QUẢ</h1>
+            </div>
+        </div>
+
+        <!--( b ) Portfolio Page Content -->
+
+        <div class="content-container col-md-7 col-sm-12">
+            <!-- Danh Sách Trúng Thưởng -->
+            <div class="win clearfix">
+                <h2 class="small-heading">DANH SÁCH NGƯỜI TRÚNG THƯỞNG</h2>
+                
+                
+
+                <div class="testimonials-container col-sm-10 col-sm-offset-1">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <td>Username</td>
+                                <td>SĐT</td>
+                                <td>Email</td>
+                                <td>Thời gian đoán số</td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+@foreach (var item in Model) { 
+                            <tr>
+                                <td>@item.username</td>
+                                <td>@item.phone</td>
+                                <td>@item.email</td>
+                                @*@{
+                                    string ngayDoan = @item.NgayDoanSo.ToString();
+                                    ngayDoan = ngayDoan.Substring(0, 10);
+                                    <td>@ngayDoan</td>
+                                }*@
+                               @{
+    string ngayDoan = @item.NgayDoanSo.ToString();
+    string temp = ngayDoan.Substring(0, 10);
+    ngayDoan = ngayDoan.Substring(0, 10);
+    <td>@temp</td>
+}
+                                
+                             
+                            </tr>
+}
+                            
+                        </tbody>
+                    </table>
+
+                    <!-- Single Testimonial Item [ END ] -->
+
+                </div>
+            </div>
+            <div class="footer clearfix">
+                <p>
+                    Copyright © 2016 All right reserved
+                </p>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!--==============
+    8 ) Contact Page
+    ===============-->
+
+    <div class="contact-page">
+
+        <!--( a ) Contact Page Fixed Image Portion -->
+
+        <div class="image-container col-md-5 col-sm-12">
+            <div class="mask">
+            </div>
+            <div class="main-heading">
+                <h1>L<span>I</span>ÊN H<span>Ệ</span></h1>
+            </div>
+        </div>
+
+        <!--( b ) Contact Page Content -->
+
+        <div class="content-container col-md-7 col-sm-12">
+
+            <div class="portfolio">
+                <h2 class="small-heading">QUẢN TRỊ VIÊN</h2>
+                <div class="project-container">
+
+                    <div class="project-controls">
+                        <button class="filter" data-filter="all">All</button>
+                        <button class="filter" data-filter=".project-manager">Project Manager</button>
+                        <button class="filter" data-filter=".web-designer">Web Designer</button>
+                        <button class="filter" data-filter=".developer">Developer</button>
+                    </div>
+
+                    <!-- Portfolio Control Buttons [ END ] -->
+
+                    <div class="projet-items clearfix" id="projects">
+
+                        <!-- Portfolio Image -->
+
+                        <div class="col-lg-4 col-md-6 col-sm-4  col-xs-6 mix project-manager">
+                            <div class="project">
+                                <img src="~/images/portfolio/pm_mrkhoi_1.jpg" alt="">
+                                <div class="ovrly">
+                                </div>
+                                <div class="buttons">
+                                    <a href="https://www.facebook.com/kietnguyen.212" target="_blank" class="fa fa-facebook-official"></a>
+                                    <a href="#pm_mrkhoi" class="fa fa-search show-popup"></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Popup Content -->
+
+                        <div class="pop-up-box" id="pm_mrkhoi">
+                            <img alt="" src="~/images/portfolio/pm_mrkhoi_2.jpg" class="hidden-xs">
+                            <div class="popup-content">
+                                <h3>Mai Tuấn Khôi</h3>
+                                <p>
+                                    Một người thầy luôn hết mực giúp đỡ sinh viên những lúc sinh viên gặp khó khăn trong việc học tập. Thầy luôn hướng dẫn một cách tận tình và rõ ràng.
+                                </p>
+                                <!-- <a href="https://www.facebook.com/S2.Fun.Smurf.S2" target="_blank">Facebook</a> -->
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-4 col-md-6 col-sm-4 col-xs-6 mix web-designer mix developer">
+                            <div class="project">
+                                <img src="~/images/portfolio/ad_kiet_1.jpg" alt="">
+                                <div class="ovrly">
+                                </div>
+                                <div class="buttons">
+                                    <a href="https://www.facebook.com/S2.Fun.Smurf.S2" target="_blank" class="fa fa-facebook-official"></a>
+                                    <a href="#ad_kiet" class="fa fa-search show-popup"></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Popup Content -->
+
+                        <div class="pop-up-box" id="ad_kiet">
+                            <img alt="" src="~/images/portfolio/ad_kiet_2.jpg" class="hidden-xs">
+                            <div class="popup-content">
+                                <h3>Nguyễn Anh Kiệt</h3>
+                                <p>
+                                    Là người năng nổ, luôn luôn có những sáng kiến mới và độc đáo giúp Website hoàn thiện hơn.
+                                </p>
+                                <!-- <a href="https://www.facebook.com/S2.Fun.Smurf.S2" target="_blank">Facebook</a> -->
+                            </div>
+                        </div>
+
+                        <!-- Portfolio Image -->
+
+                        <div class="col-lg-4 col-md-6 col-sm-4 col-xs-6 mix developer">
+                            <div class="project">
+                                <img src="~/images/portfolio/ad_nhu_1.jpg" alt="">
+                                <div class="ovrly">
+                                </div>
+                                <div class="buttons">
+                                    <a href="https://www.facebook.com/huunhu.pham" target="_blank" class="fa fa-facebook-official"></a>
+                                    <a href="#ad_nhu" class="fa fa-search show-popup"></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Popup Content -->
+
+                        <div class="pop-up-box" id="ad_nhu">
+                            <img alt="" src="~/images/portfolio/ad_nhu_2.jpg" class=" hidden-xs">
+                            <div class="popup-content">
+                                <h3>Phạm Hữu Như</h3>
+                                <p>
+                                    Là người rất siêng năng trong công việc, luôn hoàn thanh nhiệm vụ được giao. Hơn thế nữa, Như là người rất hòa đồng, sẵn sàng trả lời những câu hỏi trong phạm vị hiểu biết.
+                                </p>
+                                <!-- <a href="https://www.facebook.com/huunhu.pham" target="_blank">Facebook</a> -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="services-container clearfix">
+                    <h2 class="small-heading">THÔNG TIN LIÊN HỆ</h2>
+                    <div class="services col-lg-4 col-md-6 col-sm-4">
+                        <i class="fa fa-phone faa-ring animated"></i>
+                        <h3>SỐ ĐIỆN THOẠI</h3>
+                        <p>
+                            0969-420-417
+                        </p>
+                    </div>
+
+                    <!-- Single Service Item [ END ]  -->
+
+                    <div class="services col-lg-4 col-md-6 col-sm-4">
+                        <i class="fa fa-paper-plane-o faa-shake animated"></i>
+                        <h3>E-MAIL</h3>
+                        <p>
+                            luckynumber0999@gmail.com
+                        </p>
+                    </div>
+
+                    <!-- Single Service Item [ END ]  -->
+
+                    <div class="services col-lg-4 col-md-6 col-sm-4">
+                        <i class="fa fa-facebook-official faa-tada animated"></i>
+                        <h3>FACEBOOK</h3>
+                        <p>
+                            <a href="https://www.facebook.com/S2.Fun.Smurf.S2" target="_blank">Lucky Number</a>
+                        </p>
+                    </div>
+
+                </div>
+
+                <div>
+                    <h2 class="small-heading">ĐỊA ĐIỂM</h2>
+                    <div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.480778532476!2d106.77076931476469!3d10.850990092270955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175270ad28d48ab%3A0xa6c02de0a7c40d6c!2zVHLGsOG7nW5nIMSQSFNQIEvhu7kgVGh14bqtdCBUcC4gSENN!5e0!3m2!1svi!2s!4v1472960950205" width="1120" height="720" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <!-- ( D ) Footer -->
+
+                <div class="footer clearfix">
+                    <!-- <a href="#">Lucky Number</a> -->
+                    <p>
+                        Copyright © 2016 All right reserved
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Date Picker -->
+        <script type="text/javascript">
+            $(function () {
+                // Regular datepicker
+                $('#date').datepicker({
+                    dateFormat: 'dd/mm/yy',
+                    prevText: '<i class="fa fa-chevron-left"></i>',
+                    nextText: '<i class="fa fa-chevron-right"></i>'
+                });
+
+                // Date range
+                $('#start').datepicker({
+                    dateFormat: 'dd/mm/yy',
+                    prevText: '<i class="fa fa-chevron-left"></i>',
+                    nextText: '<i class="fa fa-chevron-right"></i>',
+                    onSelect: function (selectedDate) {
+                        $('#finish').datepicker('option', 'minDate', selectedDate);
+                    }
+                });
+                $('#finish').datepicker({
+                    dateFormat: 'dd/mm/yy',
+                    prevText: '<i class="fa fa-chevron-left"></i>',
+                    nextText: '<i class="fa fa-chevron-right"></i>',
+                    onSelect: function (selectedDate) {
+                        $('#start').datepicker('option', 'maxDate', selectedDate);
+                    }
+                });
+
+                // Inline datepicker
+                $('#inline').datepicker({
+                    dateFormat: 'dd/mm/yy',
+                    prevText: '<i class="fa fa-chevron-left"></i>',
+                    nextText: '<i class="fa fa-chevron-right"></i>'
+                });
+
+                // Inline date range
+                $('#inline-start').datepicker({
+                    dateFormat: 'dd/mm/yy',
+                    prevText: '<i class="fa fa-chevron-left"></i>',
+                    nextText: '<i class="fa fa-chevron-right"></i>',
+                    onSelect: function (selectedDate) {
+                        $('#inline-finish').datepicker('option', 'minDate', selectedDate);
+                    }
+                });
+                $('#inline-finish').datepicker({
+                    dateFormat: 'dd/mm/yy',
+                    prevText: '<i class="fa fa-chevron-left"></i>',
+                    nextText: '<i class="fa fa-chevron-right"></i>',
+                    onSelect: function (selectedDate) {
+                        $('#inline-start').datepicker('option', 'maxDate', selectedDate);
+                    }
+                });
+            });
+        </script>
+
+        <!--============
+        9 ) Javascript
+        =============-->
+
+        <script type="text/javascript" src="~/js/jquery-1.11.3.min.js"></script>
+        <script src="~/js/jquery-ui.min-sky.js"></script>
+        <script type="text/javascript" src="~/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="~/library/jquery-easing/jquery.easing.min.js"></script>
+        <script type="text/javascript" src="~/library/easy-pie-charts/jquery.easypiechart.min.js"></script>
+        <script type="text/javascript" src="~/library/mixitup/jquery.mixitup.min.js"></script>
+        <script type="text/javascript" src="~/library/popup/jquery.popup.min.js"></script>
+        <script type="text/javascript" src="~/library/owl-carousel/owl.carousel.min.js"></script>
+        <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
+        <script type="text/javascript" src="~/library/gMap/jquery.gmap.min.js"></script>
+        <script type="text/javascript" src="~/js/script.js"></script> <!-- Use in class: x-btn -->
+</body>
+</html>

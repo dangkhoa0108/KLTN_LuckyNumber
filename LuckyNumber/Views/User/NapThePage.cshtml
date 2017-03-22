@@ -1,0 +1,202 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Nạp Thẻ</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/assets/css/style.css?v=22042015" type="text/css">
+    <link rel="stylesheet" href="~/assets/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="~/assets/css/jquery.dataTables.css" type="text/css">
+    <link rel="stylesheet" href="~/assets/css/jflow.style.css" type="text/css">
+    <script async="" charset="utf-8" src="//v2.zopim.com/?3CPR77KxjWy8bBLz2BUL5LUb9kjz8W7H" type="text/javascript"></script>
+    <script src="~/assets/js/jquery.js" type="text/javascript"></script>
+    <script src="~/assets/js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="~/assets/js/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="~/assets/js/jflow.plus.js" type="text/javascript"></script>
+    <script src="~/assets/js/main.js" type="text/javascript"></script>
+    <script src="~/assets/js/jquery.formatCurrency-1.4.0.pack.js" type="text/javascript"></script>
+    <script src="~/assets/js/jquery.formatCurrency.vi-VN.js" type="text/javascript"></script>
+    <script class="toolbar_me" src="~/assets/toolbar_me/toolbar_me.js?key=34863cdbfbc621347b9025e03cb47c44"></script>
+    <script>
+        loading = processing = search = first_page = last_page = next = previous = '';
+    </script>
+    <style media="print" class="jx_ui_StyleSheet" __jx__id="___$_2" type="text/css">
+        .zopim {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    @*<div class="zopim" __jx__id="___$_61 ___$_61" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; padding: 0px; border: 0px; overflow: hidden; position: fixed; z-index: 16000002; width: 180px; height: 30px; right: 10px; bottom: 0px; background: transparent;"><iframe frameborder="0" src="about:blank" style="vertical-align: text-bottom; position: relative; width: 100%; height: 100%; min-width: 100%; min-height: 100%; max-width: 100%; max-height: 100%; margin: 0px; overflow: hidden; display: block; background-color: transparent;"></iframe></div><div class="zopim" __jx__id="___$_4 ___$_4" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; padding: 0px; border: 0px; overflow: hidden; position: fixed; z-index: 16000001; right: 10px; bottom: 0px; border-top-left-radius: 5px; border-top-right-radius: 5px; display: none; width: 290px; height: 400px; box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 3px 2px; background: transparent;"><iframe frameborder="0" src="about:blank" style="vertical-align: text-bottom; position: relative; width: 100%; height: 100%; min-width: 100%; min-height: 100%; max-width: 100%; max-height: 100%; margin: 0px; overflow: hidden; display: block; background-color: transparent;"></iframe></div>*@
+    <div id="reglog">
+        <span class="hello">Chào</span> <a class="button username" href="~/User/userProfile">
+            <strong>
+                @ViewBag.Name
+            </strong>
+        </a> <a href="~/User/Logout" class="logout-nav">(Thoát)</a>            &nbsp;&nbsp;&nbsp;&nbsp;
+
+
+    </div>
+
+    @*<div id="header">
+
+            <div id="middle_panel_wrapper">
+                <div id="middle_panel">
+
+                    <ul id="top_menu">
+                        <li class="top_menu_element" id="first-menu">
+                            <a id="index" class="" href="https://mopay.vn/">Trang chủ</a>
+                            <ul id="sub-menu" style="visibility: hidden;">
+                                <li><a href="https://mopay.vn/gioi-thieu.html">Giới thiệu</a></li>
+                                <li><a href="https://mopay.vn/dieu-khoan-su-dung.html">Điều khoản sử dụng</a></li>
+                                <li><a href="https://mopay.vn/dieu-khoan-bao-mat.html">Điều khoản bảo mật</a></li>
+                            </ul>
+                        </li>
+                        <li class="top_menu_element"><a id="recharge" class="active" href="https://mopay.vn/nap-mcoin.html">Nạp Tiền</a></li>
+                        <li class="top_menu_element"><a id="exchange" class="" href="https://mopay.vn/doi-mcoin.html">Đổi Tiền</a></li>
+                        <li class="top_menu_element"><a id="wallet" class="" href="https://mopay.vn/vi-mopay.html">Ví Tiền</a></li>
+                        <li class="top_menu_element"><a id="promotion" class="" href="https://mopay.vn/tin-khuyen-mai.html">Tin khuyến mãi</a></li>
+                        <li class="top_menu_element"><a id="support" class="" href="https://mopay.vn/ho-tro.html">Hỗ trợ</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>*@
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#top_menu > li').bind('mouseover', openSubMenu);
+            $('#top_menu > li').bind('mouseout', closeSubMenu);
+            function openSubMenu() {
+                $(this).find('ul').css('visibility', 'visible');
+            };
+            function closeSubMenu() { $(this).find('ul').css('visibility', 'hidden'); };
+        });
+    </script>
+    <script src="./assets/js/action_ajax.js" type="text/javascript"></script>
+    <div class="hr"></div>
+    <div id="content">
+        @*<div id="breadcumbs">
+                <a href="https://mopay.vn/"><span class="not_end">Trang chủ</span></a>
+                <span>Nạp Tiền</span>
+            </div>*@
+        <div id="mcoin">
+            <h1 class="page_title">NẠP TIỀN</h1>
+            <div style="padding-right: 30px;border-right: 1px solid #E1E1E1">
+                <div class="tabs">
+                    <ul class="tab-links">
+                        <li class="active"><a href="#card">THẺ CÀO</a></li>
+
+                    </ul>
+                    <div class="tab-content">
+                        <div id="card" class="tab active" style="display: block;">
+                            <form action="~/User/NapThe" method="post" class="action-form card-form">
+                                <h3 class="form_title">BƯỚC 1: CHỌN LOẠI THẺ</h3><br>
+                                <p>Vui lòng chọn loại thẻ bạn muốn nạp</p>
+                                <div>
+
+                                    <div class="card_element">
+                                        <img class="card_icon" src="~/assets/images/card_viettel.png">
+
+                                        <div class="radio-card" data="viettel">
+                                            <span class=""></span>
+                                        </div>
+                                    </div>                                <input type="hidden" name="card" class="radio" value="gate">
+                                </div>
+                                <div class="step-2" style="display: block;">
+                                    <h3 class="form_title">BƯỚC 2: NHẬP SỐ THẺ</h3><br>
+                                    <label>Số Serial:</label>
+                                    <input class="text" name="txtSerial" type="text">
+                                    <label>Mã số nạp tiền:</label>
+                                    <input class="text" name="txtPin" type="text">
+
+
+                                    <div class="ajax-content" style="display: none;"></div>
+                                    <input class="submit" type="submit" value="Nạp thẻ">
+                                    @*<div id="circularG" class="loading-card loading" style="display: none;">
+                                            <div id="circularG_1" class="circularG">
+                                            </div>
+                                            <div id="circularG_2" class="circularG">
+                                            </div>
+                                            <div id="circularG_3" class="circularG">
+                                            </div>
+                                            <div id="circularG_4" class="circularG">
+                                            </div>
+                                            <div id="circularG_5" class="circularG">
+                                            </div>
+                                            <div id="circularG_6" class="circularG">
+                                            </div>
+                                            <div id="circularG_7" class="circularG">
+                                            </div>
+                                            <div id="circularG_8" class="circularG">
+                                            </div>
+                                        </div>*@
+                                </div>
+                            </form>
+
+                            <h3 class="exchange_rate">Tỉ lệ quy đổi:</h3>
+
+                            <table id="card_value" class="gate_tb" style="display: table;">
+                                <tbody>
+                                    <tr>
+                                        <!--<th>LOẠI THẺ</th>-->
+                                        <th>MỆNH GIÁ</th>
+                                        <th>SỐ LƯỢT</th>
+                                    </tr>
+
+                                    <tr class="content"><!--<th>Gate</th>--><th>10,000 VNĐ</th><th>1 lượt</th></tr>
+
+                                    <tr class="content"><!--<th>Gate</th>--><th>20,000 VNĐ</th><th>2 lượt</th></tr>
+
+                                    <tr class="content"><!--<th>Gate</th>--><th>50,000 VNĐ</th><th>5 lượt</th></tr>
+
+                                    <tr class="content"><!--<th>Gate</th>--><th>100,000 VNĐ</th><th>12 lượt</th></tr>
+
+                                    <tr class="content"><!--<th>Gate</th>--><th>500,000 VNĐ</th><th>70 lượt</th></tr>
+
+                                    <tr class="content"><!--<th>Gate</th>--><th>1,000,000 VNĐ</th><th>150 lượt</th></tr>
+
+                                    <tr class="content"><!--<th>Gate</th>--><th>5,000,000 VNĐ</th><th>900 lượt</th></tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+    <!--Start of Zopim Live Chat Script-->
+    @*<script type="text/javascript">
+            window.$zopim || (function (d, s) {
+                var z = $zopim = function (c) { z._.push(c) }, $ = z.s =
+                d.createElement(s), e = d.getElementsByTagName(s)[0]; z.set = function (o) {
+                    z.set.
+                    _.push(o)
+                }; z._ = []; z.set._ = []; $.async = !0; $.setAttribute("charset", "utf-8");
+                $.src = "//v2.zopim.com/?3CPR77KxjWy8bBLz2BUL5LUb9kjz8W7H"; z.t = +new Date; $.
+                type = "text/javascript"; e.parentNode.insertBefore($, e)
+            })(document, "script");
+            $language = '';
+            if ($language == '_english')
+                $zopim(function () {
+                    $zopim.livechat.setLanguage('en');
+                });
+        </script>*@
+    <!--End of Zopim Live Chat Script-->
+
+
+</body>
+</html>

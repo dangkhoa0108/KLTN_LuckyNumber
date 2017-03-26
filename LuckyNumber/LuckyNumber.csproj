@@ -189,6 +189,7 @@
     <Compile Include="SMSAPI\SpeedSMSAPI.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\ChiTietChoiViewModel.cs" />
+    <Compile Include="ViewModel\DanhSachSoDaDoanViewModel.cs" />
     <Compile Include="ViewModel\DanhSachTrungThuongViewModel.cs" />
     <Compile Include="ViewModel\DieuChinhGiaiThuongViewModel.cs" />
     <Compile Include="ViewModel\LichSuTrungThuongViewModel.cs" />
@@ -4323,6 +4324,15 @@
     <Content Include="Views\Admin\DanhSachTrungThuong.cshtml" />
     <Content Include="Views\Admin\DoiMatKhau.cshtml" />
     <Content Include="Views\User\ThongBao4.cshtml" />
+    <Content Include="Views\DoanSo\BaoLo10Page.cshtml" />
+    <Content Include="Views\DoanSo\ThongBao10.cshtml" />
+    <Content Include="Views\DoanSo\BaoLoDauCuoi.cshtml" />
+    <Content Include="Views\DoanSo\BaoLoGiuaCuoi.cshtml" />
+    <Content Include="Views\DoanSo\BaoLoDauGiua.cshtml" />
+    <Content Include="Views\DoanSo\BaoLo100Page.cshtml" />
+    <Content Include="Views\DoanSo\BaoLoDau.cshtml" />
+    <Content Include="Views\DoanSo\BaoLoGiua.cshtml" />
+    <Content Include="Views\DoanSo\BaoLoCuoi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

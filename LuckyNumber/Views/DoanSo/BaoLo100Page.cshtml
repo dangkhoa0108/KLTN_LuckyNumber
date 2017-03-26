@@ -4,8 +4,8 @@
 }
 
 @{
-    ViewBag.Title = "DoanSoPage";
-    
+    ViewBag.Title = "Bao lô 100 ";
+
 }
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@
     <meta name="description" content="bootstrap admin template">
     <meta name="author" content="">
 
-    <title>Đoán Số</title>
+    <title>Bao Lô 100 </title>
     <style type="text/css">
         #test-vid {
             position: absolute;
@@ -214,10 +214,22 @@
                                     <span class="site-menu-title">Cách Chơi</span>
                                 </a>
                             </li>
-                            <li class="site-menu-item active">
+                            <li class="site-menu-item">
                                 <a class="animsition-link" href="~/DoanSo/DoanSoPage" data-slug="lucky_number">
                                     <i class="site-menu-icon " aria-hidden="true"></i>
                                     <span class="site-menu-title">Đoán Số</span>
+                                </a>
+                            </li>
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="~/DoanSo/BaoLo10Page" data-slug="lucky_number">
+                                    <i class="site-menu-icon " aria-hidden="true"></i>
+                                    <span class="site-menu-title">Bao lô 10</span>
+                                </a>
+                            </li>
+                            <li class="site-menu-item active">
+                                <a class="animsition-link" href="~/DoanSo/BaoLo10Page" data-slug="lucky_number">
+                                    <i class="site-menu-icon " aria-hidden="true"></i>
+                                    <span class="site-menu-title">Bao lô 100</span>
                                 </a>
                             </li>
                             <li class="site-menu-item">
@@ -302,6 +314,8 @@
             </video>
         </div>
 
+
+
         <div class="test-wid">
             <div class="col-md-2 col-xs-12 masonry-item">
             </div>
@@ -311,21 +325,173 @@
                         <a class="avatar avatar-100 img-bordered margin-bottom-10 bg-white" href="javascript:void(0)">
                             <img src="~/assets1/portraits/logo.jpg" alt="">
                         </a>
-                        <div class="font-size-20 white">Nhập Số Bạn Muốn Đoán</div>
+                        <div class="font-size-20 white">Chọn tùy chọn</div>
                     </div>
-                    <form action="~/DoanSo/DoanSo" id="sky-form" class="sky-form" method="post">
+                    <form action="" id="sky-form" class="sky-form" method="post">
                         <div class="widget-footer bg-white padding-horizontal-30 padding-vertical-20 text-center container-fluid">
-                            <div class="form-group form-material floating has-success">
-                                <input type="text" class="form-control" name="SoDuDoan">
+
+                            <div>
+                                <div class="col-md-12">
+                                    <div class="panel">
+                                        <div class="form-group">
+                                            <li class="list-group-item">
+                                                <div class="media">
+                                                    <p class="pull-left">Bao lô đầu: </p>
+                                                    <div class="media-body">
+                                                        <h5 class="media-heading">
+                                                            <span>"Là hình thức người chơi đoán 1 số đầu của con số có 3 chữ số ^_^"</span>
+                                                        </h5>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading">
+                                                            <small class="pull-right"><button class="btn btn-floating btn-primary btn-sm icon wb-edit" data-target="#doan_dau" data-toggle="modal" type="button"></button></small>
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-animate btn-animate-vertical btn-success">
-                                <span><i class="icon wb-star" aria-hidden="true"></i>Đoán Số</span>
-                            </button>
+
+
+                            <div>
+                                <div class="col-md-12">
+                                    <div class="panel">
+                                        <div class="form-group">
+                                            <li class="list-group-item">
+                                                <div class="media">
+                                                    <p class="pull-left">Bao lô giữa: </p>
+                                                    <div class="media-body">
+                                                        <h5 class="media-heading">
+                                                            <span>"Là hình thức người chơi đoán 1 số giữa của con số có 3 chữ số ^_^"</span>
+                                                        </h5>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading">
+                                                            <small class="pull-right"><button class="btn btn-floating btn-primary btn-sm icon wb-edit" data-target="#doan_giua" data-toggle="modal" type="button"></button></small>
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div>
+                                <div class="col-md-12">
+                                    <div class="panel">
+                                        <div class="form-group">
+                                            <li class="list-group-item">
+                                                <div class="media">
+                                                    <p class="pull-left">Bao lô cuối: </p>
+                                                    <div class="media-body">
+                                                        <h5 class="media-heading">
+                                                            <span>"Là hình thức người chơi đoán 1 số cuối của con số có 3 chữ số ^_^"</span>
+                                                        </h5>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading">
+                                                            <small class="pull-right"><button class="btn btn-floating btn-primary btn-sm icon wb-edit" data-target="#doan_cuoi" data-toggle="modal" type="button"></button></small>
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+
+
+        <!--Đoán đầu -->
+        <div class="modal fade modal-3d-flip-horizontal" id="doan_dau" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog"
+             tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h3 class="panel-title" align="center">Bao lô đầu</h3>
+                    </div>
+                    <form class="form-group" action="~/DoanSo/BaoLoDau" method="post">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="sodau" autocomplete="off" placeholder="Số đầu (0-9)">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default margin-0" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade modal-3d-flip-horizontal" id="doan_giua" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog"
+             tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h3 class="panel-title" align="center">Bao lô giữa</h3>
+                    </div>
+                    <form class="form-group" action="~/DoanSo/BaoLoGiua" method="post">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="sogiua" autocomplete="off" placeholder="Số giữa (0-9)">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default margin-0" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade modal-3d-flip-horizontal" id="doan_cuoi" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog"
+             tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h3 class="panel-title" align="center">Bao lô cuối</h3>
+                    </div>
+                    <form class="form-group" action="~/DoanSo/BaoLoCuoi" method="post">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="socuoi" autocomplete="off" placeholder="Số cuối (0-9)">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default margin-0" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
         <!-- End Page -->
         <!-- Core  -->
         <script src="~/assets1/vendor/jquery/jquery.js"></script>
@@ -366,21 +532,21 @@
         <script src="~/assets1/js/components/switchery.js"></script>
         <script src="~/assets1/js/components/matchheight.js"></script>
         <script src="~/assets1/js/components/jvectormap.js"></script>
-        <!-- <script src="js/agency.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+            <!-- <script src="js/agency.js"></script>
         <script type="text/javascript" src="js/script.js"></script> -->
 
-
         <script>
-            (function (document, window, $) {
-                'use strict';
+                (function (document, window, $) {
+                    'use strict';
 
-                var Site = window.Site;
-                $(document).ready(function () {
-                    Site.run();
-                });
-            })(document, window, jQuery);
+                    var Site = window.Site;
+                    $(document).ready(function () {
+                        Site.run();
+                    });
+                })(document, window, jQuery);
         </script>
         <script type="text/javascript" src="~/js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="~/js/script.js"></script> <!-- Use in class: x-btn -->
-   </div>
+    </div>
 </html>

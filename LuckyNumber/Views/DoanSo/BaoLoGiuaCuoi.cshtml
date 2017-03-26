@@ -1,0 +1,27 @@
+﻿@model List<LuckyNumber.ViewModel.DanhSachSoDaDoanViewModel>
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Bao lô giữa cuối</title>
+</head>
+<body>
+    <h2>Danh sách đoán</h2>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.sodadoan</td>
+
+        </tr>
+
+    }
+</body>
+</html>

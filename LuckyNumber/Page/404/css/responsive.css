@@ -1,0 +1,35 @@
+/*================= Mobile Layout: 768px. =====================*/
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+.column {width:750px}
+.header{
+background:url(img/four-zero-four.png) no-repeat scroll center center;
+background-size:cover;
+}
+
+}
+
+
+
+/*================= Mobile Layout: 320px. =====================*/
+@media only screen and (max-width: 766px) {
+.column  {width:300px}
+.header{
+background:url(img/four-zero-four.png) no-repeat scroll center center;
+background-size:320px;
+width:320px;
+height:112px;
+}
+}
+
+
+
+/* ================== Wide Mobile Layout: 480px. ==================== */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+.column {width:450px}
+.header{
+background:url(img/four-zero-four.png) no-repeat scroll center center;
+background-size:450px;
+width:450px;
+height:250px;
+}
+}

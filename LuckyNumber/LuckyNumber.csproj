@@ -195,6 +195,21 @@
     <Compile Include="ViewModel\LichSuTrungThuongViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Page\404\css\bootstrap.min.css" />
+    <Content Include="Page\404\css\font-awesome.min.css" />
+    <Content Include="Page\404\css\fonts.css" />
+    <Content Include="Page\404\css\img\background.png" />
+    <Content Include="Page\404\css\img\four-zero-four.png" />
+    <Content Include="Page\404\css\img\menu_bg.png" />
+    <Content Include="Page\404\css\img\social-icon.png" />
+    <Content Include="Page\404\css\normalize.css" />
+    <Content Include="Page\404\css\responsive.css" />
+    <Content Include="Page\404\css\style.css" />
+    <Content Include="Page\404\index.html" />
+    <Content Include="Page\404\js\bootstrap.min.js" />
+    <Content Include="Page\404\js\jquery.min.js" />
+    <Content Include="Page\404\js\vendor\jquery-1.10.2.min.js" />
+    <Content Include="Page\404\js\vendor\modernizr-2.6.2.min.js" />
     <Content Include="assest\bootstrap\js\bootstrap.min.js" />
     <Content Include="assest\css\apps\calendar.css" />
     <Content Include="assest\css\apps\calendar.min.css" />

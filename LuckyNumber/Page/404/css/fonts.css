@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'LaoUIRegular';
+    src: url('../fonts/laoui.eot');
+    src: url('../fonts/laoui.eot') format('embedded-opentype'),
+         url('../fonts/laoui.woff') format('woff'),
+         url('../fonts/laoui.ttf') format('truetype'),
+         url('../fonts/laoui.svg#LaoUIRegular') format('svg');
+}

@@ -194,17 +194,45 @@ namespace LuckyNumber.Controllers
             int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
 
             string soDau = Request.Form["sodau"].ToString();
-            if (isNumber(soDau) == false) return Json("Số dự đoán đầu không hợp lệ", JsonRequestBehavior.AllowGet);
+            if (isNumber(soDau) == false)
+            {
+                return Content("<script language='javascript' type='text/javascript'> " +
+                    "alert('Số đầu không hợp lệ');" +
+                    "window.location= '/DoanSo/BaoLo10Page';" +
+                    "</script>");
+                
+            }
 
             string soCuoi = Request.Form["socuoi"].ToString();
-            if (isNumber(soCuoi) == false) return Json("Số dự đoán cuối không hợp lệ", JsonRequestBehavior.AllowGet);
-            
+            if (isNumber(soCuoi) == false)
+            {
+                return Content("<script language='javascript' type='text/javascript'> " +
+                    "alert('Số cuối không hợp lệ');" +
+                    "window.location= '/DoanSo/BaoLo10Page';" +
+                    "</script>");
+
+            }
+
             int sodudoanDau = int.Parse(soDau);
-            if (sodudoanDau < 0 || sodudoanDau > 9) return Json("Số dự đoán đầu phải nằm trong khoảng 0-9", JsonRequestBehavior.AllowGet);
+            if (sodudoanDau < 0 || sodudoanDau > 9)
+            {
+                return Content("<script language='javascript' type='text/javascript'> " +
+                    "alert('Số dự đoán đầu phải nằm trong khoảng từ 0 đến 9');" +
+                    "window.location= '/DoanSo/BaoLo10Page';" +
+                    "</script>");
+
+            }
             else
             {
                 int sodudoanCuoi = int.Parse(soCuoi);
-                if (sodudoanCuoi < 0 || sodudoanCuoi > 9) return Json("Số dự đoán cuối phải nằm trong khoảng 0-9", JsonRequestBehavior.AllowGet);
+                if (sodudoanCuoi < 0 || sodudoanCuoi > 9)
+                {
+                    return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Số dự đoán cuối phải nằm trong khoảng từ 0 đến 9');" +
+                        "window.location= '/DoanSo/BaoLo10Page';" +
+                        "</script>");
+
+                }
                 else
                 {
 
@@ -257,17 +285,45 @@ namespace LuckyNumber.Controllers
             int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
 
             string soGiua = Request.Form["sogiua"].ToString();
-            if (isNumber(soGiua) == false) return Json("Số dự đoán giữa không hợp lệ", JsonRequestBehavior.AllowGet);
+            if (isNumber(soGiua) == false)
+            {
+                return Content("<script language='javascript' type='text/javascript'> " +
+                    "alert('Số dự đoán giữa không hợp lệ');" +
+                    "window.location= '/DoanSo/BaoLo10Page';" +
+                    "</script>");
+
+            }
 
             string soCuoi = Request.Form["socuoi"].ToString();
-            if (isNumber(soCuoi) == false) return Json("Số dự đoán cuối không hợp lệ", JsonRequestBehavior.AllowGet);
+            if (isNumber(soCuoi) == false)
+            {
+                return Content("<script language='javascript' type='text/javascript'> " +
+                    "alert('Số dự đoán cuối không hợp lệ');" +
+                    "window.location= '/DoanSo/BaoLo10Page';" +
+                    "</script>");
+
+            }
 
             int sodudoanGiua = int.Parse(soGiua);
-            if (sodudoanGiua < 0 || sodudoanGiua > 9) return Json("Số dự đoán giữa phải nằm trong khoảng 0-9", JsonRequestBehavior.AllowGet);
+            if (sodudoanGiua < 0 || sodudoanGiua > 9)
+            {
+                return Content("<script language='javascript' type='text/javascript'> " +
+                    "alert('Số dự đoán giữa phải nằm trong khoảng từ 0 đến 9');" +
+                    "window.location= '/DoanSo/BaoLo10Page';" +
+                    "</script>");
+
+            }
             else
             {
                 int sodudoanCuoi = int.Parse(soCuoi);
-                if (sodudoanCuoi < 0 || sodudoanCuoi > 9) return Json("Số dự đoán cuối phải nằm trong khoảng 0-9", JsonRequestBehavior.AllowGet);
+                if (sodudoanCuoi < 0 || sodudoanCuoi > 9)
+                {
+                    return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Số dự đoán cuối phải nằm trong khoảng từ 0 đến 9');" +
+                        "window.location= '/DoanSo/BaoLo10Page';" +
+                        "</script>");
+
+                }
                 else
                 {
 
@@ -320,17 +376,45 @@ namespace LuckyNumber.Controllers
             int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
 
             string soDau = Request.Form["sodau"].ToString();
-            if (isNumber(soDau) == false) return Json("Số dự đoán đầu không hợp lệ", JsonRequestBehavior.AllowGet);
+            if (isNumber(soDau) == false)
+            {
+                return Content("<script language='javascript' type='text/javascript'> " +
+                    "alert('Số dự đoán đầu không hợp lệ');" +
+                    "window.location= '/DoanSo/BaoLo10Page';" +
+                    "</script>");
+
+            }
 
             string soGiua = Request.Form["sogiua"].ToString();
-            if (isNumber(soGiua) == false) return Json("Số dự đoán giữa không hợp lệ", JsonRequestBehavior.AllowGet);
+            if (isNumber(soGiua) == false)
+            {
+                return Content("<script language='javascript' type='text/javascript'> " +
+                    "alert('Số dự đoán giữa không hợ lệ');" +
+                    "window.location= '/DoanSo/BaoLo10Page';" +
+                    "</script>");
+
+            }
 
             int sodudoanDau = int.Parse(soDau);
-            if (sodudoanDau < 0 || sodudoanDau > 9) return Json("Số dự đoán đầu phải nằm trong khoảng 0-9", JsonRequestBehavior.AllowGet);
+            if (sodudoanDau < 0 || sodudoanDau > 9)
+            {
+                return Content("<script language='javascript' type='text/javascript'> " +
+                    "alert('Số dự đoán đầu phải nằm trong khoảng từ 0 đến 9');" +
+                    "window.location= '/DoanSo/BaoLo10Page';" +
+                    "</script>");
+
+            }
             else
             {
                 int sodudoanGiữa = int.Parse(soGiua);
-                if (sodudoanGiữa < 0 || sodudoanGiữa > 9) return Json("Số dự đoán giữa phải nằm trong khoảng 0-9", JsonRequestBehavior.AllowGet);
+                if (sodudoanGiữa < 0 || sodudoanGiữa > 9)
+                {
+                    return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Số dự đoán giữa phải nằm trong khoảng từ 0 đến 9');" +
+                        "window.location= '/DoanSo/BaoLo10Page';" +
+                        "</script>");
+
+                }
                 else
                 {
 
@@ -384,10 +468,24 @@ namespace LuckyNumber.Controllers
             int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
 
             string soDau = Request.Form["sodau"].ToString();
-            if (isNumber(soDau) == false) return Json("Số dự đoán đầu không hợp lệ", JsonRequestBehavior.AllowGet);
+            if (isNumber(soDau) == false)
+            {
+                return Content("<script language='javascript' type='text/javascript'> " +
+                    "alert('Số dự đoán đầu không hợp lệ');" +
+                    "window.location= '/DoanSo/BaoLo100Page';" +
+                    "</script>");
+
+            }
 
             int sodudoanDau = int.Parse(soDau);
-            if (sodudoanDau < 0 || sodudoanDau > 9) return Json("Số dự đoán đầu phải nằm trong khoảng 0-9", JsonRequestBehavior.AllowGet);
+            if (sodudoanDau < 0 || sodudoanDau > 9)
+            {
+                return Content("<script language='javascript' type='text/javascript'> " +
+                    "alert('Số dự đoán đầu phải nằm trong khoảng từ 0 đến 9');" +
+                    "window.location= '/DoanSo/BaoLo100Page';" +
+                    "</script>");
+
+            }
             else
             {              
 
@@ -439,10 +537,24 @@ namespace LuckyNumber.Controllers
             int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
 
             string soGiua = Request.Form["sogiua"].ToString();
-            if (isNumber(soGiua) == false) return Json("Số dự đoán giữa không hợp lệ", JsonRequestBehavior.AllowGet);
+            if (isNumber(soGiua) == false)
+            {
+                return Content("<script language='javascript' type='text/javascript'> " +
+                    "alert('Số dự đoán giữa không hợp lệ');" +
+                    "window.location= '/DoanSo/BaoLo100Page';" +
+                    "</script>");
+
+            }
 
             int sodudoanGiua = int.Parse(soGiua);
-            if (sodudoanGiua < 0 || sodudoanGiua > 9) return Json("Số dự đoán giữa phải nằm trong khoảng 0-9", JsonRequestBehavior.AllowGet);
+            if (sodudoanGiua < 0 || sodudoanGiua > 9)
+            {
+                return Content("<script language='javascript' type='text/javascript'> " +
+                    "alert('Số dự đoán giữa phải nằm trong khoảng từ 0 đến 9');" +
+                    "window.location= '/DoanSo/BaoLo100Page';" +
+                    "</script>");
+
+            }
             else
             {
 
@@ -495,10 +607,24 @@ namespace LuckyNumber.Controllers
             int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
 
             string soCuoi = Request.Form["socuoi"].ToString();
-            if (isNumber(soCuoi) == false) return Json("Số dự đoán cuối không hợp lệ", JsonRequestBehavior.AllowGet);
+            if (isNumber(soCuoi) == false)
+            {
+                return Content("<script language='javascript' type='text/javascript'> " +
+                    "alert('Số dự đoán cuối không hợp lệ');" +
+                    "window.location= '/DoanSo/BaoLo100Page';" +
+                    "</script>");
+
+            }
 
             int sodudoanCuoi = int.Parse(soCuoi);
-            if (sodudoanCuoi < 0 || sodudoanCuoi > 9) return Json("Số dự đoán cuối phải nằm trong khoảng 0-9", JsonRequestBehavior.AllowGet);
+            if (sodudoanCuoi < 0 || sodudoanCuoi > 9)
+            {
+                return Content("<script language='javascript' type='text/javascript'> " +
+                    "alert('Số dự đoán phải cuối phải nằm trong khoảng từ 0 đến 9');" +
+                    "window.location= '/DoanSo/BaoLo100Page';" +
+                    "</script>");
+
+            }
             else
             {
 
@@ -553,10 +679,24 @@ namespace LuckyNumber.Controllers
             int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
 
             string duDoan = Request.Form["SoDuDoan"].ToString();
-            if (isNumber(duDoan) == false) return Json("Số dự đoán không hợp lệ", JsonRequestBehavior.AllowGet);
+            if (isNumber(duDoan) == false)
+            {
+                return Content("<script language='javascript' type='text/javascript'> " +
+                    "alert('Số dự đoán không hợp lệ');" +
+                    "window.location= '/DoanSo/DoanSoPage';" +
+                    "</script>");
+
+            }
 
             int soDuDoan = int.Parse(duDoan);
-            if (soDuDoan < 0 || soDuDoan > 999) return Json("Số dự đoán phải nằm trong khoảng 0-999", JsonRequestBehavior.AllowGet);
+            if (soDuDoan < 0 || soDuDoan > 999)
+            {
+                return Content("<script language='javascript' type='text/javascript'> " +
+                    "alert('Số dự đoán phải nằm trong khoảng từ 0 đến 999');" +
+                    "window.location= '/DoanSo/DoanSoPage';" +
+                    "</script>");
+
+            }
             else
             {
                 ChiTietCuocChoi chitiet2 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == soDuDoan && x.MaCuocChoi == machoi && x.UserID == userID);

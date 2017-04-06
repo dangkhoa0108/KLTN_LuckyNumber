@@ -21,106 +21,117 @@ namespace LuckyNumber.Controllers
 
         public ActionResult DoanSoPage()
         {
-            
-            string name = Session["userName"].ToString();
-            ViewBag.Name = name;
-            string day = DateTime.Now.Day.ToString();
-            string month = DateTime.Now.Month.ToString();
-            string year = DateTime.Now.Year.ToString();
-
-
-
-            string time = DateTime.Parse("11:00 PM").ToString("t");
-            string timeNow = DateTime.Now.ToString("t");
-
-            int userID = int.Parse(Session["IDs"].ToString());
-            User user = db.Users.SingleOrDefault(x => x.ID == userID);
-
-            DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
-            CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
-
-            if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
-
-            //if (DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)
-            //{
-            //    return Redirect("~/DoanSo/Error3");
-            //}
-            //if (DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)
-            //    return Redirect("~/DoanSo/Error3");
-
-            if (user.soluotchoi > 0 && user.xacnhan == true && /*((DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) < 0)||*/cuocchoi.TrangThai==true)
+            if (Session["userName"] != null)
             {
-                
-                return View();
+                string name = Session["userName"].ToString();
+                ViewBag.Name = name;
+                string day = DateTime.Now.Day.ToString();
+                string month = DateTime.Now.Month.ToString();
+                string year = DateTime.Now.Year.ToString();
+
+
+
+                string time = DateTime.Parse("11:00 PM").ToString("t");
+                string timeNow = DateTime.Now.ToString("t");
+
+                int userID = int.Parse(Session["IDs"].ToString());
+                User user = db.Users.SingleOrDefault(x => x.ID == userID);
+
+                DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
+                CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
+
+                if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
+
+                //if (DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)
+                //{
+                //    return Redirect("~/DoanSo/Error3");
+                //}
+                //if (DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)
+                //    return Redirect("~/DoanSo/Error3");
+
+                if (user.soluotchoi > 0 && user.xacnhan == true && /*((DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) < 0)||*/cuocchoi.TrangThai == true)
+                {
+
+                    return View();
+                }
+
+                else if (user.soluotchoi > 0 && user.xacnhan == true && /*(DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)*/cuocchoi.TrangThai == false) return Redirect("~/DoanSo/Error3");
+                else if (user.soluotchoi <= 0 && user.xacnhan == true) return Redirect("~/DoanSo/Error1");
+
+                else return Redirect("~/DoanSo/Error2");
             }
-
-            else if (user.soluotchoi > 0 && user.xacnhan == true && /*(DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)*/cuocchoi.TrangThai==false) return Redirect("~/DoanSo/Error3");
-            else if (user.soluotchoi <= 0 && user.xacnhan == true) return Redirect("~/DoanSo/Error1");
-
-            else return Redirect("~/DoanSo/Error2");
+            else return Redirect("~/User/Login");
             
         }
 
         public ActionResult BaoLo10Page()
         {
-            string name = Session["userName"].ToString();
-            ViewBag.Name = name;
-            string day = DateTime.Now.Day.ToString();
-            string month = DateTime.Now.Month.ToString();
-            string year = DateTime.Now.Year.ToString();
-
-
-
-            string time = DateTime.Parse("11:00 PM").ToString("t");
-            string timeNow = DateTime.Now.ToString("t");
-
-            int userID = int.Parse(Session["IDs"].ToString());
-            User user = db.Users.SingleOrDefault(x => x.ID == userID);
-
-            DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
-            CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
-            if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
-            if (user.soluotchoi > 0 && user.xacnhan == true && /*((DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) < 0)||*/cuocchoi.TrangThai == true)
+            if (Session["userName"] != null)
             {
+                string name = Session["userName"].ToString();
+                ViewBag.Name = name;
+                string day = DateTime.Now.Day.ToString();
+                string month = DateTime.Now.Month.ToString();
+                string year = DateTime.Now.Year.ToString();
 
-                return View();
+
+
+                string time = DateTime.Parse("11:00 PM").ToString("t");
+                string timeNow = DateTime.Now.ToString("t");
+
+                int userID = int.Parse(Session["IDs"].ToString());
+                User user = db.Users.SingleOrDefault(x => x.ID == userID);
+
+                DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
+                CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
+                if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
+                if (user.soluotchoi > 0 && user.xacnhan == true && /*((DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) < 0)||*/cuocchoi.TrangThai == true)
+                {
+
+                    return View();
+                }
+
+                else if (user.soluotchoi > 0 && user.xacnhan == true && /*(DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)*/cuocchoi.TrangThai == false) return Redirect("~/DoanSo/Error3");
+                else if (user.soluotchoi <= 0 && user.xacnhan == true) return Redirect("~/DoanSo/Error1");
+
+                else return Redirect("~/DoanSo/Error2");
             }
-
-            else if (user.soluotchoi > 0 && user.xacnhan == true && /*(DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)*/cuocchoi.TrangThai == false) return Redirect("~/DoanSo/Error3");
-            else if (user.soluotchoi <= 0 && user.xacnhan == true) return Redirect("~/DoanSo/Error1");
-
-            else return Redirect("~/DoanSo/Error2");
+            else return Redirect("~/User/Login");
         }
 
         public ActionResult BaoLo100Page()
         {
-            string name = Session["userName"].ToString();
-            ViewBag.Name = name;
-            string day = DateTime.Now.Day.ToString();
-            string month = DateTime.Now.Month.ToString();
-            string year = DateTime.Now.Year.ToString();
-
-
-
-            string time = DateTime.Parse("11:00 PM").ToString("t");
-            string timeNow = DateTime.Now.ToString("t");
-
-            int userID = int.Parse(Session["IDs"].ToString());
-            User user = db.Users.SingleOrDefault(x => x.ID == userID);
-
-            DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
-            CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
-            if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
-            if (user.soluotchoi > 0 && user.xacnhan == true && /*((DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) < 0)||*/cuocchoi.TrangThai == true)
+            if (Session["userName"] != null)
             {
+                string name = Session["userName"].ToString();
+                ViewBag.Name = name;
+                string day = DateTime.Now.Day.ToString();
+                string month = DateTime.Now.Month.ToString();
+                string year = DateTime.Now.Year.ToString();
 
-                return View();
+
+
+                string time = DateTime.Parse("11:00 PM").ToString("t");
+                string timeNow = DateTime.Now.ToString("t");
+
+                int userID = int.Parse(Session["IDs"].ToString());
+                User user = db.Users.SingleOrDefault(x => x.ID == userID);
+
+                DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
+                CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
+                if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
+                if (user.soluotchoi > 0 && user.xacnhan == true && /*((DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) < 0)||*/cuocchoi.TrangThai == true)
+                {
+
+                    return View();
+                }
+
+                else if (user.soluotchoi > 0 && user.xacnhan == true && /*(DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)*/cuocchoi.TrangThai == false) return Redirect("~/DoanSo/Error3");
+                else if (user.soluotchoi <= 0 && user.xacnhan == true) return Redirect("~/DoanSo/Error1");
+
+                else return Redirect("~/DoanSo/Error2");
             }
-
-            else if (user.soluotchoi > 0 && user.xacnhan == true && /*(DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)*/cuocchoi.TrangThai == false) return Redirect("~/DoanSo/Error3");
-            else if (user.soluotchoi <= 0 && user.xacnhan == true) return Redirect("~/DoanSo/Error1");
-
-            else return Redirect("~/DoanSo/Error2");
+            else return Redirect("~/User/Login");
         }
 
 
@@ -176,238 +187,142 @@ namespace LuckyNumber.Controllers
         public ActionResult BaoLoDauCuoi()
         {
             List<DanhSachSoDaDoanViewModel> ds = new List<DanhSachSoDaDoanViewModel>();
-            string name = Session["userName"].ToString();
-            ViewBag.Name = name;
-            int userID = int.Parse(Session["IDs"].ToString());
-            User user = db.Users.SingleOrDefault(x => x.ID == userID);
-
-            string day = DateTime.Now.Day.ToString();
-            string month = DateTime.Now.Month.ToString();
-            string year = DateTime.Now.Year.ToString();
-
-            DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
-
-            CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
-
-            if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
-
-            int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
-
-            string soDau = Request.Form["sodau"].ToString();
-            if (isNumber(soDau) == false)
+            if (Session["userName"] != null)
             {
-                return Content("<script language='javascript' type='text/javascript'> " +
-                    "alert('Số đầu không hợp lệ');" +
-                    "window.location= '/DoanSo/BaoLo10Page';" +
-                    "</script>");
-                
-            }
+                string name = Session["userName"].ToString();
+                ViewBag.Name = name;
+                int userID = int.Parse(Session["IDs"].ToString());
+                User user = db.Users.SingleOrDefault(x => x.ID == userID);
 
-            string soCuoi = Request.Form["socuoi"].ToString();
-            if (isNumber(soCuoi) == false)
-            {
-                return Content("<script language='javascript' type='text/javascript'> " +
-                    "alert('Số cuối không hợp lệ');" +
-                    "window.location= '/DoanSo/BaoLo10Page';" +
-                    "</script>");
+                string day = DateTime.Now.Day.ToString();
+                string month = DateTime.Now.Month.ToString();
+                string year = DateTime.Now.Year.ToString();
 
-            }
+                DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
 
-            int sodudoanDau = int.Parse(soDau);
-            if (sodudoanDau < 0 || sodudoanDau > 9)
-            {
-                return Content("<script language='javascript' type='text/javascript'> " +
-                    "alert('Số dự đoán đầu phải nằm trong khoảng từ 0 đến 9');" +
-                    "window.location= '/DoanSo/BaoLo10Page';" +
-                    "</script>");
+                CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
 
-            }
-            else
-            {
-                int sodudoanCuoi = int.Parse(soCuoi);
-                if (sodudoanCuoi < 0 || sodudoanCuoi > 9)
+                if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
+
+                int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
+
+                string soDau = Request.Form["sodau"].ToString();
+                if (isNumber(soDau) == false)
                 {
                     return Content("<script language='javascript' type='text/javascript'> " +
-                        "alert('Số dự đoán cuối phải nằm trong khoảng từ 0 đến 9');" +
+                        "alert('Số đầu không hợp lệ');" +
+                        "window.location= '/DoanSo/BaoLo10Page';" +
+                        "</script>");
+
+                }
+
+                string soCuoi = Request.Form["socuoi"].ToString();
+                if (isNumber(soCuoi) == false)
+                {
+                    return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Số cuối không hợp lệ');" +
+                        "window.location= '/DoanSo/BaoLo10Page';" +
+                        "</script>");
+
+                }
+
+                int sodudoanDau = int.Parse(soDau);
+                if (sodudoanDau < 0 || sodudoanDau > 9)
+                {
+                    return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Số dự đoán đầu phải nằm trong khoảng từ 0 đến 9');" +
                         "window.location= '/DoanSo/BaoLo10Page';" +
                         "</script>");
 
                 }
                 else
                 {
-
-                    
-                    for (int i = 0; i <= 9; i++)
+                    int sodudoanCuoi = int.Parse(soCuoi);
+                    if (sodudoanCuoi < 0 || sodudoanCuoi > 9)
                     {
-                        ChiTietCuocChoi chitietcuocchoi1 = new ChiTietCuocChoi();
-                        int sodudoan = sodudoanDau * 100 + i * 10 + sodudoanCuoi;
-                        ds.Add(new DanhSachSoDaDoanViewModel()
-                        {
-                            sodadoan = sodudoan
-                        });
-                            
-                        ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID);
-                        {                            
-                            chitietcuocchoi1.SoDuDoan = sodudoan;
-                            chitietcuocchoi1.UserID = int.Parse(Session["IDs"].ToString());
-                            chitietcuocchoi1.MaCuocChoi = machoi;
-                            db.ChiTietCuocChois.Add(chitietcuocchoi1);
-                            user.soluotchoi--;
-                            Session["soLuotChoi"] = user.soluotchoi;
-                            db.SaveChanges();
-                           
-                        }                     
+                        return Content("<script language='javascript' type='text/javascript'> " +
+                            "alert('Số dự đoán cuối phải nằm trong khoảng từ 0 đến 9');" +
+                            "window.location= '/DoanSo/BaoLo10Page';" +
+                            "</script>");
+
                     }
-                    return View(ds);
+                    else
+                    {
+
+
+                        for (int i = 0; i <= 9; i++)
+                        {
+                            ChiTietCuocChoi chitietcuocchoi1 = new ChiTietCuocChoi();
+                            int sodudoan = sodudoanDau * 100 + i * 10 + sodudoanCuoi;
+                            ds.Add(new DanhSachSoDaDoanViewModel()
+                            {
+                                sodadoan = sodudoan
+                            });
+
+                            ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID);
+                            {
+                                chitietcuocchoi1.SoDuDoan = sodudoan;
+                                chitietcuocchoi1.UserID = int.Parse(Session["IDs"].ToString());
+                                chitietcuocchoi1.MaCuocChoi = machoi;
+                                db.ChiTietCuocChois.Add(chitietcuocchoi1);
+                                user.soluotchoi--;
+                                Session["soLuotChoi"] = user.soluotchoi;
+                                db.SaveChanges();
+
+                            }
+                        }
+                        return View(ds);
+                    }
                 }
             }
+            else return Redirect("~User/Login");
 
         }
 
         public ActionResult BaoLoGiuaCuoi()
         {
             List<DanhSachSoDaDoanViewModel> ds = new List<DanhSachSoDaDoanViewModel>();
-            string name = Session["userName"].ToString();
-            ViewBag.Name = name;
-            int userID = int.Parse(Session["IDs"].ToString());
-            User user = db.Users.SingleOrDefault(x => x.ID == userID);
-
-            string day = DateTime.Now.Day.ToString();
-            string month = DateTime.Now.Month.ToString();
-            string year = DateTime.Now.Year.ToString();
-
-            DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
-
-            CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
-
-            if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
-
-            int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
-
-            string soGiua = Request.Form["sogiua"].ToString();
-            if (isNumber(soGiua) == false)
+            if (Session["userName"] != null)
             {
-                return Content("<script language='javascript' type='text/javascript'> " +
-                    "alert('Số dự đoán giữa không hợp lệ');" +
-                    "window.location= '/DoanSo/BaoLo10Page';" +
-                    "</script>");
+                string name = Session["userName"].ToString();
+                ViewBag.Name = name;
+                int userID = int.Parse(Session["IDs"].ToString());
+                User user = db.Users.SingleOrDefault(x => x.ID == userID);
 
-            }
+                string day = DateTime.Now.Day.ToString();
+                string month = DateTime.Now.Month.ToString();
+                string year = DateTime.Now.Year.ToString();
 
-            string soCuoi = Request.Form["socuoi"].ToString();
-            if (isNumber(soCuoi) == false)
-            {
-                return Content("<script language='javascript' type='text/javascript'> " +
-                    "alert('Số dự đoán cuối không hợp lệ');" +
-                    "window.location= '/DoanSo/BaoLo10Page';" +
-                    "</script>");
+                DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
 
-            }
+                CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
 
-            int sodudoanGiua = int.Parse(soGiua);
-            if (sodudoanGiua < 0 || sodudoanGiua > 9)
-            {
-                return Content("<script language='javascript' type='text/javascript'> " +
-                    "alert('Số dự đoán giữa phải nằm trong khoảng từ 0 đến 9');" +
-                    "window.location= '/DoanSo/BaoLo10Page';" +
-                    "</script>");
+                if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
 
-            }
-            else
-            {
-                int sodudoanCuoi = int.Parse(soCuoi);
-                if (sodudoanCuoi < 0 || sodudoanCuoi > 9)
+                int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
+
+                string soGiua = Request.Form["sogiua"].ToString();
+                if (isNumber(soGiua) == false)
                 {
                     return Content("<script language='javascript' type='text/javascript'> " +
-                        "alert('Số dự đoán cuối phải nằm trong khoảng từ 0 đến 9');" +
+                        "alert('Số dự đoán giữa không hợp lệ');" +
                         "window.location= '/DoanSo/BaoLo10Page';" +
                         "</script>");
 
                 }
-                else
+
+                string soCuoi = Request.Form["socuoi"].ToString();
+                if (isNumber(soCuoi) == false)
                 {
+                    return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Số dự đoán cuối không hợp lệ');" +
+                        "window.location= '/DoanSo/BaoLo10Page';" +
+                        "</script>");
 
-
-                    for (int i = 0; i <= 9; i++)
-                    {
-                        ChiTietCuocChoi chitietcuocchoi1 = new ChiTietCuocChoi();
-                        int sodudoan = i*100 + sodudoanGiua * 10 + sodudoanCuoi;
-                        ds.Add(new DanhSachSoDaDoanViewModel()
-                        {
-                            sodadoan = sodudoan
-                        });
-
-                        ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID);
-                        {
-                            chitietcuocchoi1.SoDuDoan = sodudoan;
-                            chitietcuocchoi1.UserID = int.Parse(Session["IDs"].ToString());
-                            chitietcuocchoi1.MaCuocChoi = machoi;
-                            db.ChiTietCuocChois.Add(chitietcuocchoi1);
-                            user.soluotchoi--;
-                            Session["soLuotChoi"] = user.soluotchoi;
-                            db.SaveChanges();
-
-                        }
-                    }
-                    return View(ds);
                 }
-            }
-        }
 
-
-        public ActionResult BaoLoDauGiua()
-        {
-            List<DanhSachSoDaDoanViewModel> ds = new List<DanhSachSoDaDoanViewModel>();
-            string name = Session["userName"].ToString();
-            ViewBag.Name = name;
-            int userID = int.Parse(Session["IDs"].ToString());
-            User user = db.Users.SingleOrDefault(x => x.ID == userID);
-
-            string day = DateTime.Now.Day.ToString();
-            string month = DateTime.Now.Month.ToString();
-            string year = DateTime.Now.Year.ToString();
-
-            DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
-
-            CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
-
-            if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
-
-            int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
-
-            string soDau = Request.Form["sodau"].ToString();
-            if (isNumber(soDau) == false)
-            {
-                return Content("<script language='javascript' type='text/javascript'> " +
-                    "alert('Số dự đoán đầu không hợp lệ');" +
-                    "window.location= '/DoanSo/BaoLo10Page';" +
-                    "</script>");
-
-            }
-
-            string soGiua = Request.Form["sogiua"].ToString();
-            if (isNumber(soGiua) == false)
-            {
-                return Content("<script language='javascript' type='text/javascript'> " +
-                    "alert('Số dự đoán giữa không hợ lệ');" +
-                    "window.location= '/DoanSo/BaoLo10Page';" +
-                    "</script>");
-
-            }
-
-            int sodudoanDau = int.Parse(soDau);
-            if (sodudoanDau < 0 || sodudoanDau > 9)
-            {
-                return Content("<script language='javascript' type='text/javascript'> " +
-                    "alert('Số dự đoán đầu phải nằm trong khoảng từ 0 đến 9');" +
-                    "window.location= '/DoanSo/BaoLo10Page';" +
-                    "</script>");
-
-            }
-            else
-            {
-                int sodudoanGiữa = int.Parse(soGiua);
-                if (sodudoanGiữa < 0 || sodudoanGiữa > 9)
+                int sodudoanGiua = int.Parse(soGiua);
+                if (sodudoanGiua < 0 || sodudoanGiua > 9)
                 {
                     return Content("<script language='javascript' type='text/javascript'> " +
                         "alert('Số dự đoán giữa phải nằm trong khoảng từ 0 đến 9');" +
@@ -417,32 +332,140 @@ namespace LuckyNumber.Controllers
                 }
                 else
                 {
-
-
-                    for (int i = 0; i <= 9; i++)
+                    int sodudoanCuoi = int.Parse(soCuoi);
+                    if (sodudoanCuoi < 0 || sodudoanCuoi > 9)
                     {
-                        ChiTietCuocChoi chitietcuocchoi1 = new ChiTietCuocChoi();
-                        int sodudoan = sodudoanDau * 100 +  sodudoanGiữa*10 + i;
-                        ds.Add(new DanhSachSoDaDoanViewModel()
-                        {
-                            sodadoan = sodudoan
-                        });
+                        return Content("<script language='javascript' type='text/javascript'> " +
+                            "alert('Số dự đoán cuối phải nằm trong khoảng từ 0 đến 9');" +
+                            "window.location= '/DoanSo/BaoLo10Page';" +
+                            "</script>");
 
-                        ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID);
-                        {
-                            chitietcuocchoi1.SoDuDoan = sodudoan;
-                            chitietcuocchoi1.UserID = int.Parse(Session["IDs"].ToString());
-                            chitietcuocchoi1.MaCuocChoi = machoi;
-                            db.ChiTietCuocChois.Add(chitietcuocchoi1);
-                            user.soluotchoi--;
-                            Session["soLuotChoi"] = user.soluotchoi;
-                            db.SaveChanges();
-
-                        }
                     }
-                    return View(ds);
+                    else
+                    {
+
+
+                        for (int i = 0; i <= 9; i++)
+                        {
+                            ChiTietCuocChoi chitietcuocchoi1 = new ChiTietCuocChoi();
+                            int sodudoan = i * 100 + sodudoanGiua * 10 + sodudoanCuoi;
+                            ds.Add(new DanhSachSoDaDoanViewModel()
+                            {
+                                sodadoan = sodudoan
+                            });
+
+                            ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID);
+                            {
+                                chitietcuocchoi1.SoDuDoan = sodudoan;
+                                chitietcuocchoi1.UserID = int.Parse(Session["IDs"].ToString());
+                                chitietcuocchoi1.MaCuocChoi = machoi;
+                                db.ChiTietCuocChois.Add(chitietcuocchoi1);
+                                user.soluotchoi--;
+                                Session["soLuotChoi"] = user.soluotchoi;
+                                db.SaveChanges();
+
+                            }
+                        }
+                        return View(ds);
+                    }
                 }
             }
+            else return Redirect("~/User/Login");
+        }
+
+
+        public ActionResult BaoLoDauGiua()
+        {
+            List<DanhSachSoDaDoanViewModel> ds = new List<DanhSachSoDaDoanViewModel>();
+            if (Session["userName"] != null)
+            {
+                string name = Session["userName"].ToString();
+                ViewBag.Name = name;
+                int userID = int.Parse(Session["IDs"].ToString());
+                User user = db.Users.SingleOrDefault(x => x.ID == userID);
+
+                string day = DateTime.Now.Day.ToString();
+                string month = DateTime.Now.Month.ToString();
+                string year = DateTime.Now.Year.ToString();
+
+                DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
+
+                CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
+
+                if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
+
+                int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
+
+                string soDau = Request.Form["sodau"].ToString();
+                if (isNumber(soDau) == false)
+                {
+                    return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Số dự đoán đầu không hợp lệ');" +
+                        "window.location= '/DoanSo/BaoLo10Page';" +
+                        "</script>");
+
+                }
+
+                string soGiua = Request.Form["sogiua"].ToString();
+                if (isNumber(soGiua) == false)
+                {
+                    return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Số dự đoán giữa không hợ lệ');" +
+                        "window.location= '/DoanSo/BaoLo10Page';" +
+                        "</script>");
+
+                }
+
+                int sodudoanDau = int.Parse(soDau);
+                if (sodudoanDau < 0 || sodudoanDau > 9)
+                {
+                    return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Số dự đoán đầu phải nằm trong khoảng từ 0 đến 9');" +
+                        "window.location= '/DoanSo/BaoLo10Page';" +
+                        "</script>");
+
+                }
+                else
+                {
+                    int sodudoanGiữa = int.Parse(soGiua);
+                    if (sodudoanGiữa < 0 || sodudoanGiữa > 9)
+                    {
+                        return Content("<script language='javascript' type='text/javascript'> " +
+                            "alert('Số dự đoán giữa phải nằm trong khoảng từ 0 đến 9');" +
+                            "window.location= '/DoanSo/BaoLo10Page';" +
+                            "</script>");
+
+                    }
+                    else
+                    {
+
+
+                        for (int i = 0; i <= 9; i++)
+                        {
+                            ChiTietCuocChoi chitietcuocchoi1 = new ChiTietCuocChoi();
+                            int sodudoan = sodudoanDau * 100 + sodudoanGiữa * 10 + i;
+                            ds.Add(new DanhSachSoDaDoanViewModel()
+                            {
+                                sodadoan = sodudoan
+                            });
+
+                            ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID);
+                            {
+                                chitietcuocchoi1.SoDuDoan = sodudoan;
+                                chitietcuocchoi1.UserID = int.Parse(Session["IDs"].ToString());
+                                chitietcuocchoi1.MaCuocChoi = machoi;
+                                db.ChiTietCuocChois.Add(chitietcuocchoi1);
+                                user.soluotchoi--;
+                                Session["soLuotChoi"] = user.soluotchoi;
+                                db.SaveChanges();
+
+                            }
+                        }
+                        return View(ds);
+                    }
+                }
+            }
+            else return Redirect("~User/Login");
 
         }
 
@@ -450,336 +473,353 @@ namespace LuckyNumber.Controllers
         public ActionResult BaoLoDau()
         {
             List<DanhSachSoDaDoanViewModel> ds = new List<DanhSachSoDaDoanViewModel>();
-            string name = Session["userName"].ToString();
-            ViewBag.Name = name;
-            int userID = int.Parse(Session["IDs"].ToString());
-            User user = db.Users.SingleOrDefault(x => x.ID == userID);
-
-            string day = DateTime.Now.Day.ToString();
-            string month = DateTime.Now.Month.ToString();
-            string year = DateTime.Now.Year.ToString();
-
-            DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
-
-            CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
-
-            if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
-
-            int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
-
-            string soDau = Request.Form["sodau"].ToString();
-            if (isNumber(soDau) == false)
+            if (Session["userName"] != null)
             {
-                return Content("<script language='javascript' type='text/javascript'> " +
-                    "alert('Số dự đoán đầu không hợp lệ');" +
-                    "window.location= '/DoanSo/BaoLo100Page';" +
-                    "</script>");
+                string name = Session["userName"].ToString();
+                ViewBag.Name = name;
+                int userID = int.Parse(Session["IDs"].ToString());
+                User user = db.Users.SingleOrDefault(x => x.ID == userID);
 
-            }
+                string day = DateTime.Now.Day.ToString();
+                string month = DateTime.Now.Month.ToString();
+                string year = DateTime.Now.Year.ToString();
 
-            int sodudoanDau = int.Parse(soDau);
-            if (sodudoanDau < 0 || sodudoanDau > 9)
-            {
-                return Content("<script language='javascript' type='text/javascript'> " +
-                    "alert('Số dự đoán đầu phải nằm trong khoảng từ 0 đến 9');" +
-                    "window.location= '/DoanSo/BaoLo100Page';" +
-                    "</script>");
+                DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
 
-            }
-            else
-            {              
+                CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
 
-                    for (int i = 0; i <= 9; i++)
-                    for(int j=0;j<=9;j++)
-                    {
-                        ChiTietCuocChoi chitietcuocchoi1 = new ChiTietCuocChoi();
-                        int sodudoan = sodudoanDau * 100 + i * 10 + j;
-                        ds.Add(new DanhSachSoDaDoanViewModel()
-                        {
-                            sodadoan = sodudoan
-                        });
+                if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
 
-                        ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID);
-                        {
-                            chitietcuocchoi1.SoDuDoan = sodudoan;
-                            chitietcuocchoi1.UserID = int.Parse(Session["IDs"].ToString());
-                            chitietcuocchoi1.MaCuocChoi = machoi;
-                            db.ChiTietCuocChois.Add(chitietcuocchoi1);
-                            user.soluotchoi--;
-                            Session["soLuotChoi"] = user.soluotchoi;
-                            db.SaveChanges();
+                int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
 
-                        }
-                    }
-                    return View(ds);
+                string soDau = Request.Form["sodau"].ToString();
+                if (isNumber(soDau) == false)
+                {
+                    return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Số dự đoán đầu không hợp lệ');" +
+                        "window.location= '/DoanSo/BaoLo100Page';" +
+                        "</script>");
+
                 }
 
+                int sodudoanDau = int.Parse(soDau);
+                if (sodudoanDau < 0 || sodudoanDau > 9)
+                {
+                    return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Số dự đoán đầu phải nằm trong khoảng từ 0 đến 9');" +
+                        "window.location= '/DoanSo/BaoLo100Page';" +
+                        "</script>");
+
+                }
+                else
+                {
+
+                    for (int i = 0; i <= 9; i++)
+                        for (int j = 0; j <= 9; j++)
+                        {
+                            ChiTietCuocChoi chitietcuocchoi1 = new ChiTietCuocChoi();
+                            int sodudoan = sodudoanDau * 100 + i * 10 + j;
+                            ds.Add(new DanhSachSoDaDoanViewModel()
+                            {
+                                sodadoan = sodudoan
+                            });
+
+                            ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID);
+                            {
+                                chitietcuocchoi1.SoDuDoan = sodudoan;
+                                chitietcuocchoi1.UserID = int.Parse(Session["IDs"].ToString());
+                                chitietcuocchoi1.MaCuocChoi = machoi;
+                                db.ChiTietCuocChois.Add(chitietcuocchoi1);
+                                user.soluotchoi--;
+                                Session["soLuotChoi"] = user.soluotchoi;
+                                db.SaveChanges();
+
+                            }
+                        }
+                    return View(ds);
+                }
+            }
+            else return Redirect("~/User/Login");
         }
 
         public ActionResult BaoLoGiua()
         {
             List<DanhSachSoDaDoanViewModel> ds = new List<DanhSachSoDaDoanViewModel>();
-            string name = Session["userName"].ToString();
-            ViewBag.Name = name;
-            int userID = int.Parse(Session["IDs"].ToString());
-            User user = db.Users.SingleOrDefault(x => x.ID == userID);
-
-            string day = DateTime.Now.Day.ToString();
-            string month = DateTime.Now.Month.ToString();
-            string year = DateTime.Now.Year.ToString();
-
-            DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
-
-            CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
-
-            if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
-
-            int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
-
-            string soGiua = Request.Form["sogiua"].ToString();
-            if (isNumber(soGiua) == false)
+            if (Session["userName"] != null)
             {
-                return Content("<script language='javascript' type='text/javascript'> " +
-                    "alert('Số dự đoán giữa không hợp lệ');" +
-                    "window.location= '/DoanSo/BaoLo100Page';" +
-                    "</script>");
+                string name = Session["userName"].ToString();
+                ViewBag.Name = name;
+                int userID = int.Parse(Session["IDs"].ToString());
+                User user = db.Users.SingleOrDefault(x => x.ID == userID);
 
-            }
+                string day = DateTime.Now.Day.ToString();
+                string month = DateTime.Now.Month.ToString();
+                string year = DateTime.Now.Year.ToString();
 
-            int sodudoanGiua = int.Parse(soGiua);
-            if (sodudoanGiua < 0 || sodudoanGiua > 9)
-            {
-                return Content("<script language='javascript' type='text/javascript'> " +
-                    "alert('Số dự đoán giữa phải nằm trong khoảng từ 0 đến 9');" +
-                    "window.location= '/DoanSo/BaoLo100Page';" +
-                    "</script>");
+                DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
 
-            }
-            else
-            {
+                CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
 
-                for (int i = 0; i <= 9; i++)
-                    for (int j = 0; j <= 9; j++)
-                    {
-                        ChiTietCuocChoi chitietcuocchoi1 = new ChiTietCuocChoi();
-                        int sodudoan = i*100+ sodudoanGiua * 10 + j;
-                        ds.Add(new DanhSachSoDaDoanViewModel()
+                if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
+
+                int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
+
+                string soGiua = Request.Form["sogiua"].ToString();
+                if (isNumber(soGiua) == false)
+                {
+                    return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Số dự đoán giữa không hợp lệ');" +
+                        "window.location= '/DoanSo/BaoLo100Page';" +
+                        "</script>");
+
+                }
+
+                int sodudoanGiua = int.Parse(soGiua);
+                if (sodudoanGiua < 0 || sodudoanGiua > 9)
+                {
+                    return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Số dự đoán giữa phải nằm trong khoảng từ 0 đến 9');" +
+                        "window.location= '/DoanSo/BaoLo100Page';" +
+                        "</script>");
+
+                }
+                else
+                {
+
+                    for (int i = 0; i <= 9; i++)
+                        for (int j = 0; j <= 9; j++)
                         {
-                            sodadoan = sodudoan
-                        });
+                            ChiTietCuocChoi chitietcuocchoi1 = new ChiTietCuocChoi();
+                            int sodudoan = i * 100 + sodudoanGiua * 10 + j;
+                            ds.Add(new DanhSachSoDaDoanViewModel()
+                            {
+                                sodadoan = sodudoan
+                            });
 
-                        ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID);
-                        {
-                            chitietcuocchoi1.SoDuDoan = sodudoan;
-                            chitietcuocchoi1.UserID = int.Parse(Session["IDs"].ToString());
-                            chitietcuocchoi1.MaCuocChoi = machoi;
-                            db.ChiTietCuocChois.Add(chitietcuocchoi1);
-                            user.soluotchoi--;
-                            Session["soLuotChoi"] = user.soluotchoi;
-                            db.SaveChanges();
+                            ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID);
+                            {
+                                chitietcuocchoi1.SoDuDoan = sodudoan;
+                                chitietcuocchoi1.UserID = int.Parse(Session["IDs"].ToString());
+                                chitietcuocchoi1.MaCuocChoi = machoi;
+                                db.ChiTietCuocChois.Add(chitietcuocchoi1);
+                                user.soluotchoi--;
+                                Session["soLuotChoi"] = user.soluotchoi;
+                                db.SaveChanges();
 
+                            }
                         }
-                    }
-                return View(ds);
+                    return View(ds);
+                }
             }
-
+            else return Redirect("~/User/Login");
         }
 
 
         public ActionResult BaoLoCuoi()
         {
             List<DanhSachSoDaDoanViewModel> ds = new List<DanhSachSoDaDoanViewModel>();
-            string name = Session["userName"].ToString();
-            ViewBag.Name = name;
-            int userID = int.Parse(Session["IDs"].ToString());
-            User user = db.Users.SingleOrDefault(x => x.ID == userID);
-
-            string day = DateTime.Now.Day.ToString();
-            string month = DateTime.Now.Month.ToString();
-            string year = DateTime.Now.Year.ToString();
-
-            DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
-
-            CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
-
-            if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
-
-            int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
-
-            string soCuoi = Request.Form["socuoi"].ToString();
-            if (isNumber(soCuoi) == false)
+            if (Session["userName"] != null)
             {
-                return Content("<script language='javascript' type='text/javascript'> " +
-                    "alert('Số dự đoán cuối không hợp lệ');" +
-                    "window.location= '/DoanSo/BaoLo100Page';" +
-                    "</script>");
+                string name = Session["userName"].ToString();
+                ViewBag.Name = name;
+                int userID = int.Parse(Session["IDs"].ToString());
+                User user = db.Users.SingleOrDefault(x => x.ID == userID);
 
-            }
+                string day = DateTime.Now.Day.ToString();
+                string month = DateTime.Now.Month.ToString();
+                string year = DateTime.Now.Year.ToString();
 
-            int sodudoanCuoi = int.Parse(soCuoi);
-            if (sodudoanCuoi < 0 || sodudoanCuoi > 9)
-            {
-                return Content("<script language='javascript' type='text/javascript'> " +
-                    "alert('Số dự đoán phải cuối phải nằm trong khoảng từ 0 đến 9');" +
-                    "window.location= '/DoanSo/BaoLo100Page';" +
-                    "</script>");
+                DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
 
-            }
-            else
-            {
+                CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
 
-                for (int i = 0; i <= 9; i++)
-                    for (int j = 0; j <= 9; j++)
-                    {
-                        ChiTietCuocChoi chitietcuocchoi1 = new ChiTietCuocChoi();
-                        int sodudoan = i * 100 + j*10 + sodudoanCuoi;
-                        ds.Add(new DanhSachSoDaDoanViewModel()
+                if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
+
+                int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
+
+                string soCuoi = Request.Form["socuoi"].ToString();
+                if (isNumber(soCuoi) == false)
+                {
+                    return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Số dự đoán cuối không hợp lệ');" +
+                        "window.location= '/DoanSo/BaoLo100Page';" +
+                        "</script>");
+
+                }
+
+                int sodudoanCuoi = int.Parse(soCuoi);
+                if (sodudoanCuoi < 0 || sodudoanCuoi > 9)
+                {
+                    return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Số dự đoán phải cuối phải nằm trong khoảng từ 0 đến 9');" +
+                        "window.location= '/DoanSo/BaoLo100Page';" +
+                        "</script>");
+
+                }
+                else
+                {
+
+                    for (int i = 0; i <= 9; i++)
+                        for (int j = 0; j <= 9; j++)
                         {
-                            sodadoan = sodudoan
-                        });
+                            ChiTietCuocChoi chitietcuocchoi1 = new ChiTietCuocChoi();
+                            int sodudoan = i * 100 + j * 10 + sodudoanCuoi;
+                            ds.Add(new DanhSachSoDaDoanViewModel()
+                            {
+                                sodadoan = sodudoan
+                            });
 
-                        ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID);
-                        {
-                            chitietcuocchoi1.SoDuDoan = sodudoan;
-                            chitietcuocchoi1.UserID = int.Parse(Session["IDs"].ToString());
-                            chitietcuocchoi1.MaCuocChoi = machoi;
-                            db.ChiTietCuocChois.Add(chitietcuocchoi1);
-                            user.soluotchoi--;
-                            Session["soLuotChoi"] = user.soluotchoi;
-                            db.SaveChanges();
+                            ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID);
+                            {
+                                chitietcuocchoi1.SoDuDoan = sodudoan;
+                                chitietcuocchoi1.UserID = int.Parse(Session["IDs"].ToString());
+                                chitietcuocchoi1.MaCuocChoi = machoi;
+                                db.ChiTietCuocChois.Add(chitietcuocchoi1);
+                                user.soluotchoi--;
+                                Session["soLuotChoi"] = user.soluotchoi;
+                                db.SaveChanges();
 
+                            }
                         }
-                    }
-                return View(ds);
+                    return View(ds);
+                }
             }
+            else return Redirect("~/User/Login");
 
         }
 
 
         public ActionResult DoanSo(ChiTietCuocChoi chitietcuocchoi)
         {
-            string name = Session["userName"].ToString();
-            ViewBag.Name = name;
-            int userID = int.Parse(Session["IDs"].ToString());
-            User user = db.Users.SingleOrDefault(x => x.ID == userID);
-
-            
-
-            string day = DateTime.Now.Day.ToString();
-            string month = DateTime.Now.Month.ToString();
-            string year = DateTime.Now.Year.ToString();
-
-            DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
-
-
-            CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
-
-            if (cuocchoi == null) return Redirect("~/DoanSo/Error5"); 
-
-            int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
-
-            string duDoan = Request.Form["SoDuDoan"].ToString();
-            if (isNumber(duDoan) == false)
+            if (Session["userName"] != null)
             {
-                return Content("<script language='javascript' type='text/javascript'> " +
-                    "alert('Số dự đoán không hợp lệ');" +
-                    "window.location= '/DoanSo/DoanSoPage';" +
-                    "</script>");
+                string name = Session["userName"].ToString();
+                ViewBag.Name = name;
+                int userID = int.Parse(Session["IDs"].ToString());
+                User user = db.Users.SingleOrDefault(x => x.ID == userID);
 
-            }
 
-            int soDuDoan = int.Parse(duDoan);
-            if (soDuDoan < 0 || soDuDoan > 999)
-            {
-                return Content("<script language='javascript' type='text/javascript'> " +
-                    "alert('Số dự đoán phải nằm trong khoảng từ 0 đến 999');" +
-                    "window.location= '/DoanSo/DoanSoPage';" +
-                    "</script>");
 
-            }
-            else
-            {
-                ChiTietCuocChoi chitiet2 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == soDuDoan && x.MaCuocChoi == machoi && x.UserID == userID);
-                if (chitiet2 != null)
+                string day = DateTime.Now.Day.ToString();
+                string month = DateTime.Now.Month.ToString();
+                string year = DateTime.Now.Year.ToString();
+
+                DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
+
+
+                CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
+
+                if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
+
+                int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
+
+                string duDoan = Request.Form["SoDuDoan"].ToString();
+                if (isNumber(duDoan) == false)
                 {
-                    return Redirect("~/DoanSo/Error4");
+                    return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Số dự đoán không hợp lệ');" +
+                        "window.location= '/DoanSo/DoanSoPage';" +
+                        "</script>");
+
                 }
 
+                int soDuDoan = int.Parse(duDoan);
+                if (soDuDoan < 0 || soDuDoan > 999)
+                {
+                    return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Số dự đoán phải nằm trong khoảng từ 0 đến 999');" +
+                        "window.location= '/DoanSo/DoanSoPage';" +
+                        "</script>");
+
+                }
                 else
                 {
-                    Session["soDuDoan"] = soDuDoan;
-                    chitietcuocchoi.UserID = int.Parse(Session["IDs"].ToString());
-                    chitietcuocchoi.MaCuocChoi = machoi;
-                    db.ChiTietCuocChois.Add(chitietcuocchoi);
-                    user.soluotchoi--;
-                    Session["soLuotChoi"] = user.soluotchoi;
-                    db.SaveChanges();
+                    ChiTietCuocChoi chitiet2 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == soDuDoan && x.MaCuocChoi == machoi && x.UserID == userID);
+                    if (chitiet2 != null)
+                    {
+                        return Redirect("~/DoanSo/Error4");
+                    }
+
+                    else
+                    {
+                        Session["soDuDoan"] = soDuDoan;
+                        chitietcuocchoi.UserID = int.Parse(Session["IDs"].ToString());
+                        chitietcuocchoi.MaCuocChoi = machoi;
+                        db.ChiTietCuocChois.Add(chitietcuocchoi);
+                        user.soluotchoi--;
+                        Session["soLuotChoi"] = user.soluotchoi;
+                        db.SaveChanges();
 
 
 
-                    return Redirect("~/DoanSo/ThongBaoPage");
+                        return Redirect("~/DoanSo/ThongBaoPage");
 
+                    }
                 }
             }
+            else return Redirect("~User/Login");
             
         }
 
 
         public ActionResult ThongBaoPage()
         {
-           
-            string day = DateTime.Now.Day.ToString();
-            string month = DateTime.Now.Month.ToString();
-            string year = DateTime.Now.Year.ToString();
-    
-            DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
+            if (Session["IDs"] != null)
+            {
+                string day = DateTime.Now.Day.ToString();
+                string month = DateTime.Now.Month.ToString();
+                string year = DateTime.Now.Year.ToString();
 
-
-         
-            CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x=>x.NgayDoanSo == datetime);
-   
-            int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
+                DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
 
 
 
-            DanhSachTrungThuong danhsach = db.DanhSachTrungThuongs.SingleOrDefault(x => x.MaCuocChoi == machoi);
-            string TienThuong = danhsach.TongTienThuong.ToString();
-     
+                CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
 
-            int userID = int.Parse(Session["IDs"].ToString());
-            int soDuDoans = int.Parse(Session["soDuDoan"].ToString());
-            ChiTietCuocChoi chitiet = db.ChiTietCuocChois.SingleOrDefault(x => x.UserID == userID && x.MaCuocChoi == machoi && x.SoDuDoan == soDuDoans);
-            
-            int soDuDoan = chitiet.SoDuDoan;
-            var tongSoLan = from u in db.ChiTietCuocChois
-                            where u.MaCuocChoi == machoi
-                            group u by u.SoDuDoan into Counted
-                            select new
-                            {
-                                soDuDoan = Counted.Key,
-                                soLan = Counted.Count()
-                            };
-            var soLanTheoUser = (from y in tongSoLan
-                                where y.soDuDoan == soDuDoan
-                                select y).Single();
-            int soLan = soLanTheoUser.soLan;
-            ViewBag.soLan = soLan;
+                int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
 
-            int soLanItNhat = tongSoLan.Min(x => x.soLan);
-            var tongSoLanItNhat = from t in tongSoLan
-                                  where t.soLan == soLanItNhat
-                                  select t;
+
+
+                DanhSachTrungThuong danhsach = db.DanhSachTrungThuongs.SingleOrDefault(x => x.MaCuocChoi == machoi);
+                string TienThuong = danhsach.TongTienThuong.ToString();
+
+
+                int userID = int.Parse(Session["IDs"].ToString());
+                int soDuDoans = int.Parse(Session["soDuDoan"].ToString());
+                ChiTietCuocChoi chitiet = db.ChiTietCuocChois.SingleOrDefault(x => x.UserID == userID && x.MaCuocChoi == machoi && x.SoDuDoan == soDuDoans);
+
+                int soDuDoan = chitiet.SoDuDoan;
+                var tongSoLan = from u in db.ChiTietCuocChois
+                                where u.MaCuocChoi == machoi
+                                group u by u.SoDuDoan into Counted
+                                select new
+                                {
+                                    soDuDoan = Counted.Key,
+                                    soLan = Counted.Count()
+                                };
+                var soLanTheoUser = (from y in tongSoLan
+                                     where y.soDuDoan == soDuDoan
+                                     select y).Single();
+                int soLan = soLanTheoUser.soLan;
+                ViewBag.soLan = soLan;
+
+                int soLanItNhat = tongSoLan.Min(x => x.soLan);
+                var tongSoLanItNhat = from t in tongSoLan
+                                      where t.soLan == soLanItNhat
+                                      select t;
                 //int tongSoItNhat = soLanItNhat;
-            int tongSoItNhat = tongSoLanItNhat.Count();
-            ViewBag.soLanItNhat = tongSoItNhat;
+                int tongSoItNhat = tongSoLanItNhat.Count();
+                ViewBag.soLanItNhat = tongSoItNhat;
 
-            int soConLai = 1000 - tongSoLan.Count();
-            ViewBag.soConLai = soConLai;
+                int soConLai = 1000 - tongSoLan.Count();
+                ViewBag.soConLai = soConLai;
 
 
-            ViewBag.tienThuong = TienThuong;
+                ViewBag.tienThuong = TienThuong;
 
-            return View();
-        }
-	}
+                return View();
+            }
+            else return Redirect("~User/Login");
+        } 
+	} 
 }

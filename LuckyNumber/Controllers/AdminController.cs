@@ -20,11 +20,12 @@ namespace LuckyNumber.Controllers
 
         public ActionResult Logout()
         {
-            Session.RemoveAll();
+            Session.Clear();
             return Redirect("~/Admin/Login");
         }
 
-        public ActionResult adminLogin(Admin admin)
+        [HttpPost]
+        public ActionResult Login(Admin admin)
         {
             using (LuckyNumContext db = new LuckyNumContext())
             {
@@ -43,11 +44,15 @@ namespace LuckyNumber.Controllers
 
         public ActionResult adminProfile()
         {
-            String name = Session["userName"].ToString();
-            ViewBag.Name = name;
-            string email = Session["email"].ToString();
-            ViewBag.Email = email;
-            return View();
+            if (Session["userName"] != null)
+            {
+                String name = Session["userName"].ToString();
+                ViewBag.Name = name;
+                string email = Session["email"].ToString();
+                ViewBag.Email = email;
+                return View();
+            }
+            else return RedirectToAction("Login");
         }
 
         public ActionResult signError()
@@ -59,10 +64,14 @@ namespace LuckyNumber.Controllers
 
         public ActionResult QuanLyPhienChoi()
         {
-            String name = Session["userName"].ToString();
-            ViewBag.Name = name;
-            var model = db.CuocChois.ToList();
-            return View(model);
+            if (Session["userName"] != null)
+            {
+                String name = Session["userName"].ToString();
+                ViewBag.Name = name;
+                var model = db.CuocChois.ToList();
+                return View(model);
+            }
+            else return RedirectToAction("Login");
         }
 
         public ActionResult ThemPhienChoi(CuocChoi cuocchoi)
@@ -86,17 +95,25 @@ namespace LuckyNumber.Controllers
 
         public ActionResult KetThucPhienChoi()
         {
-            String name = Session["userName"].ToString();
-            ViewBag.Name = name;
-            return View();
+            if (Session["userName"] != null)
+            {
+                String name = Session["userName"].ToString();
+                ViewBag.Name = name;
+                return View();
+            }
+            else return RedirectToAction("Login");
         }
 
 
         public ActionResult ThemLuotChoiAo()
         {
-            String name = Session["userName"].ToString();
-            ViewBag.Name = name;
-            return View();
+            if (Session["userName"] != null)
+            {
+                String name = Session["userName"].ToString();
+                ViewBag.Name = name;
+                return View();
+            }
+            else return RedirectToAction("Login");
         }
 
         public ActionResult ThemNguoiChoiAo()

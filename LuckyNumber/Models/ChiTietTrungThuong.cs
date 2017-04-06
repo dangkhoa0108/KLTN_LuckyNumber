@@ -25,6 +25,7 @@ namespace LuckyNumber.Models
         public int SoDuDoan { get; set; }
 
         public double? TienThuong { get; set; }
+
         public virtual DanhSachTrungThuong DanhSachTrungThuong { get; set; }
 
         public virtual User User { get; set; }

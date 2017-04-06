@@ -38,11 +38,18 @@ namespace LuckyNumber.Models
         [StringLength(50)]
         public string mamoi { get; set; }
 
+        [StringLength(50)]
+        public string magioithieu { get; set; }
+
         public int? soluotchoi { get; set; }
+
+        public int? soluotchoi_km { get; set; }
 
         public bool? status { get; set; }
 
         public bool? xacnhan { get; set; }
+
+        public int? checktt { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietCuocChoi> ChiTietCuocChois { get; set; }

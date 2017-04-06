@@ -17,6 +17,7 @@ namespace LuckyNumber.Models
         public virtual DbSet<ChiTietTrungThuong> ChiTietTrungThuongs { get; set; }
         public virtual DbSet<CuocChoi> CuocChois { get; set; }
         public virtual DbSet<DanhSachTrungThuong> DanhSachTrungThuongs { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

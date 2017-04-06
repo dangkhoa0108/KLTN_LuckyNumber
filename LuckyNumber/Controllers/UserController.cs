@@ -111,9 +111,6 @@ namespace LuckyNumber.Controllers
 
             // ----------- End --------------
 
-
-
-
             var tongSoLan = from u in db.ChiTietCuocChois
                             where u.MaCuocChoi == maChoi
                             group u by u.SoDuDoan into Counted
@@ -193,13 +190,21 @@ namespace LuckyNumber.Controllers
 
         public ActionResult LienHe()
         {
-            string name = Session["userName"].ToString();
-            ViewBag.Name = name;
-
-            return View();
+            if (Session["userName"] != null)
+            {
+                string name = Session["userName"].ToString();
+                ViewBag.Name = name;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
-        public ActionResult userLogin(User user)
+
+        [HttpPost]
+        public ActionResult Login(User user)
         {
             using (LuckyNumContext db = new LuckyNumContext())
             {
@@ -280,15 +285,19 @@ namespace LuckyNumber.Controllers
 
         public ActionResult Logout()
         {
-            Session.RemoveAll();
+            Session.Clear();
             return Redirect("~/User/Index");
         }
 
         public ActionResult NapThePage()
         {
-            string name = Session["userName"].ToString();
-            ViewBag.Name = name;
-            return View();
+            if (Session["userName"] != null)
+            {
+                string name = Session["userName"].ToString();
+                ViewBag.Name = name;
+                return View();
+            }
+            else return RedirectToAction("Login");
         }
 
 
@@ -299,36 +308,40 @@ namespace LuckyNumber.Controllers
         }
         public ActionResult confirm()
         {
-            string name = Session["userName"].ToString();
-            ViewBag.Name = name;
-            int userID = int.Parse(Session["IDs"].ToString());
-            User user = db.Users.SingleOrDefault(x => x.ID == userID);
-
-            if (user.xacnhan == true )
+            if (Session["userName"] != null)
             {
-                return Redirect("~/User/ThongBao_1");
+                string name = Session["userName"].ToString();
+                ViewBag.Name = name;
+                int userID = int.Parse(Session["IDs"].ToString());
+                User user = db.Users.SingleOrDefault(x => x.ID == userID);
+
+                if (user.xacnhan == true)
+                {
+                    return Redirect("~/User/ThongBao_1");
+                }
+
+                else if (user.phone == null) return Redirect("~/User/ThongBao4");
+
+                StringBuilder sb = new StringBuilder();
+                char c;
+                string c1;
+                string phone = Session["pHone"].ToString();
+                Random rand = new Random();
+                for (int i = 0; i < 5; i++)
+                {
+                    c = Convert.ToChar(Convert.ToInt32(rand.Next(65, 87)));
+                    sb.Append(c);
+                }
+
+                c1 = sb.ToString();
+                Session["MaXacNhan"] = c1;
+
+                SpeedSMSAPI api = new SpeedSMSAPI();
+                String userInfo = api.getUserInfo();
+                String response = api.sendSMS(phone, "Ma xac nhan cua ban la: " + c1, 2, "");
+                return Redirect("~/User/confirmNum");
             }
-
-            else if(user.phone == null) return Redirect("~/User/ThongBao4");
-
-            StringBuilder sb = new StringBuilder();
-            char c;
-            string c1;
-            string phone = Session["pHone"].ToString();
-            Random rand = new Random();
-            for (int i = 0; i < 5; i++)
-            {
-                c = Convert.ToChar(Convert.ToInt32(rand.Next(65, 87)));
-                sb.Append(c);
-            }
-
-            c1 = sb.ToString();
-            Session["MaXacNhan"] = c1;
-
-            SpeedSMSAPI api = new SpeedSMSAPI();
-            String userInfo = api.getUserInfo();
-            String response = api.sendSMS(phone, "Ma xac nhan cua ban la: " + c1, 2, "");
-            return Redirect("~/User/confirmNum");
+            else return RedirectToAction("Login");
         }
 
         public ActionResult confirmPhone()
@@ -473,66 +486,73 @@ namespace LuckyNumber.Controllers
 
         public ActionResult userProfile()
         {
-            int userID = int.Parse(Session["IDs"].ToString());
-            User user = db.Users.SingleOrDefault(x => x.ID == userID);
-
-            string name = Session["userName"].ToString();
-            ViewBag.Name = name;
-            string mail = Session["eMail"].ToString();
-            ViewBag.Mail = mail;
-            string id = Session["IDs"].ToString();
-            ViewBag.Id = id;
-            string luotchoi = Session["soLuotChoi"].ToString();
-            ViewBag.LuotChoi = luotchoi;
-            string mamoi = Session["maMoi"].ToString();
-            ViewBag.MaMoi = mamoi;
-            string sodu = Session["taiKhoan"].ToString();
-            ViewBag.SoDu = sodu;
-
-            if (user.phone == null)
+            if (Session["IDs"] != null)
             {
-                string phone = "Bạn vui lòng xác nhận số điện thoại";
-                //string phone = Session["pHone"].ToString();
-                ViewBag.phone = phone;
+                int userID = int.Parse(Session["IDs"].ToString());
+                User user = db.Users.SingleOrDefault(x => x.ID == userID);
+
+                string name = Session["userName"].ToString();
+                ViewBag.Name = name;
+                string mail = Session["eMail"].ToString();
+                ViewBag.Mail = mail;
+                string id = Session["IDs"].ToString();
+                ViewBag.Id = id;
+                string luotchoi = Session["soLuotChoi"].ToString();
+                ViewBag.LuotChoi = luotchoi;
+                string mamoi = Session["maMoi"].ToString();
+                ViewBag.MaMoi = mamoi;
+                string sodu = Session["taiKhoan"].ToString();
+                ViewBag.SoDu = sodu;
+
+                if (user.phone == null)
+                {
+                    string phone = "Bạn vui lòng xác nhận số điện thoại";
+                    //string phone = Session["pHone"].ToString();
+                    ViewBag.phone = phone;
+                }
+                else
+                {
+                    string phone = user.phone.ToString();
+                    ViewBag.phone = phone;
+                }
+
+                return View();
             }
-            else
-            {
-                string phone = user.phone.ToString();
-                ViewBag.phone = phone;
-            }
-        
-            return View();
+            else return RedirectToAction("Login");
         }
 
         public ActionResult CachChoi()
         {
-
-            int userID = int.Parse(Session["IDs"].ToString());
-            User user = db.Users.SingleOrDefault(x => x.ID == userID);
-
-            string name = Session["userName"].ToString();
-            ViewBag.Name = name;
-            string mail = Session["eMail"].ToString();
-            ViewBag.Mail = mail;
-            string id = Session["IDs"].ToString();
-            ViewBag.Id = id;
-            string luotchoi = Session["soLuotChoi"].ToString();
-            ViewBag.LuotChoi = luotchoi;
-            string mamoi = Session["maMoi"].ToString();
-            ViewBag.MaMoi = mamoi;
-
-            if (user.phone == null)
+            if (Session["IDs"] != null)
             {
-                string phone = "Bạn vui lòng xác nhận số điện thoại";
-                //string phone = Session["pHone"].ToString();
-                ViewBag.phone = phone;
+                int userID = int.Parse(Session["IDs"].ToString());
+                User user = db.Users.SingleOrDefault(x => x.ID == userID);
+
+                string name = Session["userName"].ToString();
+                ViewBag.Name = name;
+                string mail = Session["eMail"].ToString();
+                ViewBag.Mail = mail;
+                string id = Session["IDs"].ToString();
+                ViewBag.Id = id;
+                string luotchoi = Session["soLuotChoi"].ToString();
+                ViewBag.LuotChoi = luotchoi;
+                string mamoi = Session["maMoi"].ToString();
+                ViewBag.MaMoi = mamoi;
+
+                if (user.phone == null)
+                {
+                    string phone = "Bạn vui lòng xác nhận số điện thoại";
+                    //string phone = Session["pHone"].ToString();
+                    ViewBag.phone = phone;
+                }
+                else
+                {
+                    string phone = user.phone.ToString();
+                    ViewBag.phone = phone;
+                }
+                return View();
             }
-            else
-            {
-                string phone = user.phone.ToString();
-                ViewBag.phone = phone;
-            }
-            return View();
+            else return RedirectToAction("Login");
         }
 
         public ActionResult reDirect()
@@ -570,75 +590,82 @@ namespace LuckyNumber.Controllers
 
         public ActionResult LichSuDoanSo()
         {
-            string name = Session["userName"].ToString();
-            ViewBag.Name = name;
-            
-            int userID = int.Parse(Session["IDs"].ToString());
-
-
-            
-            List<ChiTietChoiViewModel> model = new List<ChiTietChoiViewModel>();
-            var join = (from US in db.Users
-                        join CTC in db.ChiTietCuocChois
-                            on US.ID equals CTC.UserID
-                        join CC in db.CuocChois on CTC.MaCuocChoi equals CC.MaCuocChoi
-                        where US.ID == userID
-                        select new
-                        {
-                            userName = US.username,
-                            soDuDoan = CTC.SoDuDoan,
-                            ngayDoanSo = CC.NgayDoanSo
-                        }).ToList();
-            foreach (var item in join)
+            if (Session["userName"] != null)
             {
-                model.Add(new ChiTietChoiViewModel()
+                string name = Session["userName"].ToString();
+                ViewBag.Name = name;
+
+                int userID = int.Parse(Session["IDs"].ToString());
+
+
+
+                List<ChiTietChoiViewModel> model = new List<ChiTietChoiViewModel>();
+                var join = (from US in db.Users
+                            join CTC in db.ChiTietCuocChois
+                                on US.ID equals CTC.UserID
+                            join CC in db.CuocChois on CTC.MaCuocChoi equals CC.MaCuocChoi
+                            where US.ID == userID
+                            select new
+                            {
+                                userName = US.username,
+                                soDuDoan = CTC.SoDuDoan,
+                                ngayDoanSo = CC.NgayDoanSo
+                            }).ToList();
+                foreach (var item in join)
                 {
-                    username = item.userName,
-                    SoDuDoan = item.soDuDoan,
-                    NgayDoanSo = item.ngayDoanSo
-                });
+                    model.Add(new ChiTietChoiViewModel()
+                    {
+                        username = item.userName,
+                        SoDuDoan = item.soDuDoan,
+                        NgayDoanSo = item.ngayDoanSo
+                    });
+                }
+
+                return View(model);
             }
-            
-            return View(model);
+            else return RedirectToAction("Login");
         }
 
         public ActionResult LichSuTrungThuong()
         {
-           
-            int userID = int.Parse(Session["IDs"].ToString());
-            //User user = db.Users.SingleOrDefault(x => x.ID == userID);
-            string name = Session["userName"].ToString();
-            ViewBag.Name = name;
-            
-
-            List<LichSuTrungThuongViewModel> model = new List<LichSuTrungThuongViewModel>();
-            var join = (from US in db.Users
-                        join CTC in db.ChiTietCuocChois
-                            on US.ID equals CTC.UserID
-                        join CC in db.CuocChois on CTC.MaCuocChoi equals CC.MaCuocChoi
-                        join DSTT in db.DanhSachTrungThuongs on CC.MaCuocChoi equals DSTT.MaCuocChoi
-                        join CTTT in db.ChiTietTrungThuongs on DSTT.MaDSTrungThuong equals CTTT.MaDSTrungThuong
-                        where US.ID == userID && CTTT.UserID == userID && CTTT.SoDuDoan == CTC.SoDuDoan
-                        select new
-                        {
-                            userName = US.username,
-                            soDuDoan = CTC.SoDuDoan,
-                            ngayDoanSo = CC.NgayDoanSo,
-                            tienThuong = CTTT.TienThuong
-                        }).ToList();
-
-            foreach (var item in join)
+            if (Session["IDs"] != null)
             {
-                model.Add(new LichSuTrungThuongViewModel()
+                int userID = int.Parse(Session["IDs"].ToString());
+                //User user = db.Users.SingleOrDefault(x => x.ID == userID);
+                string name = Session["userName"].ToString();
+                ViewBag.Name = name;
+
+
+                List<LichSuTrungThuongViewModel> model = new List<LichSuTrungThuongViewModel>();
+                var join = (from US in db.Users
+                            join CTC in db.ChiTietCuocChois
+                                on US.ID equals CTC.UserID
+                            join CC in db.CuocChois on CTC.MaCuocChoi equals CC.MaCuocChoi
+                            join DSTT in db.DanhSachTrungThuongs on CC.MaCuocChoi equals DSTT.MaCuocChoi
+                            join CTTT in db.ChiTietTrungThuongs on DSTT.MaDSTrungThuong equals CTTT.MaDSTrungThuong
+                            where US.ID == userID && CTTT.UserID == userID && CTTT.SoDuDoan == CTC.SoDuDoan
+                            select new
+                            {
+                                userName = US.username,
+                                soDuDoan = CTC.SoDuDoan,
+                                ngayDoanSo = CC.NgayDoanSo,
+                                tienThuong = CTTT.TienThuong
+                            }).ToList();
+
+                foreach (var item in join)
+                {
+                    model.Add(new LichSuTrungThuongViewModel()
                     {
                         username = item.userName,
                         NgayDoanSo = item.ngayDoanSo,
                         SoDuDoan = item.soDuDoan,
                         TienThuong = float.Parse(item.tienThuong.ToString())
                     });
-            }
+                }
 
-            return View(model);
+                return View(model);
+            }
+            else return RedirectToAction("Login");
         }
 
         public ActionResult ThongBao3()
@@ -647,14 +674,18 @@ namespace LuckyNumber.Controllers
         }
         public ActionResult MoiBanBe()
         {
-            string name = Session["userName"].ToString();
-            ViewBag.Name = name;
-            int userID = int.Parse(Session["IDs"].ToString());
-            User user = db.Users.SingleOrDefault(x => x.ID == userID);
+            if (Session["userName"] != null)
+            {
+                string name = Session["userName"].ToString();
+                ViewBag.Name = name;
+                int userID = int.Parse(Session["IDs"].ToString());
+                User user = db.Users.SingleOrDefault(x => x.ID == userID);
 
-            if (user.status == true) return Redirect("~/User/ThongBao3");
+                if (user.status == true) return Redirect("~/User/ThongBao3");
 
-            else return View();
+                else return View();
+            }
+            else return RedirectToAction("Login");
         }
 
         public ActionResult LoiMoiBan()
@@ -664,44 +695,52 @@ namespace LuckyNumber.Controllers
 
         public ActionResult MoiBan()
         {
-            int userID = int.Parse(Session["IDs"].ToString());
-            User user = db.Users.SingleOrDefault(x => x.ID == userID);
-
-            string maMoi = Request.Form["MaMoi"];
-
-            var list = from u in db.Users
-                       select u;
-
-            foreach (var i in list)
+            if (Session["IDs"] != null)
             {
-                if (i.mamoi == maMoi)
+                int userID = int.Parse(Session["IDs"].ToString());
+                User user = db.Users.SingleOrDefault(x => x.ID == userID);
+
+                string maMoi = Request.Form["MaMoi"];
+
+                var list = from u in db.Users
+                           select u;
+
+                foreach (var i in list)
                 {
-                    user.soluotchoi += 5;
-                    user.status = true;
-                    i.soluotchoi += 5;
-                    Session["soLuotChoi"] = user.soluotchoi;
-                    db.SaveChanges();
-                    return Redirect("~/User/userProfile");
+                    if (i.mamoi == maMoi)
+                    {
+                        user.soluotchoi += 5;
+                        user.status = true;
+                        i.soluotchoi += 5;
+                        Session["soLuotChoi"] = user.soluotchoi;
+                        db.SaveChanges();
+                        return Redirect("~/User/userProfile");
+                    }
                 }
+                return Redirect("~/User/LoiMoiBan");
             }
-            return Redirect("~/User/LoiMoiBan");
+            else return RedirectToAction("Login");
         }
 
 
         public ActionResult DoiThuongPage()
         {
-            int userID = int.Parse(Session["IDs"].ToString());
-            User user = db.Users.SingleOrDefault(x => x.ID == userID);
+            if (Session["IDs"] != null)
+            {
+                int userID = int.Parse(Session["IDs"].ToString());
+                User user = db.Users.SingleOrDefault(x => x.ID == userID);
 
-            string name = Session["userName"].ToString();
-            ViewBag.Name = name;
+                string name = Session["userName"].ToString();
+                ViewBag.Name = name;
 
-            string id = Session["IDs"].ToString();
-            ViewBag.Id = id;
+                string id = Session["IDs"].ToString();
+                ViewBag.Id = id;
 
-            string taikhoan = Session["taiKhoan"].ToString();
-            ViewBag.TaiKhoan = taikhoan;
-            return View();
+                string taikhoan = Session["taiKhoan"].ToString();
+                ViewBag.TaiKhoan = taikhoan;
+                return View();
+            }
+            else return RedirectToAction("Login");
         }
 
 
@@ -744,16 +783,20 @@ namespace LuckyNumber.Controllers
 
         public ActionResult XacNhanSDT()
         {
-            string name = Session["userName"].ToString();
-            ViewBag.Name = name;
-            int userID = int.Parse(Session["IDs"].ToString());
-            User user = db.Users.SingleOrDefault(x => x.ID == userID);
-            if (user.phone != null)
+            if (Session["userName"] != null)
             {
-                return Redirect("~/User/ThongBao_1");
-            }
+                string name = Session["userName"].ToString();
+                ViewBag.Name = name;
+                int userID = int.Parse(Session["IDs"].ToString());
+                User user = db.Users.SingleOrDefault(x => x.ID == userID);
+                if (user.phone != null)
+                {
+                    return Redirect("~/User/ThongBao_1");
+                }
 
-            return View();
+                return View();
+            }
+            else return RedirectToAction("Login");
         }
 
 
@@ -762,58 +805,75 @@ namespace LuckyNumber.Controllers
         }
         public ActionResult XacNhanSoDT()
         {
-            string sdt = Request.Form["sdt"].ToString();
-
-            int userID = int.Parse(Session["IDs"].ToString());
-            //User user = db.Users.SingleOrDefault(x => x.ID == userID);
-            User user = db.Users.SingleOrDefault(x => x.phone == sdt);
-            if (user == null)
+            if (Session["userName"] != null)
             {
-                user = db.Users.SingleOrDefault(x => x.ID == userID);
-                user.phone = sdt;
-                Session["pHone"] = user.phone;
-                db.SaveChanges();
-                return Redirect("~/User/userProfile");
+                string sdt = Request.Form["sdt"].ToString();
+
+                int userID = int.Parse(Session["IDs"].ToString());
+                //User user = db.Users.SingleOrDefault(x => x.ID == userID);
+                User user = db.Users.SingleOrDefault(x => x.phone == sdt);
+                if (user == null)
+                {
+                    user = db.Users.SingleOrDefault(x => x.ID == userID);
+                    user.phone = sdt;
+                    Session["pHone"] = user.phone;
+                    db.SaveChanges();
+                    return Redirect("~/User/userProfile");
+                }
+
+
+
+                return Redirect("~/User/ThongBao2"); // chỗ này nhớ viết
             }
-
-
-
-            return Redirect("~/User/ThongBao2"); // chỗ này nhớ viết
+            else return RedirectToAction("Login");
         }
 
         public ActionResult DoiMatKhau()
         {
-            return View();
+            if (Session["userName"] != null)
+            {
+                return View();
+            }
+            else return RedirectToAction("Login");
         }
 
         public ActionResult ChangePass()
         {
-            int userID = int.Parse(Session["IDs"].ToString());
-            User user = db.Users.SingleOrDefault(x => x.ID == userID);
+            if (Session["IDs"] != null)
+            {
+                int userID = int.Parse(Session["IDs"].ToString());
+                User user = db.Users.SingleOrDefault(x => x.ID == userID);
 
-            string pass1 = Request.Form["pass1"].ToString();
-            string pass2 = Request.Form["pass2"].ToString();
-            string pass3 = Request.Form["pass3"].ToString();
+                string pass1 = Request.Form["pass1"].ToString();
+                string pass2 = Request.Form["pass2"].ToString();
+                string pass3 = Request.Form["pass3"].ToString();
 
-            if (user.password != pass1) return Json("Mật khẩu hiện tại của bạn không chính xác", JsonRequestBehavior.AllowGet);
-            else if (pass2 != pass3) return Json("Sai Mật Khẩu Nhập Lại", JsonRequestBehavior.AllowGet);
+                if (user.password != pass1) return Json("Mật khẩu hiện tại của bạn không chính xác", JsonRequestBehavior.AllowGet);
+                else if (pass2 != pass3) return Json("Sai Mật Khẩu Nhập Lại", JsonRequestBehavior.AllowGet);
 
-            user.password = pass2;
-            db.SaveChanges();
+                user.password = pass2;
+                db.SaveChanges();
 
-            return Redirect("~/User/userProfile");
+                return Redirect("~/User/userProfile");
+            }
+            else return RedirectToAction("Login");
         }
 
         public ActionResult ChangeName()
         {
-            int userID = int.Parse(Session["IDs"].ToString());
-            User user = db.Users.SingleOrDefault(x => x.ID == userID);
-            string newname = Request.Form["newname"].ToString();
+            if (Session["IDs"] != null)
+            {
+                int userID = int.Parse(Session["IDs"].ToString());
+                User user = db.Users.SingleOrDefault(x => x.ID == userID);
+                string newname = Request.Form["newname"].ToString();
 
-            user.nickname = newname;
-            Session["userName"] = user.nickname;
-            db.SaveChanges();
-            return Redirect("~/User/userProfile");
+                user.nickname = newname;
+                Session["userName"] = user.nickname;
+                db.SaveChanges();
+                return Redirect("~/User/userProfile");
+            }
+            else
+                return RedirectToAction("Login");
         }
 	}
 }

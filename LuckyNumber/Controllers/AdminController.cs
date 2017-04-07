@@ -15,7 +15,9 @@ namespace LuckyNumber.Controllers
         // GET: /Admin/
         public ActionResult Login()
         {
+            if(Session["userName"]==null)
             return View();
+            else return Redirect("~/Admin/adminProfile");
         }
 
         public ActionResult Logout()

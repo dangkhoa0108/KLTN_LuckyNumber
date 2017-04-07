@@ -15,7 +15,7 @@ namespace LuckyNumber.Controllers
         // GET: /Admin/
         public ActionResult Login()
         {
-            if(Session["userName"]==null)
+            if(Session["userName"]==null || Session["Role"].ToString()!="Admin" )
             return View();
             else return Redirect("~/Admin/adminProfile");
         }
@@ -34,6 +34,8 @@ namespace LuckyNumber.Controllers
                 Admin admin2 = db.Admins.SingleOrDefault(x => x.username == admin.username && x.password == admin.password);
                 if (admin2 != null)
                 {
+                    string Role = "Admin";
+                    Session["Role"] = Role;
                     Session["userName"] = admin2.nickname;
                     Session["email"] = admin2.email;
                     Session["IDs"] = admin2.AdminID;
@@ -46,7 +48,7 @@ namespace LuckyNumber.Controllers
 
         public ActionResult adminProfile()
         {
-            if (Session["userName"] != null)
+            if (Session["userName"] != null && Session["Role"].ToString()=="Admin")
             {
                 String name = Session["userName"].ToString();
                 ViewBag.Name = name;
@@ -66,7 +68,7 @@ namespace LuckyNumber.Controllers
 
         public ActionResult QuanLyPhienChoi()
         {
-            if (Session["userName"] != null)
+            if (Session["userName"] != null && Session["Role"].ToString() == "Admin" )
             {
                 String name = Session["userName"].ToString();
                 ViewBag.Name = name;
@@ -97,7 +99,7 @@ namespace LuckyNumber.Controllers
 
         public ActionResult KetThucPhienChoi()
         {
-            if (Session["userName"] != null)
+            if (Session["userName"] != null && Session["Role"].ToString() == "Admin" )
             {
                 String name = Session["userName"].ToString();
                 ViewBag.Name = name;
@@ -109,7 +111,7 @@ namespace LuckyNumber.Controllers
 
         public ActionResult ThemLuotChoiAo()
         {
-            if (Session["userName"] != null)
+            if (Session["userName"] != null && Session["Role"].ToString() == "Admin" )
             {
                 String name = Session["userName"].ToString();
                 ViewBag.Name = name;

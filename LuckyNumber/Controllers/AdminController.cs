@@ -83,8 +83,6 @@ namespace LuckyNumber.Controllers
             db.CuocChois.Add(cuocchoi);
             cuocchoi.TrangThai = true;
 
-           
-
             db.SaveChanges();
             int ma = cuocchoi.MaCuocChoi;
             DanhSachTrungThuong danhsach = new DanhSachTrungThuong();
@@ -175,6 +173,7 @@ namespace LuckyNumber.Controllers
 
         public ActionResult KetThucPhien()
         {
+            
             // ---- Lấy ra ngày tương ứng ------
             string day = DateTime.Now.Day.ToString();
             string month = DateTime.Now.Month.ToString();
@@ -186,69 +185,78 @@ namespace LuckyNumber.Controllers
 
             // ---------- End -------------------
 
-            
+            if (cuocchoi.TrangThai == true)
 
-            
-            int maChoi = int.Parse(cuocchoi.MaCuocChoi.ToString()); // Lấy ra mã cuộc chơi từ ngày chơi
 
-            // ----- Lấy ra danh sách theo mã cuộc chơi --------
-            DanhSachTrungThuong danhsach = db.DanhSachTrungThuongs.SingleOrDefault(x => x.MaCuocChoi == maChoi);
-
-            int maDS = int.Parse(danhsach.MaDSTrungThuong.ToString());
-
-            // ----------- End --------------
-            
-
-            
-
-            var tongSoLan = from u in db.ChiTietCuocChois
-                            where u.MaCuocChoi == maChoi
-                            group u by u.SoDuDoan into Counted
-                            select new
-                            {
-                                soDuDoan = Counted.Key,
-                                soLan = Counted.Count()
-                            };
-            int soLanItNhat = tongSoLan.Min(x => x.soLan);
-            var tongSoLanItNhat = from t in tongSoLan
-                                  where t.soLan == soLanItNhat
-                                  select t;
-            int tongSoItNhat = tongSoLanItNhat.Count();
-            float tienThuong = float.Parse(danhsach.TongTienThuong.ToString()) / tongSoItNhat; // số tiền
-
-            foreach (var i in tongSoLanItNhat)
             {
-                var danhSachTrung = from y in db.ChiTietCuocChois
-                                    where y.SoDuDoan == i.soDuDoan && y.MaCuocChoi == maChoi
-                                    select y;
-                foreach(var o in danhSachTrung)
+                int maChoi = int.Parse(cuocchoi.MaCuocChoi.ToString()); // Lấy ra mã cuộc chơi từ ngày chơi
+
+                // ----- Lấy ra danh sách theo mã cuộc chơi --------
+                DanhSachTrungThuong danhsach = db.DanhSachTrungThuongs.SingleOrDefault(x => x.MaCuocChoi == maChoi);
+
+                int maDS = int.Parse(danhsach.MaDSTrungThuong.ToString());
+
+                // ----------- End --------------
+
+
+
+
+                var tongSoLan = from u in db.ChiTietCuocChois
+                                where u.MaCuocChoi == maChoi
+                                group u by u.SoDuDoan into Counted
+                                select new
+                                {
+                                    soDuDoan = Counted.Key,
+                                    soLan = Counted.Count()
+                                };
+                int? soLanItNhat = tongSoLan.Min(x => (int?)x.soLan);
+                if (soLanItNhat != 0)
                 {
-                    ChiTietTrungThuong chiTietTrungThuong = new ChiTietTrungThuong();
-                    chiTietTrungThuong.UserID = o.UserID;
-                    chiTietTrungThuong.MaDSTrungThuong = maDS;
-                    chiTietTrungThuong.SoDuDoan = o.SoDuDoan;
-                    chiTietTrungThuong.TienThuong = tienThuong;
-                    User user = db.Users.SingleOrDefault(x => x.ID == o.UserID);
-                    user.taikhoan += tienThuong;
-                    
+                    var tongSoLanItNhat = from t in tongSoLan
+                                          where t.soLan == soLanItNhat
+                                          select t;
+                    int tongSoItNhat = tongSoLanItNhat.Count();
+                    float tienThuong = float.Parse(danhsach.TongTienThuong.ToString()) / tongSoItNhat; // số tiền
 
-                    db.ChiTietTrungThuongs.Add(chiTietTrungThuong);
+                    foreach (var i in tongSoLanItNhat)
+                    {
+                        var danhSachTrung = from y in db.ChiTietCuocChois
+                                            where y.SoDuDoan == i.soDuDoan && y.MaCuocChoi == maChoi
+                                            select y;
+                        foreach (var o in danhSachTrung)
+                        {
+                            ChiTietTrungThuong chiTietTrungThuong = new ChiTietTrungThuong();
+                            chiTietTrungThuong.UserID = o.UserID;
+                            chiTietTrungThuong.MaDSTrungThuong = maDS;
+                            chiTietTrungThuong.SoDuDoan = o.SoDuDoan;
+                            chiTietTrungThuong.TienThuong = tienThuong;
+                            User user = db.Users.SingleOrDefault(x => x.ID == o.UserID);
+                            user.taikhoan += tienThuong;
+
+
+                            db.ChiTietTrungThuongs.Add(chiTietTrungThuong);
+                        }
+                    }
                 }
+
+
+
+                cuocchoi.TrangThai = false;
+                var list = from u in db.Users
+                           select u;
+                foreach (var i in list)
+                {
+                    i.soluotchoi = 5;
+
+
+                }
+                db.SaveChanges();
+                return Redirect("~/Admin/adminProfile");
             }
-
-
-
-            cuocchoi.TrangThai = false;
-            var list = from u in db.Users
-                       select u;
-            foreach (var i in list)
-            {
-                i.soluotchoi = 5;
-                
-                
-            }
-            db.SaveChanges();
-            return Redirect("~/Admin/adminProfile");
+            else return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('BẠN ĐÃ KẾT THÚC CUỘC CHƠI RỒI. VUI LÒNG TẠO PHIÊN CHƠI MỚI VÀ THỬ LẠI');" +
+                        "window.location= '/Admin/QuanLyPhienChoi';" +
+                        "</script>");
         }
 
         public ActionResult DieuChinhGiaiThuong()

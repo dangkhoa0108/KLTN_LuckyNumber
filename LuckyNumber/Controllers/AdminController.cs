@@ -207,7 +207,8 @@ namespace LuckyNumber.Controllers
                                 select new
                                 {
                                     soDuDoan = Counted.Key,
-                                    soLan = Counted.Count()
+                                    soLan = Counted.Count(),
+                                    soTrongSo=Counted.Sum(x=>x.TrongSo)
                                 };
                 int? soLanItNhat = tongSoLan.Min(x => (int?)x.soLan);
                 if (soLanItNhat != 0)
@@ -216,12 +217,13 @@ namespace LuckyNumber.Controllers
                                           where t.soLan == soLanItNhat
                                           select t;
                     int tongSoItNhat = tongSoLanItNhat.Count();
-                    float tienThuong = float.Parse(danhsach.TongTienThuong.ToString()) / tongSoItNhat; // số tiền
+                    int tongTrongSo = tongSoLanItNhat.Sum(x => x.soTrongSo);
+                    float tienThuong = float.Parse(danhsach.TongTienThuong.ToString()) / tongTrongSo; // số tiền
 
                     foreach (var i in tongSoLanItNhat)
                     {
                         var danhSachTrung = from y in db.ChiTietCuocChois
-                                            where y.SoDuDoan == i.soDuDoan && y.MaCuocChoi == maChoi
+                                            where y.SoDuDoan == i.soDuDoan && y.MaCuocChoi == maChoi && y.TrongSo==i.soTrongSo
                                             select y;
                         foreach (var o in danhSachTrung)
                         {
@@ -229,9 +231,9 @@ namespace LuckyNumber.Controllers
                             chiTietTrungThuong.UserID = o.UserID;
                             chiTietTrungThuong.MaDSTrungThuong = maDS;
                             chiTietTrungThuong.SoDuDoan = o.SoDuDoan;
-                            chiTietTrungThuong.TienThuong = tienThuong;
+                            chiTietTrungThuong.TienThuong = tienThuong*o.TrongSo;
                             User user = db.Users.SingleOrDefault(x => x.ID == o.UserID);
-                            user.taikhoan += tienThuong;
+                            user.taikhoan += tienThuong*o.TrongSo;
 
 
                             db.ChiTietTrungThuongs.Add(chiTietTrungThuong);
@@ -303,10 +305,6 @@ namespace LuckyNumber.Controllers
             //else machoi = cuocchoi.MaCuocChoi;
 
             else machoi = cuocchoi.MaCuocChoi;
-
-
-            
-
 
 
             //int maChoi = int.Parse(cuocchoi.MaCuocChoi.ToString());

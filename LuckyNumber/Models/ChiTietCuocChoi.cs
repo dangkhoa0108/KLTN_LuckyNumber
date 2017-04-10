@@ -24,7 +24,7 @@ namespace LuckyNumber.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int SoDuDoan { get; set; }
 
-        public int? TrongSo { get; set; }
+        public int TrongSo { get; set; }
 
         public virtual CuocChoi CuocChoi { get; set; }
 

@@ -714,6 +714,7 @@ namespace LuckyNumber.Controllers
                 int machoi = int.Parse(cuocchoi.MaCuocChoi.ToString());
 
                 string duDoan = Request.Form["SoDuDoan"].ToString();
+                string trongSo = Request.Form["TrongSo"].ToString();
                 if (isNumber(duDoan) == false)
                 {
                     return Content("<script language='javascript' type='text/javascript'> " +
@@ -722,19 +723,36 @@ namespace LuckyNumber.Controllers
                         "</script>");
 
                 }
+                if (isNumber(trongSo) == false)
+                {
+                    return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Trọng số không hợp lệ');" +
+                        "window.location= '/DoanSo/DoanSoPage';" +
+                        "</script>");
+
+                }
 
                 int soDuDoan = int.Parse(duDoan);
+                int soTrongSo = int.Parse(trongSo);
                 if (soDuDoan < 0 || soDuDoan > 999)
                 {
+
                     return Content("<script language='javascript' type='text/javascript'> " +
                         "alert('Số dự đoán phải nằm trong khoảng từ 0 đến 999');" +
                         "window.location= '/DoanSo/DoanSoPage';" +
                         "</script>");
 
                 }
+                if(soTrongSo<=0)
+                {
+                    return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Trọng số phải nằm trong khoảng từ 0 đến 99');" +
+                        "window.location= '/DoanSo/DoanSoPage';" +
+                        "</script>");
+                }
                 else
                 {
-                    ChiTietCuocChoi chitiet2 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == soDuDoan && x.MaCuocChoi == machoi && x.UserID == userID);
+                    ChiTietCuocChoi chitiet2 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == soDuDoan && x.MaCuocChoi == machoi && x.UserID == userID && x.TrongSo==soTrongSo);
                     if (chitiet2 != null)
                     {
                         return Redirect("~/DoanSo/Error4");
@@ -743,10 +761,12 @@ namespace LuckyNumber.Controllers
                     else
                     {
                         Session["soDuDoan"] = soDuDoan;
+                        Session["soTrongSo"] = soTrongSo;
                         chitietcuocchoi.UserID = int.Parse(Session["IDs"].ToString());
                         chitietcuocchoi.MaCuocChoi = machoi;
                         db.ChiTietCuocChois.Add(chitietcuocchoi);
-                        user.soluotchoi--;
+                        int tongluot= int.Parse( user.soluotchoi.ToString())-soTrongSo;
+                        user.soluotchoi = tongluot;
                         Session["soLuotChoi"] = user.soluotchoi;
                         db.SaveChanges();
 
@@ -786,16 +806,19 @@ namespace LuckyNumber.Controllers
 
                 int userID = int.Parse(Session["IDs"].ToString());
                 int soDuDoans = int.Parse(Session["soDuDoan"].ToString());
-                ChiTietCuocChoi chitiet = db.ChiTietCuocChois.SingleOrDefault(x => x.UserID == userID && x.MaCuocChoi == machoi && x.SoDuDoan == soDuDoans);
+                int soTrongSos = int.Parse(Session["soTrongSo"].ToString());
+                ChiTietCuocChoi chitiet = db.ChiTietCuocChois.SingleOrDefault(x => x.UserID == userID && x.MaCuocChoi == machoi && x.SoDuDoan == soDuDoans && x.TrongSo==soTrongSos);
 
                 int soDuDoan = chitiet.SoDuDoan;
+                int soTrongSo = chitiet.TrongSo;
                 var tongSoLan = from u in db.ChiTietCuocChois
                                 where u.MaCuocChoi == machoi
                                 group u by u.SoDuDoan into Counted
                                 select new
                                 {
                                     soDuDoan = Counted.Key,
-                                    soLan = Counted.Count()
+                                    soLan = Counted.Count()                             
+                                    
                                 };
                 var soLanTheoUser = (from y in tongSoLan
                                      where y.soDuDoan == soDuDoan

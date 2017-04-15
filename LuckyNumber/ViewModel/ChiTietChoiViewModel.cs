@@ -10,6 +10,7 @@ namespace LuckyNumber.ViewModel
      
         public string username { get; set; }
         public int? SoDuDoan { get; set; }
+        public int? TrongSo { get; set; }
         public DateTime? NgayDoanSo { get; set; }
     }
 }

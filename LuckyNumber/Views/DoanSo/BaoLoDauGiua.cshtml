@@ -4,24 +4,181 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Bao lô đầu giữa</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="~/images/icon/fav_icon.png">
+    <title>Các Số Vừa Đoán</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- MetisMenu CSS -->
+    <link href="~/Content/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link href="~/Content/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+    <!-- DataTables Responsive CSS -->
+    <link href="~/Content/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/Content/dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="~/Content/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
-    <h2>Danh sách đoán</h2>
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="~/User/userProfile">Trở về</a>
+            </div>
+            <!-- /.navbar-header -->
+            <!-- /.navbar-top-links -->
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.sodadoan</td>
+                        <li>
+                            <a href="##"><i class="fa fa-table fa-fw"></i>Danh Sách Số Đã Dự Đoán</a>
+                        </li>
 
-        </tr>
+                        <!-- /.nav-second-level -->
 
-    }
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Lucky Number</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Danh Sách Số Đã Dự Đoán
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>Số Dự Đoán</th>
+                                        <th>Trọng Số</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr class="odd gradeX">
+                                            <td>@item.sodadoan</td>
+                                            <td>@item.trongso</td>
+                                            <td>
+                                                <div class="hidden-sm hidden-xs btn-group">
+                                                    @Html.ActionLink(" ", "Edit", new { id = item.sodadoan }, new { @class = "ace-icon fa fa-pencil bigger-130 green" })
+                                                </div>
+                                                <!-- <td><a href="editnews.jsp"><i class="fa fa-edit fa-fw"></i>Edit</a></td> -->
+                                                <!-- <td class="center">4</td>
+                                                <td class="center">X</td> -->
+                                        </tr>
+
+                                    }
+                                </tbody>
+                            </table>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+                <!-- /.row -->
+                <!-- /.row -->
+                <!-- /.row -->
+                <!-- /.row -->
+            </div>
+            <!-- /#page-wrapper -->
+            @*@<div id="page-wrapper">
+
+                </div>*@
+        </div>
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="panel panel-success">
+                                <div class="panel-heading" align="center">
+                                    Thay Đổi Trọng Số Tất Cả Các Số
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label>Nhập Trọng Số Cần Thay Đổi</label>
+                                        <input class="form-control" placeholder="Nhập Vào Giá Trị Là Số">
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <button type="button" class="btn btn-outline btn-success btn-lg btn-block">Thay Đổi</button>
+                                </div>
+                            </div>
+                            <!-- /.col-lg-4 -->
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#wrapper -->
+        <!-- jQuery -->
+        <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="~/Content/vendor/metisMenu/metisMenu.min.js"></script>
+        <!-- DataTables JavaScript -->
+        <script src="~/Content/vendor/datatables/js/jquery.dataTables.min.js"></script>
+        <script src="~/Content/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+        <script src="~/Content/vendor/datatables-responsive/dataTables.responsive.js"></script>
+        <!-- Custom Theme JavaScript -->
+        <script src="~/Content/dist/js/sb-admin-2.js"></script>
+        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').DataTable({
+                    responsive: true
+                });
+            });
+        </script>
 </body>
 </html>
+

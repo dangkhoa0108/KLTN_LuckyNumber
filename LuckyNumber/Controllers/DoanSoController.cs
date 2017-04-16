@@ -354,9 +354,12 @@ namespace LuckyNumber.Controllers
                         {
                             ChiTietCuocChoi chitietcuocchoi1 = new ChiTietCuocChoi();
                             int sodudoan = i * 100 + sodudoanGiua * 10 + sodudoanCuoi;
+                            int trongsodefault = 1;
                             ds.Add(new DanhSachSoDaDoanViewModel()
                             {
-                                sodadoan = sodudoan
+                                sodadoan = sodudoan,
+                                trongso = trongsodefault
+                                
                             });
 
                             ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID);
@@ -364,6 +367,7 @@ namespace LuckyNumber.Controllers
                                 chitietcuocchoi1.SoDuDoan = sodudoan;
                                 chitietcuocchoi1.UserID = int.Parse(Session["IDs"].ToString());
                                 chitietcuocchoi1.MaCuocChoi = machoi;
+                                chitietcuocchoi1.TrongSo = trongsodefault;
                                 db.ChiTietCuocChois.Add(chitietcuocchoi1);
                                 user.soluotchoi--;
                                 Session["soLuotChoi"] = user.soluotchoi;
@@ -449,9 +453,11 @@ namespace LuckyNumber.Controllers
                         {
                             ChiTietCuocChoi chitietcuocchoi1 = new ChiTietCuocChoi();
                             int sodudoan = sodudoanDau * 100 + sodudoanGiữa * 10 + i;
+                            int trongsodefault = 1;
                             ds.Add(new DanhSachSoDaDoanViewModel()
                             {
-                                sodadoan = sodudoan
+                                sodadoan = sodudoan,
+                                trongso = trongsodefault
                             });
 
                             ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID);
@@ -459,6 +465,7 @@ namespace LuckyNumber.Controllers
                                 chitietcuocchoi1.SoDuDoan = sodudoan;
                                 chitietcuocchoi1.UserID = int.Parse(Session["IDs"].ToString());
                                 chitietcuocchoi1.MaCuocChoi = machoi;
+                                chitietcuocchoi1.TrongSo = trongsodefault;
                                 db.ChiTietCuocChois.Add(chitietcuocchoi1);
                                 user.soluotchoi--;
                                 Session["soLuotChoi"] = user.soluotchoi;
@@ -524,9 +531,11 @@ namespace LuckyNumber.Controllers
                         {
                             ChiTietCuocChoi chitietcuocchoi1 = new ChiTietCuocChoi();
                             int sodudoan = sodudoanDau * 100 + i * 10 + j;
+                            int trongsodefault = 1;
                             ds.Add(new DanhSachSoDaDoanViewModel()
                             {
-                                sodadoan = sodudoan
+                                sodadoan = sodudoan,
+                                trongso = trongsodefault
                             });
 
                             ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID);
@@ -534,6 +543,7 @@ namespace LuckyNumber.Controllers
                                 chitietcuocchoi1.SoDuDoan = sodudoan;
                                 chitietcuocchoi1.UserID = int.Parse(Session["IDs"].ToString());
                                 chitietcuocchoi1.MaCuocChoi = machoi;
+                                chitietcuocchoi1.TrongSo = trongsodefault;
                                 db.ChiTietCuocChois.Add(chitietcuocchoi1);
                                 user.soluotchoi--;
                                 Session["soLuotChoi"] = user.soluotchoi;
@@ -596,9 +606,11 @@ namespace LuckyNumber.Controllers
                         {
                             ChiTietCuocChoi chitietcuocchoi1 = new ChiTietCuocChoi();
                             int sodudoan = i * 100 + sodudoanGiua * 10 + j;
+                            int trongsodefault = 1;
                             ds.Add(new DanhSachSoDaDoanViewModel()
                             {
-                                sodadoan = sodudoan
+                                sodadoan = sodudoan,
+                                trongso = trongsodefault
                             });
 
                             ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID);
@@ -606,6 +618,7 @@ namespace LuckyNumber.Controllers
                                 chitietcuocchoi1.SoDuDoan = sodudoan;
                                 chitietcuocchoi1.UserID = int.Parse(Session["IDs"].ToString());
                                 chitietcuocchoi1.MaCuocChoi = machoi;
+                                chitietcuocchoi1.TrongSo = trongsodefault;
                                 db.ChiTietCuocChois.Add(chitietcuocchoi1);
                                 user.soluotchoi--;
                                 Session["soLuotChoi"] = user.soluotchoi;
@@ -669,9 +682,11 @@ namespace LuckyNumber.Controllers
                         {
                             ChiTietCuocChoi chitietcuocchoi1 = new ChiTietCuocChoi();
                             int sodudoan = i * 100 + j * 10 + sodudoanCuoi;
+                            int trongsodefault = 1;
                             ds.Add(new DanhSachSoDaDoanViewModel()
                             {
-                                sodadoan = sodudoan
+                                sodadoan = sodudoan,
+                                trongso = trongsodefault
                             });
 
                             ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID);
@@ -679,6 +694,7 @@ namespace LuckyNumber.Controllers
                                 chitietcuocchoi1.SoDuDoan = sodudoan;
                                 chitietcuocchoi1.UserID = int.Parse(Session["IDs"].ToString());
                                 chitietcuocchoi1.MaCuocChoi = machoi;
+                                chitietcuocchoi1.TrongSo = trongsodefault;
                                 db.ChiTietCuocChois.Add(chitietcuocchoi1);
                                 user.soluotchoi--;
                                 Session["soLuotChoi"] = user.soluotchoi;

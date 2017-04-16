@@ -628,7 +628,8 @@ namespace LuckyNumber.Controllers
                             {
                                 userName = US.username,
                                 soDuDoan = CTC.SoDuDoan,
-                                ngayDoanSo = CC.NgayDoanSo
+                                ngayDoanSo = CC.NgayDoanSo,
+                                trongSo=CTC.TrongSo
                             }).ToList();
                 foreach (var item in join)
                 {
@@ -636,7 +637,8 @@ namespace LuckyNumber.Controllers
                     {
                         username = item.userName,
                         SoDuDoan = item.soDuDoan,
-                        NgayDoanSo = item.ngayDoanSo
+                        NgayDoanSo = item.ngayDoanSo,
+                        TrongSo=item.trongSo
                     });
                 }
 

@@ -8,5 +8,6 @@ namespace LuckyNumber.ViewModel
     public class DanhSachSoDaDoanViewModel
     {
         public int? sodadoan { get; set; }
+        public int? trongso { get; set; }
     }
 }

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using LuckyNumber.ViewModel;
+using System.Net;
+using System.Data.Entity;
 
 namespace LuckyNumber.Controllers
 {
@@ -262,6 +264,9 @@ namespace LuckyNumber.Controllers
                                 chitietcuocchoi1.UserID = int.Parse(Session["IDs"].ToString());
                                 chitietcuocchoi1.MaCuocChoi = machoi;
                                 chitietcuocchoi1.TrongSo = trongsodefault;
+
+                               
+
                                 db.ChiTietCuocChois.Add(chitietcuocchoi1);
                                 user.soluotchoi--;
                                 Session["soLuotChoi"] = user.soluotchoi;
@@ -271,7 +276,9 @@ namespace LuckyNumber.Controllers
                                 {
                                     id = chitietcuocchoi1.id,
                                     sodadoan = sodudoan,
-                                    trongso = trongsodefault
+                                    trongso = chitietcuocchoi1.TrongSo,  
+                                    
+                                    luotchoi =int.Parse(Session["soLuotChoi"].ToString())
                                 });
 
                             }
@@ -283,6 +290,42 @@ namespace LuckyNumber.Controllers
             else return Redirect("~User/Login");
 
         }
+
+
+        public ActionResult Edit(int? id)
+        {
+            if(id==null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ChiTietCuocChoi ct = db.ChiTietCuocChois.SingleOrDefault(m=> m.id==id);
+            if (ct==null)
+            {
+                return HttpNotFound();
+            }
+            return View(ct);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "UserID,MaCuocChoi,SoDuDoan,TrongSo,id")] ChiTietCuocChoi ct)
+        {
+            User user = db.Users.SingleOrDefault(x => x.ID == ct.UserID);
+            
+            if (ModelState.IsValid)
+            {               
+                db.Entry(ct).State = EntityState.Modified;
+                int trongsonew = int.Parse((ct.TrongSo).ToString());
+                int luotchoi = int.Parse(user.soluotchoi.ToString());
+                
+                user.soluotchoi = luotchoi + 1 - trongsonew;
+                db.SaveChanges();
+                return Redirect("~/User/LichSuDoanSo");
+            }
+            return View(ct);
+        }
+
+
 
         public ActionResult BaoLoGiuaCuoi()
         {

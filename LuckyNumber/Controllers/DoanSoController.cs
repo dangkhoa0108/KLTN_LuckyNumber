@@ -254,22 +254,25 @@ namespace LuckyNumber.Controllers
                         {
                             ChiTietCuocChoi chitietcuocchoi1 = new ChiTietCuocChoi();
                             int sodudoan = sodudoanDau * 100 + i * 10 + sodudoanCuoi;
-                            int trongsodefault = 1;
-                            ds.Add(new DanhSachSoDaDoanViewModel()
-                            {
-                                sodadoan = sodudoan,
-                                trongso=trongsodefault
-                            });
+                            int trongsodefault = 1;                   
 
                             ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID && x.TrongSo==trongsodefault);
                             {
                                 chitietcuocchoi1.SoDuDoan = sodudoan;
                                 chitietcuocchoi1.UserID = int.Parse(Session["IDs"].ToString());
                                 chitietcuocchoi1.MaCuocChoi = machoi;
+                                chitietcuocchoi1.TrongSo = trongsodefault;
                                 db.ChiTietCuocChois.Add(chitietcuocchoi1);
                                 user.soluotchoi--;
                                 Session["soLuotChoi"] = user.soluotchoi;
                                 db.SaveChanges();
+
+                                ds.Add(new DanhSachSoDaDoanViewModel()
+                                {
+                                    id = chitietcuocchoi1.id,
+                                    sodadoan = sodudoan,
+                                    trongso = trongsodefault
+                                });
 
                             }
                         }
@@ -812,7 +815,7 @@ namespace LuckyNumber.Controllers
                 ChiTietCuocChoi chitiet = db.ChiTietCuocChois.SingleOrDefault(x => x.UserID == userID && x.MaCuocChoi == machoi && x.SoDuDoan == soDuDoans && x.TrongSo==soTrongSos);
 
                 int soDuDoan = chitiet.SoDuDoan;
-                int soTrongSo = chitiet.TrongSo;
+                int? soTrongSo = chitiet.TrongSo;
                 var tongSoLan = from u in db.ChiTietCuocChois
                                 where u.MaCuocChoi == machoi
                                 group u by u.SoDuDoan into Counted

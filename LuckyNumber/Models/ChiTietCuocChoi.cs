@@ -24,10 +24,10 @@ namespace LuckyNumber.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int SoDuDoan { get; set; }
 
-        [Key]
-        [Column(Order = 3)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int TrongSo { get; set; }
+        public int? TrongSo { get; set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int id { get; set; }
 
         public virtual CuocChoi CuocChoi { get; set; }
 

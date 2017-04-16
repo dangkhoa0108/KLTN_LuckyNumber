@@ -4331,6 +4331,7 @@
     <Content Include="Views\DoanSo\BaoLoDau.cshtml" />
     <Content Include="Views\DoanSo\BaoLoGiua.cshtml" />
     <Content Include="Views\DoanSo\BaoLoCuoi.cshtml" />
+    <Content Include="Views\User\ThayDoiTrongSo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

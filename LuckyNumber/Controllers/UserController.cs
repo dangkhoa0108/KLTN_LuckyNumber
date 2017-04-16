@@ -647,6 +647,57 @@ namespace LuckyNumber.Controllers
             else return RedirectToAction("Login");
         }
 
+
+        public ActionResult ThayDoiTrongSo()
+        {
+            if (Session["userName"] != null && Session["Role"].ToString() == "User")
+            {
+                string name = Session["userName"].ToString();
+                ViewBag.Name = name;
+
+                int userID = int.Parse(Session["IDs"].ToString());
+
+                string day = DateTime.Now.Day.ToString();
+                string month = DateTime.Now.Month.ToString();
+                string year = DateTime.Now.Year.ToString();
+                DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
+
+
+                CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
+
+                int machoi = cuocchoi.MaCuocChoi;
+
+
+                List<ChiTietChoiViewModel> model = new List<ChiTietChoiViewModel>();
+                var join = (from US in db.Users
+                            join CTC in db.ChiTietCuocChois
+                                on US.ID equals CTC.UserID
+                            join CC in db.CuocChois on CTC.MaCuocChoi equals CC.MaCuocChoi
+                            where US.ID == userID && CTC.MaCuocChoi == machoi
+                            select new
+                            {
+                                userName = US.username,
+                                soDuDoan = CTC.SoDuDoan,
+                                ngayDoanSo = CC.NgayDoanSo,
+                                trongSo = CTC.TrongSo
+                            }).ToList();
+                foreach (var item in join)
+                {
+                    model.Add(new ChiTietChoiViewModel()
+                    {
+                        username = item.userName,
+                        SoDuDoan = item.soDuDoan,
+                        NgayDoanSo = item.ngayDoanSo,
+                        TrongSo = item.trongSo
+                    });
+                }
+
+                return View(model);
+            }
+            else return RedirectToAction("Login");
+        } 
+
+
         public ActionResult LichSuTrungThuong()
         {
             if (Session["IDs"] != null && Session["Role"].ToString()=="User")

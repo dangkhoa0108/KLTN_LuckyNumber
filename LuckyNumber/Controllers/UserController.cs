@@ -130,8 +130,8 @@ namespace LuckyNumber.Controllers
                                   where t.soLan == soLanItNhat
                                   select t;
             int tongSoItNhat = tongSoLanItNhat.Count();
-            int tongTrongSo = tongSoLanItNhat.Sum(x => x.soTrongSo);
-            float tienThuong = float.Parse(danhsach.TongTienThuong.ToString()) / tongTrongSo; // số tiền
+            int? tongTrongSo = tongSoLanItNhat.Sum(x => x.soTrongSo);
+            float? tienThuong = float.Parse(danhsach.TongTienThuong.ToString()) / tongTrongSo; // số tiền
 
             foreach (var i in tongSoLanItNhat)
             {

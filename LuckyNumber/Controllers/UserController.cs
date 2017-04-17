@@ -10,6 +10,7 @@ using LuckyNumber.SMSAPI;
 using Facebook;
 using System.Configuration;
 using LuckyNumber.ViewModel;
+using System.Net;
 
 namespace LuckyNumber.Controllers
 {
@@ -679,7 +680,8 @@ namespace LuckyNumber.Controllers
                                 userName = US.username,
                                 soDuDoan = CTC.SoDuDoan,
                                 ngayDoanSo = CC.NgayDoanSo,
-                                trongSo = CTC.TrongSo
+                                trongSo = CTC.TrongSo,
+                                id=CTC.id
                             }).ToList();
                 foreach (var item in join)
                 {
@@ -688,14 +690,70 @@ namespace LuckyNumber.Controllers
                         username = item.userName,
                         SoDuDoan = item.soDuDoan,
                         NgayDoanSo = item.ngayDoanSo,
-                        TrongSo = item.trongSo
+                        TrongSo = item.trongSo,
+                        id=item.id
                     });
+                  
+                    
                 }
 
                 return View(model);
             }
             else return RedirectToAction("Login");
-        } 
+        }
+
+
+
+
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ChiTietCuocChoi ct = db.ChiTietCuocChois.SingleOrDefault(m => m.id == id);
+            if (ct == null)
+            {
+                return HttpNotFound();
+            }
+            return View(ct);
+        }
+
+
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "UserID,MaCuocChoi,SoDuDoan,TrongSo,id")] ChiTietCuocChoi ct)
+        {
+            User user = db.Users.SingleOrDefault(x => x.ID == ct.UserID);
+
+            var join = (from chitiet in db.ChiTietCuocChois
+                        where chitiet.id == ct.id
+                        select new { trongso= chitiet.TrongSo }).ToList();
+
+            foreach (var item in join)
+            {
+                Session["trongsoold"] = item.trongso;
+            }
+
+            int trongsoold = int.Parse(Session["trongsoold"].ToString());
+
+            if (ModelState.IsValid)
+            {
+                
+                db.Entry(ct).State = EntityState.Modified;
+                
+                int trongsonew = int.Parse((ct.TrongSo).ToString());
+                int luotchoi = int.Parse(user.soluotchoi.ToString());
+
+                user.soluotchoi = luotchoi + trongsoold - trongsonew;
+                db.SaveChanges();
+                return Redirect("~/User/ThayDoiTrongSo");
+            }
+            return View(ct);
+        }
 
 
         public ActionResult LichSuTrungThuong()

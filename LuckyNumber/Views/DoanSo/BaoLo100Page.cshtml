@@ -329,7 +329,6 @@
                     </div>
                     <form action="" id="sky-form" class="sky-form" method="post">
                         <div class="widget-footer bg-white padding-horizontal-30 padding-vertical-20 text-center container-fluid">
-
                             <div>
                                 <div class="col-md-12">
                                     <div class="panel">
@@ -344,7 +343,7 @@
                                                     </div>
                                                     <div class="media-body">
                                                         <h4 class="media-heading">
-                                                            <small class="pull-right"><button class="btn btn-floating btn-primary btn-sm icon wb-edit" data-target="#doan_dau" data-toggle="modal" type="button"></button></small>
+                                                            <small class="pull-right"><button class="btn btn-animate btn-animate-vertical btn-primary btn-lg icon wb-star" data-target="#doan_dau" data-toggle="modal" type="button"></button></small>
                                                         </h4>
                                                     </div>
                                                 </div>
@@ -369,7 +368,7 @@
                                                     </div>
                                                     <div class="media-body">
                                                         <h4 class="media-heading">
-                                                            <small class="pull-right"><button class="btn btn-floating btn-primary btn-sm icon wb-edit" data-target="#doan_giua" data-toggle="modal" type="button"></button></small>
+                                                            <small class="pull-right"><button class="btn btn-animate btn-animate-vertical btn-primary btn-lg icon wb-star" data-target="#doan_giua" data-toggle="modal" type="button"></button></small>
                                                         </h4>
                                                     </div>
                                                 </div>
@@ -395,7 +394,7 @@
                                                     </div>
                                                     <div class="media-body">
                                                         <h4 class="media-heading">
-                                                            <small class="pull-right"><button class="btn btn-floating btn-primary btn-sm icon wb-edit" data-target="#doan_cuoi" data-toggle="modal" type="button"></button></small>
+                                                            <small class="pull-right"><button class="btn btn-animate btn-animate-vertical btn-primary btn-lg icon wb-star" data-target="#doan_cuoi" data-toggle="modal" type="button"></button></small>
                                                         </h4>
                                                     </div>
                                                 </div>
@@ -413,9 +412,9 @@
 
 
         <!--Đoán đầu -->
-        <div class="modal fade modal-3d-flip-horizontal" id="doan_dau" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog"
+        <div class="modal fade modal-primary modal-super-scaled" id="doan_dau" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog"
              tabindex="-1">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-center">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -425,7 +424,6 @@
                     </div>
                     <form class="form-group" action="~/DoanSo/BaoLoDau" method="post">
                         <div class="modal-body">
-
                             <div class="form-group">
                                 <input type="text" class="form-control" name="sodau" autocomplete="off" placeholder="Số đầu (0-9)">
                             </div>
@@ -439,9 +437,10 @@
             </div>
         </div>
 
-        <div class="modal fade modal-3d-flip-horizontal" id="doan_giua" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog"
+        <!--Đoán giữa -->
+        <div class="modal fade modal-primary modal-3d-flip-horizontal" id="doan_giua" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog"
              tabindex="-1">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-center">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -451,7 +450,6 @@
                     </div>
                     <form class="form-group" action="~/DoanSo/BaoLoGiua" method="post">
                         <div class="modal-body">
-
                             <div class="form-group">
                                 <input type="text" class="form-control" name="sogiua" autocomplete="off" placeholder="Số giữa (0-9)">
                             </div>
@@ -465,9 +463,10 @@
             </div>
         </div>
 
-        <div class="modal fade modal-3d-flip-horizontal" id="doan_cuoi" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog"
+        <!--Đoán cuối -->
+        <div class="modal fade modal-primary modal-fade-in-scale-up" id="doan_cuoi" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog"
              tabindex="-1">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-center">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -477,7 +476,6 @@
                     </div>
                     <form class="form-group" action="~/DoanSo/BaoLoCuoi" method="post">
                         <div class="modal-body">
-
                             <div class="form-group">
                                 <input type="text" class="form-control" name="socuoi" autocomplete="off" placeholder="Số cuối (0-9)">
                             </div>

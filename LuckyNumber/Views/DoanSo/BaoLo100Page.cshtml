@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -29,10 +28,10 @@
 
         .test-wid {
             position: absolute;
-            min-height: 118%;
+            min-height: 100%;
             min-width: 100%;
             z-index: 1000;
-            padding-top: 100pt;
+            padding-top: 60pt;
             background-color: rgba(0,0,0,0.5);
         }
 
@@ -109,24 +108,18 @@
                     data-toggle="collapse">
                 <i class="icon wb-more-horizontal" aria-hidden="true"></i>
             </button>
-            <button type="button" class="navbar-toggle collapsed" data-target="#site-navbar-search"
-                    data-toggle="collapse">
-                <span class="sr-only">Toggle Search</span>
-                <i class="icon wb-search" aria-hidden="true"></i>
-            </button>
             <div class="navbar-brand navbar-brand-center">
                 <img class="navbar-brand-logo" src="~/assets1/images/logo.png" title="LG">
                 <span class="navbar-brand-text"> Lucky Number</span>
             </div>
         </div>
-
         <div class="navbar-container container-fluid">
             <!-- Navbar Collapse -->
             <div class="collapse navbar-collapse navbar-collapse-toolbar" id="site-navbar-collapse">
                 <!-- Navbar Toolbar -->
                 <ul class="nav navbar-toolbar">
                     <li class="hidden-float" id="toggleMenubar">
-                        <a data-toggle="menubar" href="#" role="button">
+                        <a data-toggle="menubar" href="" role="button">
                             <i class="icon hamburger hamburger-arrow-left">
                                 <span class="sr-only">Toggle menubar</span>
                                 <span class="hamburger-bar"></span>
@@ -343,7 +336,7 @@
                                                     </div>
                                                     <div class="media-body">
                                                         <h4 class="media-heading">
-                                                            <small class="pull-right"><button class="btn btn-animate btn-animate-vertical btn-primary btn-lg icon wb-star" data-target="#doan_dau" data-toggle="modal" type="button"></button></small>
+                                                            <small class="pull-right"><button class="btn btn-primary btn-lg icon wb-star" data-target="#doan_dau" data-toggle="modal" type="button"></button></small>
                                                         </h4>
                                                     </div>
                                                 </div>
@@ -368,7 +361,7 @@
                                                     </div>
                                                     <div class="media-body">
                                                         <h4 class="media-heading">
-                                                            <small class="pull-right"><button class="btn btn-animate btn-animate-vertical btn-primary btn-lg icon wb-star" data-target="#doan_giua" data-toggle="modal" type="button"></button></small>
+                                                            <small class="pull-right"><button class="btn btn-primary btn-lg icon wb-star" data-target="#doan_giua" data-toggle="modal" type="button"></button></small>
                                                         </h4>
                                                     </div>
                                                 </div>
@@ -394,7 +387,7 @@
                                                     </div>
                                                     <div class="media-body">
                                                         <h4 class="media-heading">
-                                                            <small class="pull-right"><button class="btn btn-animate btn-animate-vertical btn-primary btn-lg icon wb-star" data-target="#doan_cuoi" data-toggle="modal" type="button"></button></small>
+                                                            <small class="pull-right"><button class="btn btn-primary btn-lg icon wb-star" data-target="#doan_cuoi" data-toggle="modal" type="button"></button></small>
                                                         </h4>
                                                     </div>
                                                 </div>
@@ -499,50 +492,43 @@
         <script src="~/assets1/vendor/mousewheel/jquery.mousewheel.js"></script>
         <script src="~/assets1/vendor/asscrollable/jquery.asScrollable.all.js"></script>
         <script src="~/assets1/vendor/ashoverscroll/jquery-asHoverScroll.js"></script>
-
         <!-- Plugins -->
         <script src="~/assets1/vendor/switchery/switchery.min.js"></script>
         <script src="~/assets1/vendor/intro-js/intro.js"></script>
         <script src="~/assets1/vendor/screenfull/screenfull.js"></script>
         <script src="~/assets1/vendor/slidepanel/jquery-slidePanel.js"></script>
-
         <script src="~/assets1/vendor/skycons/skycons.js"></script>
         <script src="~/assets1/vendor/chartist-js/chartist.min.js"></script>
         <script src="~/assets1/vendor/aspieprogress/jquery-asPieProgress.min.js"></script>
         <script src="~/assets1/vendor/jvectormap/jquery-jvectormap.min.js"></script>
         <script src="~/assets1/vendor/jvectormap/maps/jquery-jvectormap-ca-lcc-en.js"></script>
         <script src="~/assets1/vendor/matchheight/jquery.matchHeight-min.js"></script>
-
         <!-- Scripts -->
         <script src="~/assets1/js/core.js"></script>
         <script src="~/assets1/js/site.js"></script>
-
         <script src="~/assets1/js/sections/menu.js"></script>
         <script src="~/assets1/js/sections/menubar.js"></script>
         <script src="~/assets1/js/sections/sidebar.js"></script>
-
         <script src="~/assets1/js/configs/config-colors.js"></script>
         <script src="~/assets1/js/configs/config-tour.js"></script>
-
         <script src="~/assets1/js/components/asscrollable.js"></script>
         <script src="~/assets1/js/components/animsition.js"></script>
         <script src="~/assets1/js/components/slidepanel.js"></script>
         <script src="~/assets1/js/components/switchery.js"></script>
         <script src="~/assets1/js/components/matchheight.js"></script>
         <script src="~/assets1/js/components/jvectormap.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
-            <!-- <script src="js/agency.js"></script>
-        <script type="text/javascript" src="js/script.js"></script> -->
+        <!-- <script src="js/agency.js"></script>
+    <script type="text/javascript" src="js/script.js"></script> -->
 
         <script>
-                (function (document, window, $) {
-                    'use strict';
+            (function (document, window, $) {
+                'use strict';
 
-                    var Site = window.Site;
-                    $(document).ready(function () {
-                        Site.run();
-                    });
-                })(document, window, jQuery);
+                var Site = window.Site;
+                $(document).ready(function () {
+                    Site.run();
+                });
+            })(document, window, jQuery);
         </script>
         <script type="text/javascript" src="~/js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="~/js/script.js"></script> <!-- Use in class: x-btn -->

@@ -29,10 +29,10 @@
 
         .test-wid {
             position: absolute;
-            min-height: 118%;
+            min-height: 90%;
             min-width: 100%;
             z-index: 1000;
-            padding-top: 100pt;
+            padding-top: 60pt;
             background-color: rgba(0,0,0,0.5);
         }
 
@@ -108,11 +108,6 @@
             <button type="button" class="navbar-toggle collapsed" data-target="#site-navbar-collapse"
                     data-toggle="collapse">
                 <i class="icon wb-more-horizontal" aria-hidden="true"></i>
-            </button>
-            <button type="button" class="navbar-toggle collapsed" data-target="#site-navbar-search"
-                    data-toggle="collapse">
-                <span class="sr-only">Toggle Search</span>
-                <i class="icon wb-search" aria-hidden="true"></i>
             </button>
             <div class="navbar-brand navbar-brand-center">
                 <img class="navbar-brand-logo" src="~/assets1/images/logo.png" title="LG">
@@ -344,7 +339,7 @@
                                                     </div>
                                                     <div class="media-body">
                                                         <h4 class="media-heading">
-                                                            <small class="pull-right"><button class="btn btn-floating btn-primary btn-sm icon wb-edit" data-target="#doan_daucuoi" data-toggle="modal" type="button"></button></small>
+                                                            <small class="pull-right"><button class="btn btn-primary btn-lg icon wb-star" data-target="#doan_daucuoi" data-toggle="modal" type="button"></button></small>
                                                         </h4>
                                                     </div>
                                                 </div>
@@ -369,7 +364,7 @@
                                                     </div>
                                                     <div class="media-body">
                                                         <h4 class="media-heading">
-                                                            <small class="pull-right"><button class="btn btn-floating btn-primary btn-sm icon wb-edit" data-target="#doan_giuacuoi" data-toggle="modal" type="button"></button></small>
+                                                            <small class="pull-right"><button class="btn btn-primary btn-lg icon wb-star" data-target="#doan_giuacuoi" data-toggle="modal" type="button"></button></small>
                                                         </h4>
                                                     </div>
                                                 </div>
@@ -378,8 +373,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
 
                             <div>
                                 <div class="col-md-12">
@@ -395,7 +388,7 @@
                                                     </div>
                                                     <div class="media-body">
                                                         <h4 class="media-heading">
-                                                            <small class="pull-right"><button class="btn btn-floating btn-primary btn-sm icon wb-edit" data-target="#doan_daugiua" data-toggle="modal" type="button"></button></small>
+                                                            <small class="pull-right"><button class="btn btn-primary btn-lg icon wb-star" data-target="#doan_daugiua" data-toggle="modal" type="button"></button></small>
                                                         </h4>
                                                     </div>
                                                 </div>
@@ -413,9 +406,9 @@
 
 
         <!--Đoán đầu cuối--> 
-        <div class="modal fade modal-3d-flip-horizontal" id="doan_daucuoi" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog"
+        <div class="modal fade modal-primary modal-super-scaled" id="doan_daucuoi" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog"
              tabindex="-1">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-center">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -425,12 +418,10 @@
                     </div>
                     <form class="form-group" action="~/DoanSo/BaoLoDauCuoi" method="post">
                         <div class="modal-body">
-
                             <div class="form-group">
                                 <input type="text" class="form-control" name="sodau" autocomplete="off" placeholder="Số đầu (0-9)">
                                 @ViewBag.Javascript
                             </div>
-
                             <div class="form-group">
                                 <input type="text" class="form-control" name="socuoi" autocomplete="off" placeholder="Số cuối (0-9)">
                             </div>
@@ -444,9 +435,9 @@
             </div>
         </div>
 
-        <div class="modal fade modal-3d-flip-horizontal" id="doan_giuacuoi" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog"
+        <div class="modal fade modal-primary modal-3d-flip-horizontal" id="doan_giuacuoi" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog"
              tabindex="-1">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-center">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -456,11 +447,9 @@
                     </div>
                     <form class="form-group" action="~/DoanSo/BaoLoGiuaCuoi" method="post">
                         <div class="modal-body">
-
                             <div class="form-group">
                                 <input type="text" class="form-control" name="sogiua" autocomplete="off" placeholder="Số giữa (0-9)">
                             </div>
-
                             <div class="form-group">
                                 <input type="text" class="form-control" name="socuoi" autocomplete="off" placeholder="Số cuối (0-9)">
                             </div>
@@ -474,9 +463,9 @@
             </div>
         </div>
 
-        <div class="modal fade modal-3d-flip-horizontal" id="doan_daugiua" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog"
+        <div class="modal fade modal-primary modal-fade-in-scale-up" id="doan_daugiua" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog"
              tabindex="-1">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-center">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -486,11 +475,9 @@
                     </div>
                     <form class="form-group" action="~/DoanSo/BaoLoDauGiua" method="post">
                         <div class="modal-body">
-
                             <div class="form-group">
                                 <input type="text" class="form-control" name="sodau" autocomplete="off" placeholder="Số đầu (0-9)">
                             </div>
-
                             <div class="form-group">
                                 <input type="text" class="form-control" name="sogiua" autocomplete="off" placeholder="Số giữa (0-9)">
                             </div>
@@ -506,60 +493,53 @@
 
 
             <!-- End Page -->
-            <!-- Core  -->
-            <script src="~/assets1/vendor/jquery/jquery.js"></script>
-            <script src="~/assets1/vendor/bootstrap/bootstrap.js"></script>
-            <script src="~/assets1/vendor/animsition/jquery.animsition.js"></script>
-            <script src="~/assets1/vendor/asscroll/jquery-asScroll.js"></script>
-            <script src="~/assets1/vendor/mousewheel/jquery.mousewheel.js"></script>
-            <script src="~/assets1/vendor/asscrollable/jquery.asScrollable.all.js"></script>
-            <script src="~/assets1/vendor/ashoverscroll/jquery-asHoverScroll.js"></script>
+        <!-- Core  -->
+        <script src="~/assets1/vendor/jquery/jquery.js"></script>
+        <script src="~/assets1/vendor/bootstrap/bootstrap.js"></script>
+        <script src="~/assets1/vendor/animsition/jquery.animsition.js"></script>
+        <script src="~/assets1/vendor/asscroll/jquery-asScroll.js"></script>
+        <script src="~/assets1/vendor/mousewheel/jquery.mousewheel.js"></script>
+        <script src="~/assets1/vendor/asscrollable/jquery.asScrollable.all.js"></script>
+        <script src="~/assets1/vendor/ashoverscroll/jquery-asHoverScroll.js"></script>
+        <!-- Plugins -->
+        <script src="~/assets1/vendor/switchery/switchery.min.js"></script>
+        <script src="~/assets1/vendor/intro-js/intro.js"></script>
+        <script src="~/assets1/vendor/screenfull/screenfull.js"></script>
+        <script src="~/assets1/vendor/slidepanel/jquery-slidePanel.js"></script>
+        <script src="~/assets1/vendor/skycons/skycons.js"></script>
+        <script src="~/assets1/vendor/chartist-js/chartist.min.js"></script>
+        <script src="~/assets1/vendor/aspieprogress/jquery-asPieProgress.min.js"></script>
+        <script src="~/assets1/vendor/jvectormap/jquery-jvectormap.min.js"></script>
+        <script src="~/assets1/vendor/jvectormap/maps/jquery-jvectormap-ca-lcc-en.js"></script>
+        <script src="~/assets1/vendor/matchheight/jquery.matchHeight-min.js"></script>
+        <!-- Scripts -->
+        <script src="~/assets1/js/core.js"></script>
+        <script src="~/assets1/js/site.js"></script>
+        <script src="~/assets1/js/sections/menu.js"></script>
+        <script src="~/assets1/js/sections/menubar.js"></script>
+        <script src="~/assets1/js/sections/sidebar.js"></script>
+        <script src="~/assets1/js/configs/config-colors.js"></script>
+        <script src="~/assets1/js/configs/config-tour.js"></script>
+        <script src="~/assets1/js/components/asscrollable.js"></script>
+        <script src="~/assets1/js/components/animsition.js"></script>
+        <script src="~/assets1/js/components/slidepanel.js"></script>
+        <script src="~/assets1/js/components/switchery.js"></script>
+        <script src="~/assets1/js/components/matchheight.js"></script>
+        <script src="~/assets1/js/components/jvectormap.js"></script>
+        <!-- <script src="js/agency.js"></script>
+    <script type="text/javascript" src="js/script.js"></script> -->
 
-            <!-- Plugins -->
-            <script src="~/assets1/vendor/switchery/switchery.min.js"></script>
-            <script src="~/assets1/vendor/intro-js/intro.js"></script>
-            <script src="~/assets1/vendor/screenfull/screenfull.js"></script>
-            <script src="~/assets1/vendor/slidepanel/jquery-slidePanel.js"></script>
+        <script>
+            (function (document, window, $) {
+                'use strict';
 
-            <script src="~/assets1/vendor/skycons/skycons.js"></script>
-            <script src="~/assets1/vendor/chartist-js/chartist.min.js"></script>
-            <script src="~/assets1/vendor/aspieprogress/jquery-asPieProgress.min.js"></script>
-            <script src="~/assets1/vendor/jvectormap/jquery-jvectormap.min.js"></script>
-            <script src="~/assets1/vendor/jvectormap/maps/jquery-jvectormap-ca-lcc-en.js"></script>
-            <script src="~/assets1/vendor/matchheight/jquery.matchHeight-min.js"></script>
-
-            <!-- Scripts -->
-            <script src="~/assets1/js/core.js"></script>
-            <script src="~/assets1/js/site.js"></script>
-
-            <script src="~/assets1/js/sections/menu.js"></script>
-            <script src="~/assets1/js/sections/menubar.js"></script>
-            <script src="~/assets1/js/sections/sidebar.js"></script>
-
-            <script src="~/assets1/js/configs/config-colors.js"></script>
-            <script src="~/assets1/js/configs/config-tour.js"></script>
-
-            <script src="~/assets1/js/components/asscrollable.js"></script>
-            <script src="~/assets1/js/components/animsition.js"></script>
-            <script src="~/assets1/js/components/slidepanel.js"></script>
-            <script src="~/assets1/js/components/switchery.js"></script>
-            <script src="~/assets1/js/components/matchheight.js"></script>
-            <script src="~/assets1/js/components/jvectormap.js"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
-            <!-- <script src="js/agency.js"></script>
-        <script type="text/javascript" src="js/script.js"></script> -->
-
-            <script>
-                (function (document, window, $) {
-                    'use strict';
-
-                    var Site = window.Site;
-                    $(document).ready(function () {
-                        Site.run();
-                    });
-                })(document, window, jQuery);
-            </script>
-            <script type="text/javascript" src="~/js/jquery-1.11.3.min.js"></script>
-            <script type="text/javascript" src="~/js/script.js"></script> <!-- Use in class: x-btn -->
+                var Site = window.Site;
+                $(document).ready(function () {
+                    Site.run();
+                });
+            })(document, window, jQuery);
+        </script>
+        <script type="text/javascript" src="~/js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="~/js/script.js"></script> <!-- Use in class: x-btn -->
         </div>
 </html>

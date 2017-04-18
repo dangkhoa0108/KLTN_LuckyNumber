@@ -498,7 +498,6 @@
     <Content Include="assets1\portraits\number_1.png" />
     <Content Include="assets1\portraits\number_2.png" />
     <Content Include="assets1\portraits\number_3.png" />
-    <Content Include="assets1\Sữa bột Vinamilk  – Quà Tết Cho Bé Lộc Xuân Tặng Mẹ.mp4" />
     <Content Include="assets1\vendor\ace\ace.css" />
     <Content Include="assets1\vendor\ace\ace.js" />
     <Content Include="assets1\vendor\ace\ace.min.css" />
@@ -1689,6 +1688,7 @@
     <Content Include="assets1\vendor\x-editable\images\loading.gif" />
     <Content Include="assets1\vendor\x-editable\x-editable.css" />
     <Content Include="assets1\vendor\x-editable\x-editable.min.css" />
+    <Content Include="assets1\Video Edit.mp4" />
     <Content Include="assets\css\breadcumbs.css" />
     <Content Include="assets\css\dropdown.css" />
     <Content Include="assets\css\footer.css" />

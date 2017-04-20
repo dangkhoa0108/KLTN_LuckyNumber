@@ -41,11 +41,25 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <link href="~/css/preloader.css" rel="stylesheet" type="text/css">
+    <script src="~/assets1/vendor/modernizr/modernizr.js"></script>
+    <script src="~/assets1/vendor/breakpoints/breakpoints.js"></script>
+    <script>
+        Breakpoints();
+    </script>
+    <script type="text/javascript" src="~/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="~/js/script.js"></script> <!-- Use in class: x-btn -->
 </head>
 
 <body>
-
+    <div id="preloader">
+        <div class="loader">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -69,7 +83,45 @@
 
 
                         <li>
-                            <a href="##"><i class="fa fa-table fa-fw"></i>Điều Chỉnh Giải Thưởng</a>
+                            <a href="#"><i class="fa fa-user fa-fw"></i> Thông Tin<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="~/Admin/adminProfile">Thông Tin Cá Nhân</a>
+                                </li>
+                                <li>
+                                    <a href="~/Admin/DoiMatKhau">Đổi Mật Khẩu</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
+                        <li>
+                            <a href="#"><i class="fa fa-gear fa-fw"></i> Quản Lý<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="~/Admin/QuanLyPhienChoi">Thêm Phiên Chơi</a>
+                                </li>
+                                <li>
+                                    <a href="~/Admin/KetThucPhienChoi">Kết Thúc Phiên Chơi</a>
+                                </li>
+                                <li>
+                                    <a href="~/DieuChinhGiaiThuong/DieuChinhGiaiThuong">Điều Chỉnh Giải Thưởng</a>
+                                </li>
+                                <li>
+                                    <a href="~/Admin/ThemLuotChoiAo">Tool Thêm Số</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
+                        <li>
+                            <a href="#"><i class="fa fa-user fa-fw"></i> Danh Sách<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="~/Admin/DanhSachTrungThuong">Trúng Thưởng</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
                         </li>
 
 

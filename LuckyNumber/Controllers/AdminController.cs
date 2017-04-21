@@ -124,9 +124,22 @@ namespace LuckyNumber.Controllers
             int a = int.Parse(Request.Form["SoLuongNumber"].ToString());
 
             int[] listInt;
-            string day = DateTime.Now.Day.ToString();
-            string month = DateTime.Now.Month.ToString();
-            string year = DateTime.Now.Year.ToString();
+            //string day = DateTime.Now.Day.ToString();
+            //string month = DateTime.Now.Month.ToString();
+            //string year = DateTime.Now.Year.ToString();
+
+            DateTime serverTime = DateTime.Now;
+            DateTime utcTime = DateTime.UtcNow;
+
+            TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+            DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
+            string timeNow = localTime.ToString("t");
+
+            ////////////////////////////////////
+
+            string day = localTime.ToString("dd");
+            string month = localTime.ToString("MM");
+            string year = localTime.ToString("yyyy");
 
             DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
             CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
@@ -173,11 +186,24 @@ namespace LuckyNumber.Controllers
 
         public ActionResult KetThucPhien()
         {
-            
+
             // ---- Lấy ra ngày tương ứng ------
-            string day = DateTime.Now.Day.ToString();
-            string month = DateTime.Now.Month.ToString();
-            string year = DateTime.Now.Year.ToString();
+            //string day = DateTime.Now.Day.ToString();
+            //string month = DateTime.Now.Month.ToString();
+            //string year = DateTime.Now.Year.ToString();
+
+            DateTime serverTime = DateTime.Now;
+            DateTime utcTime = DateTime.UtcNow;
+
+            TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+            DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
+            string timeNow = localTime.ToString("t");
+
+            ////////////////////////////////////
+
+            string day = localTime.ToString("dd");
+            string month = localTime.ToString("MM");
+            string year = localTime.ToString("yyyy");
 
             DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
             CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
@@ -284,9 +310,22 @@ namespace LuckyNumber.Controllers
         public ActionResult DanhSachTrungThuong()
         {
 
-            string day = DateTime.Now.Day.ToString();
-            string month = DateTime.Now.Month.ToString();
-            string year = DateTime.Now.Year.ToString();
+            //string day = DateTime.Now.Day.ToString();
+            //string month = DateTime.Now.Month.ToString();
+            //string year = DateTime.Now.Year.ToString();
+
+            DateTime serverTime = DateTime.Now;
+                DateTime utcTime = DateTime.UtcNow;
+
+                TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+                DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
+                string timeNow = localTime.ToString("t");
+
+                ////////////////////////////////////
+
+                string day = localTime.ToString("dd");
+                string month = localTime.ToString("MM");
+                string year = localTime.ToString("yyyy");
 
 
             DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));

@@ -27,14 +27,28 @@ namespace LuckyNumber.Controllers
             {
                 string name = Session["userName"].ToString();
                 ViewBag.Name = name;
-                string day = DateTime.Now.Day.ToString();
-                string month = DateTime.Now.Month.ToString();
-                string year = DateTime.Now.Year.ToString();
+
+                //string day = DateTime.Now.Day.ToString();
+                //string month = DateTime.Now.Month.ToString();
+                //string year = DateTime.Now.Year.ToString();
+
+                DateTime serverTime = DateTime.Now;
+                DateTime utcTime = DateTime.UtcNow;
+
+                TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+                DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
+                string timeNow = localTime.ToString("t");
+
+                ////////////////////////////////////
+
+                string day = localTime.ToString("dd");
+                string month = localTime.ToString("MM");
+                string year = localTime.ToString("yyyy");
 
 
 
-                string time = DateTime.Parse("11:00 PM").ToString("t");
-                string timeNow = DateTime.Now.ToString("t");
+
+                //string timeNow = DateTime.Now.ToString("t");
 
                 int userID = int.Parse(Session["IDs"].ToString());
                 User user = db.Users.SingleOrDefault(x => x.ID == userID);
@@ -51,13 +65,13 @@ namespace LuckyNumber.Controllers
                 //if (DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)
                 //    return Redirect("~/DoanSo/Error3");
 
-                if (user.soluotchoi > 0 && user.xacnhan == true && /*((DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) < 0)||*/cuocchoi.TrangThai == true)
+                if (user.soluotchoi > 0 && user.xacnhan == true && cuocchoi.TrangThai == true)
                 {
 
                     return View();
                 }
 
-                else if (user.soluotchoi > 0 && user.xacnhan == true && /*(DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)*/cuocchoi.TrangThai == false) return Redirect("~/DoanSo/Error3");
+                else if (user.soluotchoi > 0 && user.xacnhan == true && cuocchoi.TrangThai == false) return Redirect("~/DoanSo/Error3");
                 else if (user.soluotchoi <= 0 && user.xacnhan == true) return Redirect("~/DoanSo/Error1");
 
                 else return Redirect("~/DoanSo/Error2");
@@ -72,14 +86,27 @@ namespace LuckyNumber.Controllers
             {
                 string name = Session["userName"].ToString();
                 ViewBag.Name = name;
-                string day = DateTime.Now.Day.ToString();
-                string month = DateTime.Now.Month.ToString();
-                string year = DateTime.Now.Year.ToString();
+                //string day = DateTime.Now.Day.ToString();
+                //string month = DateTime.Now.Month.ToString();
+                //string year = DateTime.Now.Year.ToString();
+
+                DateTime serverTime = DateTime.Now;
+                DateTime utcTime = DateTime.UtcNow;
+
+                TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+                DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
+                string timeNow = localTime.ToString("t");
+
+                ////////////////////////////////////
+
+                string day = localTime.ToString("dd");
+                string month = localTime.ToString("MM");
+                string year = localTime.ToString("yyyy");
 
 
 
                 string time = DateTime.Parse("11:00 PM").ToString("t");
-                string timeNow = DateTime.Now.ToString("t");
+                //string timeNow = DateTime.Now.ToString("t");
 
                 int userID = int.Parse(Session["IDs"].ToString());
                 User user = db.Users.SingleOrDefault(x => x.ID == userID);
@@ -107,14 +134,26 @@ namespace LuckyNumber.Controllers
             {
                 string name = Session["userName"].ToString();
                 ViewBag.Name = name;
-                string day = DateTime.Now.Day.ToString();
-                string month = DateTime.Now.Month.ToString();
-                string year = DateTime.Now.Year.ToString();
+                //string day = DateTime.Now.Day.ToString();
+                //string month = DateTime.Now.Month.ToString();
+                //string year = DateTime.Now.Year.ToString();
+
+                DateTime serverTime = DateTime.Now;
+                DateTime utcTime = DateTime.UtcNow;
+
+                TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+                DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
+
+                ////////////////////////////////////
+
+                string day = localTime.ToString("dd");
+                string month = localTime.ToString("MM");
+                string year = localTime.ToString("yyyy");
 
 
 
-                string time = DateTime.Parse("11:00 PM").ToString("t");
-                string timeNow = DateTime.Now.ToString("t");
+                
+                //string timeNow = DateTime.Now.ToString("t");
 
                 int userID = int.Parse(Session["IDs"].ToString());
                 User user = db.Users.SingleOrDefault(x => x.ID == userID);
@@ -122,7 +161,7 @@ namespace LuckyNumber.Controllers
                 DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
                 CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
                 if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
-                if (user.soluotchoi > 0 && user.xacnhan == true && /*((DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) < 0)||*/cuocchoi.TrangThai == true)
+                if (user.soluotchoi > 0 && user.xacnhan == true && cuocchoi.TrangThai == true)
                 {
 
                     return View();
@@ -196,9 +235,22 @@ namespace LuckyNumber.Controllers
                 int userID = int.Parse(Session["IDs"].ToString());
                 User user = db.Users.SingleOrDefault(x => x.ID == userID);
 
-                string day = DateTime.Now.Day.ToString();
-                string month = DateTime.Now.Month.ToString();
-                string year = DateTime.Now.Year.ToString();
+                //string day = DateTime.Now.Day.ToString();
+                //string month = DateTime.Now.Month.ToString();
+                //string year = DateTime.Now.Year.ToString();
+
+                DateTime serverTime = DateTime.Now;
+                DateTime utcTime = DateTime.UtcNow;
+
+                TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+                DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
+                string timeNow = localTime.ToString("t");
+
+                ////////////////////////////////////
+
+                string day = localTime.ToString("dd");
+                string month = localTime.ToString("MM");
+                string year = localTime.ToString("yyyy");
 
                 DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
 
@@ -337,9 +389,22 @@ namespace LuckyNumber.Controllers
                 int userID = int.Parse(Session["IDs"].ToString());
                 User user = db.Users.SingleOrDefault(x => x.ID == userID);
 
-                string day = DateTime.Now.Day.ToString();
-                string month = DateTime.Now.Month.ToString();
-                string year = DateTime.Now.Year.ToString();
+                //string day = DateTime.Now.Day.ToString();
+                //string month = DateTime.Now.Month.ToString();
+                //string year = DateTime.Now.Year.ToString();
+
+                DateTime serverTime = DateTime.Now;
+                DateTime utcTime = DateTime.UtcNow;
+
+                TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+                DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
+                string timeNow = localTime.ToString("t");
+
+                ////////////////////////////////////
+
+                string day = localTime.ToString("dd");
+                string month = localTime.ToString("MM");
+                string year = localTime.ToString("yyyy");
 
                 DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
 
@@ -440,9 +505,22 @@ namespace LuckyNumber.Controllers
                 int userID = int.Parse(Session["IDs"].ToString());
                 User user = db.Users.SingleOrDefault(x => x.ID == userID);
 
-                string day = DateTime.Now.Day.ToString();
-                string month = DateTime.Now.Month.ToString();
-                string year = DateTime.Now.Year.ToString();
+                //string day = DateTime.Now.Day.ToString();
+                //string month = DateTime.Now.Month.ToString();
+                //string year = DateTime.Now.Year.ToString();
+
+                DateTime serverTime = DateTime.Now;
+                DateTime utcTime = DateTime.UtcNow;
+
+                TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+                DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
+                string timeNow = localTime.ToString("t");
+
+                ////////////////////////////////////
+
+                string day = localTime.ToString("dd");
+                string month = localTime.ToString("MM");
+                string year = localTime.ToString("yyyy");
 
                 DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
 
@@ -544,9 +622,24 @@ namespace LuckyNumber.Controllers
                 int userID = int.Parse(Session["IDs"].ToString());
                 User user = db.Users.SingleOrDefault(x => x.ID == userID);
 
-                string day = DateTime.Now.Day.ToString();
-                string month = DateTime.Now.Month.ToString();
-                string year = DateTime.Now.Year.ToString();
+                //string day = DateTime.Now.Day.ToString();
+                //string month = DateTime.Now.Month.ToString();
+                //string year = DateTime.Now.Year.ToString();
+
+                DateTime serverTime = DateTime.Now;
+                DateTime utcTime = DateTime.UtcNow;
+
+                TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+                DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
+                string timeNow = localTime.ToString("t");
+
+                ////////////////////////////////////
+
+                string day = localTime.ToString("dd");
+                string month = localTime.ToString("MM");
+                string year = localTime.ToString("yyyy");
+
+
 
                 DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
 
@@ -625,9 +718,22 @@ namespace LuckyNumber.Controllers
                 int userID = int.Parse(Session["IDs"].ToString());
                 User user = db.Users.SingleOrDefault(x => x.ID == userID);
 
-                string day = DateTime.Now.Day.ToString();
-                string month = DateTime.Now.Month.ToString();
-                string year = DateTime.Now.Year.ToString();
+                //string day = DateTime.Now.Day.ToString();
+                //string month = DateTime.Now.Month.ToString();
+                //string year = DateTime.Now.Year.ToString();
+
+                DateTime serverTime = DateTime.Now;
+                DateTime utcTime = DateTime.UtcNow;
+
+                TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+                DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
+                string timeNow = localTime.ToString("t");
+
+                ////////////////////////////////////
+
+                string day = localTime.ToString("dd");
+                string month = localTime.ToString("MM");
+                string year = localTime.ToString("yyyy");
 
                 DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
 
@@ -706,9 +812,22 @@ namespace LuckyNumber.Controllers
                 int userID = int.Parse(Session["IDs"].ToString());
                 User user = db.Users.SingleOrDefault(x => x.ID == userID);
 
-                string day = DateTime.Now.Day.ToString();
-                string month = DateTime.Now.Month.ToString();
-                string year = DateTime.Now.Year.ToString();
+                //string day = DateTime.Now.Day.ToString();
+                //string month = DateTime.Now.Month.ToString();
+                //string year = DateTime.Now.Year.ToString();
+
+                DateTime serverTime = DateTime.Now;
+                DateTime utcTime = DateTime.UtcNow;
+
+                TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+                DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
+                string timeNow = localTime.ToString("t");
+
+                ////////////////////////////////////
+
+                string day = localTime.ToString("dd");
+                string month = localTime.ToString("MM");
+                string year = localTime.ToString("yyyy");
 
                 DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
 
@@ -789,9 +908,22 @@ namespace LuckyNumber.Controllers
 
 
 
-                string day = DateTime.Now.Day.ToString();
-                string month = DateTime.Now.Month.ToString();
-                string year = DateTime.Now.Year.ToString();
+                //string day = DateTime.Now.Day.ToString();
+                //string month = DateTime.Now.Month.ToString();
+                //string year = DateTime.Now.Year.ToString();
+
+                DateTime serverTime = DateTime.Now;
+                DateTime utcTime = DateTime.UtcNow;
+
+                TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+                DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
+                string timeNow = localTime.ToString("t");
+
+                ////////////////////////////////////
+
+                string day = localTime.ToString("dd");
+                string month = localTime.ToString("MM");
+                string year = localTime.ToString("yyyy");
 
                 DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
 
@@ -875,10 +1007,23 @@ namespace LuckyNumber.Controllers
         {
             if (Session["IDs"] != null)
             {
-                string day = DateTime.Now.Day.ToString();
-                string month = DateTime.Now.Month.ToString();
-                string year = DateTime.Now.Year.ToString();
+                //string day = DateTime.Now.Day.ToString();
+                //string month = DateTime.Now.Month.ToString();
+                //string year = DateTime.Now.Year.ToString();
 
+
+                DateTime serverTime = DateTime.Now;
+                DateTime utcTime = DateTime.UtcNow;
+
+                TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+                DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
+                string timeNow = localTime.ToString("t");
+
+                ////////////////////////////////////
+
+                string day = localTime.ToString("dd");
+                string month = localTime.ToString("MM");
+                string year = localTime.ToString("yyyy");
                 DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
 
 

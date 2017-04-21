@@ -24,10 +24,23 @@ namespace LuckyNumber.Controllers
             {
                 string name = Session["userName"].ToString();
                 ViewBag.Name = name;
-                string day = DateTime.Now.Day.ToString();
-                string month = DateTime.Now.Month.ToString();
-                string year = DateTime.Now.Year.ToString();
+                //string day = DateTime.Now.Day.ToString();
+                //string month = DateTime.Now.Month.ToString();
+                //string year = DateTime.Now.Year.ToString();
                 //int machoi;
+
+                DateTime serverTime = DateTime.Now;
+                DateTime utcTime = DateTime.UtcNow;
+
+                TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+                DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
+                string timeNow = localTime.ToString("t");
+
+                ////////////////////////////////////
+
+                string day = localTime.ToString("dd");
+                string month = localTime.ToString("MM");
+                string year = localTime.ToString("yyyy");
                 DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
 
 

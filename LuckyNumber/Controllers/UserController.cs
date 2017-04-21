@@ -11,6 +11,7 @@ using Facebook;
 using System.Configuration;
 using LuckyNumber.ViewModel;
 using System.Net;
+using System.Web.UI;
 
 namespace LuckyNumber.Controllers
 {
@@ -34,8 +35,8 @@ namespace LuckyNumber.Controllers
                 //string year = DateTime.Now.Year.ToString(new System.Globalization.CultureInfo("en-US"));
                 //string timeNow = DateTime.Now.ToString("t", new System.Globalization.CultureInfo("en-US"));
 
-                string timeEnd = DateTime.Parse("05:59 PM").ToString("t");
-                string timeStart = DateTime.Parse("01:00 AM").ToString("t");
+                string timeEnd = DateTime.Parse("11:59 PM").ToString("t");
+                string timeStart = DateTime.Parse("12:00 AM").ToString("t");
                 
 
 
@@ -166,12 +167,12 @@ namespace LuckyNumber.Controllers
 
             var tongSoLan = from u in db.ChiTietCuocChois
                             where u.MaCuocChoi == maChoi
-                            group u by u.SoDuDoan into Counted
+                            group u by u.SoDuDoan into Counted 
                             select new
                             {
                                 soDuDoan = Counted.Key,
                                 soLan = Counted.Count(),
-                                soTrongSo=Counted.Sum(u=>u.TrongSo)
+                                soTrongSo=Counted.Sum(u=>u.TrongSo) ?? 0
                                 
                             };
             int? soLanItNhat = tongSoLan.Min(x => x.soLan);
@@ -467,11 +468,32 @@ namespace LuckyNumber.Controllers
             var user2 = db.Users.SingleOrDefault(x => x.username == user.username);
             if (user2 == null)
             {
+                StringBuilder sb = new StringBuilder();
+                char c;
+                string c1;
+                Random rand = new Random();
+                for (int i = 0; i < 9; i++)
+                {
+                    c = Convert.ToChar(Convert.ToInt32(rand.Next(65, 87)));
+                    sb.Append(c);
+                }
+                c1 = sb.ToString();
+
+                Session["MaMoi"] = c1;
+
+                user.mamoi = Session["MaMoi"].ToString();
+                //user.password = Session["MaMoi"].ToString();
+
+
+                user.phone = null;
                 user.soluotchoi = 5;
                 user.xacnhan = true;
+                user.taikhoan = 0;
                 db.Users.Add(user);
 
                 db.SaveChanges();
+                
+
                 return user.ID;
                 //return Redirect("~/User");
             }
@@ -487,21 +509,24 @@ namespace LuckyNumber.Controllers
             var fb = new FacebookClient();
             var loginUrl = fb.GetLoginUrl(new
             {
-                client_id = "554898694702243",
-                client_secret = "7bb97aae1513eae5f51832f2dee5e80c",
+                client_id = "1159603104149803",
+                client_secret = "baaa2827a1a3de6d25ddab75d5344dd6",
                 redirect_uri = RedirectUri.AbsoluteUri,
                 response_type = "code",
                 scope = "email",
             });
             return Redirect(loginUrl.AbsoluteUri);
         }
+
+
+
         public ActionResult FacebookCallback(string code)
         {
             var fb = new FacebookClient();
             dynamic result = fb.Post("oauth/access_token", new
             {
-                client_id = "554898694702243",
-                client_secret = "7bb97aae1513eae5f51832f2dee5e80c",
+                client_id = "1159603104149803",
+                client_secret = "baaa2827a1a3de6d25ddab75d5344dd6",
                 redirect_uri = RedirectUri.AbsoluteUri,
                 code = code
             });
@@ -517,21 +542,61 @@ namespace LuckyNumber.Controllers
                 string lastname = me.last_name;
 
                 var user = new User();
-                user.email = email;
                 user.username = email;
+                User dbUs = db.Users.SingleOrDefault(x => x.username == user.username);
+
+                user.email = email;
+                    
                 user.nickname = firstname + " " + midname + " " + lastname;
 
                 var resultInsert = new UserController().InsertForFacebook(user);
                 if (resultInsert > 0)
                 {
-                    Session["userName"] = user.nickname;
+                    user.taikhoan = 0;
+                    user.soluotchoi = 0;
+                    user.phone = null;
+                    
+
+                    Session["userName"] = user.username;
                     Session["IDs"] = user.ID;
                     Session["eMail"] = user.email;
-                    Session["pHone"] = user.phone;
+
                     Session["soLuotChoi"] = user.soluotchoi.ToString();
-                    Session["maMoi"] = "ACDTH";
+                    Session["maMoi"] = user.mamoi;
+                    Session["pass"] = user.password;
                     Session["taiKhoan"] = 0;
+                    string Role = "User";
+                    Session["Role"] = Role;
+                    Session["maMoi"] = user.mamoi;
+                    Content("<script language='javascript' type='text/javascript'>alert('Tạo thành công!');</script>");
                 }
+                else
+
+                {
+                    user.ID = dbUs.ID;
+                    user.email = email;
+                    user.username = email;
+                    user.taikhoan = dbUs.taikhoan;
+                    user.phone = dbUs.phone;
+                    user.soluotchoi = dbUs.soluotchoi;
+                    user.mamoi = dbUs.mamoi;
+                    user.nickname = firstname + " " + midname + " " + lastname;
+
+                    Session["userName"] = user.username;
+                    Session["IDs"] = user.ID;
+                    Session["eMail"] = user.email;
+
+                    Session["soLuotChoi"] = user.soluotchoi.ToString();
+                    Session["maMoi"] = user.mamoi;
+                    Session["taiKhoan"] = user.taikhoan.ToString();
+                    string Role = "User";
+                    Session["Role"] = Role;
+                    Redirect("~/User/userProfile");
+                }
+
+
+
+
             }
             return Redirect("~/User/userProfile");
         }
@@ -570,6 +635,8 @@ namespace LuckyNumber.Controllers
                     string sodu = Session["taiKhoan"].ToString();
                     ViewBag.SoDu = sodu;
 
+
+
                     if (user.phone == null)
                     {
                         string phone = "Bạn vui lòng xác nhận số điện thoại";
@@ -607,7 +674,9 @@ namespace LuckyNumber.Controllers
                 string mamoi = Session["maMoi"].ToString();
                 ViewBag.MaMoi = mamoi;
 
-                if (user.phone == null)
+                
+
+                if (String.IsNullOrWhiteSpace(user.phone))
                 {
                     string phone = "Bạn vui lòng xác nhận số điện thoại";
                     //string phone = Session["pHone"].ToString();

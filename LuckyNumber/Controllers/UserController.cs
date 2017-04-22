@@ -479,9 +479,10 @@ namespace LuckyNumber.Controllers
                 }
                 c1 = sb.ToString();
 
-                Session["MaMoi"] = c1;
+                
 
-                user.mamoi = Session["MaMoi"].ToString();
+                user.mamoi = c1;
+                
                 //user.password = Session["MaMoi"].ToString();
 
 

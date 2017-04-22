@@ -523,86 +523,96 @@ namespace LuckyNumber.Controllers
 
         public ActionResult FacebookCallback(string code)
         {
-            var fb = new FacebookClient();
-            dynamic result = fb.Post("oauth/access_token", new
+            try
             {
-                client_id = "1159603104149803",
-                client_secret = "baaa2827a1a3de6d25ddab75d5344dd6",
-                redirect_uri = RedirectUri.AbsoluteUri,
-                code = code
-            });
-
-            var accessToken = result.access_token;
-            if (!string.IsNullOrEmpty(accessToken))
-            {
-                fb.AccessToken = accessToken;
-                dynamic me = fb.Get("me?fields=first_name, middle_name, last_name, email");
-                string email = me.email;
-                string firstname = me.first_name;
-                string midname = me.middle_name;
-                string lastname = me.last_name;
-
-                var user = new User();
-                user.username = email;
-                User dbUs = db.Users.SingleOrDefault(x => x.username == user.username);
-
-                user.email = email;
-                    
-                user.nickname = firstname + " " + midname + " " + lastname;
-
-                var resultInsert = new UserController().InsertForFacebook(user);
-                if (resultInsert > 0)
+                var fb = new FacebookClient();
+                dynamic result = fb.Post("oauth/access_token", new
                 {
-                    user.taikhoan = 0;
-                    user.soluotchoi = 0;
-                    user.phone = null;
-                    
+                    client_id = "1159603104149803",
+                    client_secret = "baaa2827a1a3de6d25ddab75d5344dd6",
+                    redirect_uri = RedirectUri.AbsoluteUri,
+                    code = code
+                });
 
-                    Session["userName"] = user.username;
-                    Session["IDs"] = user.ID;
-                    Session["eMail"] = user.email;
-
-                    Session["soLuotChoi"] = user.soluotchoi.ToString();
-                    Session["maMoi"] = user.mamoi;
-                    Session["pass"] = user.password;
-                    Session["taiKhoan"] = 0;
-                    string Role = "User";
-                    Session["Role"] = Role;
-                    Session["maMoi"] = user.mamoi;
-                    return Content("<script language='javascript' type='text/javascript'> " +
-                        "alert('Đăng nhập bằng Facebook thành công!!!');" +
-                        "window.location= '/User/userProfile';" +
-                        "</script>");
-                }
-                else
-
+                var accessToken = result.access_token;
+                if (!string.IsNullOrEmpty(accessToken))
                 {
-                    user.ID = dbUs.ID;
-                    user.email = email;
+                    fb.AccessToken = accessToken;
+                    dynamic me = fb.Get("me?fields=first_name, middle_name, last_name, email");
+                    string email = me.email;
+                    string firstname = me.first_name;
+                    string midname = me.middle_name;
+                    string lastname = me.last_name;
+
+                    var user = new User();
                     user.username = email;
-                    user.taikhoan = dbUs.taikhoan;
-                    user.phone = dbUs.phone;
-                    user.soluotchoi = dbUs.soluotchoi;
-                    user.mamoi = dbUs.mamoi;
+                    User dbUs = db.Users.SingleOrDefault(x => x.username == user.username);
+
+                    user.email = email;
+
                     user.nickname = firstname + " " + midname + " " + lastname;
 
-                    Session["userName"] = user.username;
-                    Session["IDs"] = user.ID;
-                    Session["eMail"] = user.email;
+                    var resultInsert = new UserController().InsertForFacebook(user);
+                    if (resultInsert > 0)
+                    {
+                        user.taikhoan = 0;
+                        user.soluotchoi = 0;
+                        user.phone = null;
 
-                    Session["soLuotChoi"] = user.soluotchoi.ToString();
-                    Session["maMoi"] = user.mamoi;
-                    Session["taiKhoan"] = user.taikhoan.ToString();
-                    string Role = "User";
-                    Session["Role"] = Role;
-                    Redirect("~/User/userProfile");
+
+                        Session["userName"] = user.username;
+                        Session["IDs"] = user.ID;
+                        Session["eMail"] = user.email;
+
+                        Session["soLuotChoi"] = user.soluotchoi.ToString();
+                        Session["maMoi"] = user.mamoi;
+                        Session["pass"] = user.password;
+                        Session["taiKhoan"] = 0;
+                        string Role = "User";
+                        Session["Role"] = Role;
+                        Session["maMoi"] = user.mamoi;
+                        return Content("<script language='javascript' type='text/javascript'> " +
+                            "alert('Đăng nhập bằng Facebook thành công!!!');" +
+                            "window.location= '/User/userProfile';" +
+                            "</script>");
+                    }
+                    else
+
+                    {
+                        user.ID = dbUs.ID;
+                        user.email = email;
+                        user.username = email;
+                        user.taikhoan = dbUs.taikhoan;
+                        user.phone = dbUs.phone;
+                        user.soluotchoi = dbUs.soluotchoi;
+                        user.mamoi = dbUs.mamoi;
+                        user.nickname = firstname + " " + midname + " " + lastname;
+
+                        Session["userName"] = user.username;
+                        Session["IDs"] = user.ID;
+                        Session["eMail"] = user.email;
+
+                        Session["soLuotChoi"] = user.soluotchoi.ToString();
+                        Session["maMoi"] = user.mamoi;
+                        Session["taiKhoan"] = user.taikhoan.ToString();
+                        string Role = "User";
+                        Session["Role"] = Role;
+                        Redirect("~/User/userProfile");
+                    }
+
+
+
+
                 }
-
-
-
-
+                return Redirect("~/User/userProfile");
             }
-            return Redirect("~/User/userProfile");
+            catch(Exception)
+            {
+                return Content("<script language='javascript' type='text/javascript'> " +
+                            "alert('Lỗi lạ');" +
+                            "window.location= '/User/Index';" +
+                            "</script>");
+            }
         }
 
         private Uri RedirectUri

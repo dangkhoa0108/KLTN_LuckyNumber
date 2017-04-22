@@ -569,7 +569,10 @@ namespace LuckyNumber.Controllers
                     string Role = "User";
                     Session["Role"] = Role;
                     Session["maMoi"] = user.mamoi;
-                    Content("<script language='javascript' type='text/javascript'>alert('Tạo thành công!');</script>");
+                    return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Đăng nhập bằng Facebook thành công!!!');" +
+                        "window.location= '/User/userProfile';" +
+                        "</script>");
                 }
                 else
 

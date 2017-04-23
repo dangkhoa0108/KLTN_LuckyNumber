@@ -823,6 +823,8 @@ namespace LuckyNumber.Controllers
                             where US.ID == userID && CTC.MaCuocChoi == machoi
                             select new
                             {
+                                userID=US.ID,
+                                macuocchoi=CC.MaCuocChoi,
                                 userName = US.username,
                                 soDuDoan = CTC.SoDuDoan,
                                 ngayDoanSo = CC.NgayDoanSo,
@@ -833,6 +835,8 @@ namespace LuckyNumber.Controllers
                 {
                     model.Add(new ChiTietChoiViewModel()
                     {
+                        maCuocChoi=item.macuocchoi,
+                        userID=userID,
                         username = item.userName,
                         SoDuDoan = item.soDuDoan,
                         NgayDoanSo = item.ngayDoanSo,
@@ -849,6 +853,85 @@ namespace LuckyNumber.Controllers
         }
 
 
+
+        [HttpPost]
+        public ActionResult ThayDoiTrongSo(int? ts)
+        {
+            if (Session["userName"] != null && Session["Role"].ToString() == "User")
+            {
+                LuckyNumContext db = new LuckyNumContext();
+                DateTime serverTime = DateTime.Now;
+                DateTime utcTime = DateTime.UtcNow;
+
+                TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+                DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
+                string timeNow = localTime.ToString("t");
+
+                ////////////////////////////////////
+
+                string day = localTime.ToString("dd");
+                string month = localTime.ToString("MM");
+                string year = localTime.ToString("yyyy");
+
+                DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
+
+                CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
+                
+                int machoi = cuocchoi.MaCuocChoi;
+                int userID = int.Parse(Session["IDs"].ToString());
+                
+                var selectlist = db.ChiTietCuocChois.Where(a=>a.UserID==userID && a.MaCuocChoi==machoi).ToList();
+                int count = selectlist.Count();
+                int? luotchotcu = selectlist.Sum(a => a.TrongSo);
+                int? luotchoimoi = count * ts;
+
+                User user = db.Users.SingleOrDefault(x => x.ID == userID);
+
+                foreach (var i in selectlist)
+                {
+                    i.TrongSo = ts;
+                    db.SaveChanges();
+                }
+
+                user.soluotchoi = user.soluotchoi + luotchotcu - luotchoimoi;
+                db.SaveChanges();
+                
+                List<ChiTietChoiViewModel> model = new List<ChiTietChoiViewModel>();
+                var join = (from US in db.Users
+                            join CTC in db.ChiTietCuocChois
+                                on US.ID equals CTC.UserID
+                            join CC in db.CuocChois on CTC.MaCuocChoi equals CC.MaCuocChoi
+                            where US.ID == userID && CTC.MaCuocChoi == machoi
+                            select new
+                            {
+                                userID = US.ID,
+                                macuocchoi = CC.MaCuocChoi,
+                                userName = US.username,
+                                soDuDoan = CTC.SoDuDoan,
+                                ngayDoanSo = CC.NgayDoanSo,
+                                trongSo = CTC.TrongSo,
+                                id = CTC.id
+                            }).ToList();
+                foreach (var item in join)
+                {
+                    model.Add(new ChiTietChoiViewModel()
+                    {
+                        maCuocChoi = item.macuocchoi,
+                        userID = userID,
+                        username = item.userName,
+                        SoDuDoan = item.soDuDoan,
+                        NgayDoanSo = item.ngayDoanSo,
+                        TrongSo = item.trongSo,
+                        id = item.id
+                    });
+
+
+                }
+                return View(model);
+            }
+            else return RedirectToAction("Login");
+
+        }
 
 
         public ActionResult Edit(int? id)

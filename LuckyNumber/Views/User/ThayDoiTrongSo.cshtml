@@ -191,29 +191,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                
-                                @foreach (var item in Model) //nó k khác cái gì luôn :v
-                                {
-                                    <tr class="odd gradeX">
 
-                                        <td>@item.SoDuDoan</td>
-                                        <td>@item.TrongSo</td>
-                                        @{
-                                    string ngayDoan = @item.NgayDoanSo.ToString();
-                                    string temp = ngayDoan.Substring(0, 10);
-                                    ngayDoan = ngayDoan.Substring(0, 10);
-                                    <td>@temp</td>
-                                        }
-                                        <td class ="center">
-                                            <div class="btn-group">
-                                                @Html.ActionLink(" ", "Edit", new { id = item.id }, new { @class = "ace-icon fa fa-pencil bigger-130 green center" })
-                                            </div>
-                                        </td>
+                                    @foreach (var item in Model) //nó k khác cái gì luôn :v
+                                    {
+                                        <tr class="odd gradeX">
+
+                                            <td>@item.SoDuDoan</td>
+                                            <td>@item.TrongSo</td>
+                                            @{
+                                                string ngayDoan = @item.NgayDoanSo.ToString();
+                                                string temp = ngayDoan.Substring(0, 10);
+                                                ngayDoan = ngayDoan.Substring(0, 10);
+                                                <td>@temp</td>
+                                            }
+                                            <td class="center">
+                                                <div class="btn-group">
+                                                    @Html.ActionLink(" ", "Edit", new { id = item.id }, new { @class = "ace-icon fa fa-pencil bigger-130 green center" })
+                                                </div>
+                                            </td>
 
 
-                                    </tr>
+                                        </tr>
 
-                                }
+                                                }
 
 
 
@@ -221,29 +221,33 @@
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="col-lg-4"></div>
-                                    <div class="col-lg-4">
-                                        <div class="panel panel-success">
-                                            <div class="panel-heading" align="center">
-                                                Thay Đổi Trọng Số Tất Cả Các Số
-                                            </div>
-                                            <div class="panel-body">
-                                                <div class="form-group">
-                                                    <label>Nhập Trọng Số Cần Thay Đổi</label>
-                                                    <input class="form-control" placeholder="Nhập Vào Giá Trị Là Số">
+
+                            @using (Html.BeginForm("ThayDoiTrongSo", "User", FormMethod.Post))
+                            {
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-4"></div>
+                                        <div class="col-lg-4">
+                                            <div class="panel panel-success">
+                                                <div class="panel-heading" align="center">
+                                                    Thay Đổi Trọng Số Tất Cả Các Số
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="form-group">
+                                                        <label>Nhập Trọng Số Cần Thay Đổi</label>
+                                                        <input class="form-control" placeholder="Nhập Vào Giá Trị Là Số" id="ts" name="ts">
+                                                    </div>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <button type="submit"  class ="btn btn-outline btn-success btn-lg btn-block">Thay đổi</button>
                                                 </div>
                                             </div>
-                                            <div class="panel-body">
-                                                <button type="button" class="btn btn-outline btn-success btn-lg btn-block">Thay Đổi</button>
-                                            </div>
+                                            <!-- /.col-lg-4 -->
                                         </div>
-                                        <!-- /.col-lg-4 -->
                                     </div>
+                                    <!-- /.col-lg-12 -->
                                 </div>
-                                <!-- /.col-lg-12 -->
-                            </div>
+                            }
                         </div>
                         <!-- /.panel-body -->
                     </div>

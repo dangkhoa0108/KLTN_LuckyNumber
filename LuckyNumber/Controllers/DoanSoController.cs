@@ -114,14 +114,14 @@ namespace LuckyNumber.Controllers
                 DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
                 CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
                 if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
-                if (user.soluotchoi > 0 && user.xacnhan == true && /*((DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) < 0)||*/cuocchoi.TrangThai == true)
+                if (user.soluotchoi >= 10 && user.xacnhan == true && /*((DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) < 0)||*/cuocchoi.TrangThai == true)
                 {
 
                     return View();
                 }
 
-                else if (user.soluotchoi > 0 && user.xacnhan == true && /*(DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)*/cuocchoi.TrangThai == false) return Redirect("~/DoanSo/Error3");
-                else if (user.soluotchoi <= 0 && user.xacnhan == true) return Redirect("~/DoanSo/Error1");
+                else if (user.soluotchoi >= 10 && user.xacnhan == true && /*(DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)*/cuocchoi.TrangThai == false) return Redirect("~/DoanSo/Error3");
+                else if (user.soluotchoi < 10 && user.xacnhan == true) return Redirect("~/DoanSo/Error1");
 
                 else return Redirect("~/DoanSo/Error2");
             }
@@ -161,14 +161,14 @@ namespace LuckyNumber.Controllers
                 DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
                 CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
                 if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
-                if (user.soluotchoi > 0 && user.xacnhan == true && cuocchoi.TrangThai == true)
+                if (user.soluotchoi >= 100 && user.xacnhan == true && cuocchoi.TrangThai == true)
                 {
 
                     return View();
                 }
 
-                else if (user.soluotchoi > 0 && user.xacnhan == true && /*(DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)*/cuocchoi.TrangThai == false) return Redirect("~/DoanSo/Error3");
-                else if (user.soluotchoi <= 0 && user.xacnhan == true) return Redirect("~/DoanSo/Error1");
+                else if (user.soluotchoi >= 100 && user.xacnhan == true && /*(DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)*/cuocchoi.TrangThai == false) return Redirect("~/DoanSo/Error3");
+                else if (user.soluotchoi < 100 && user.xacnhan == true) return Redirect("~/DoanSo/Error1");
 
                 else return Redirect("~/DoanSo/Error2");
             }

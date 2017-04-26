@@ -35,8 +35,8 @@ namespace LuckyNumber.Controllers
                 //string year = DateTime.Now.Year.ToString(new System.Globalization.CultureInfo("en-US"));
                 //string timeNow = DateTime.Now.ToString("t", new System.Globalization.CultureInfo("en-US"));
 
-                string timeEnd = DateTime.Parse("11:59 PM").ToString("t");
-                string timeStart = DateTime.Parse("12:00 AM").ToString("t");
+                string timeEnd = DateTime.Parse("11:58 PM").ToString("t");
+                string timeStart = DateTime.Parse("1:00 AM").ToString("t");
                 
 
 
@@ -642,13 +642,14 @@ namespace LuckyNumber.Controllers
                     ViewBag.Mail = mail;
                     string id = Session["IDs"].ToString();
                     ViewBag.Id = id;
-                    string luotchoi = Session["soLuotChoi"].ToString();
+                    string luotchoi = user.soluotchoi.ToString();
                     ViewBag.LuotChoi = luotchoi;
                     string mamoi = Session["maMoi"].ToString();
                     ViewBag.MaMoi = mamoi;
-                    string sodu = Session["taiKhoan"].ToString();
+                    string sodu = user.taikhoan.ToString();
                     ViewBag.SoDu = sodu;
 
+                    
 
 
                     if (user.phone == null)
@@ -779,7 +780,16 @@ namespace LuckyNumber.Controllers
             else return RedirectToAction("Login");
         }
 
-
+        bool isNumber(string scr)
+        {
+            int strLength = scr.Length;
+            for (int i = 0; i < strLength; i++)
+            {
+                if (scr[i] < '0' || scr[i] > '9')
+                    return false;
+            }
+            return true;
+        }
         public ActionResult ThayDoiTrongSo()
         {
             if (Session["userName"] != null && Session["Role"].ToString() == "User")
@@ -859,75 +869,91 @@ namespace LuckyNumber.Controllers
         {
             if (Session["userName"] != null && Session["Role"].ToString() == "User")
             {
-                LuckyNumContext db = new LuckyNumContext();
-                DateTime serverTime = DateTime.Now;
-                DateTime utcTime = DateTime.UtcNow;
+                string trongso = Request.Form["ts"].ToString();
+                if (isNumber(trongso) == true)
+                {                
+                    LuckyNumContext db = new LuckyNumContext();
+                    DateTime serverTime = DateTime.Now;
+                    DateTime utcTime = DateTime.UtcNow;
 
-                TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
-                DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
-                string timeNow = localTime.ToString("t");
+                    TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+                    DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
+                    string timeNow = localTime.ToString("t");
 
-                ////////////////////////////////////
+                    ////////////////////////////////////
 
-                string day = localTime.ToString("dd");
-                string month = localTime.ToString("MM");
-                string year = localTime.ToString("yyyy");
+                    string day = localTime.ToString("dd");
+                    string month = localTime.ToString("MM");
+                    string year = localTime.ToString("yyyy");
 
-                DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
+                    DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
 
-                CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
-                
-                int machoi = cuocchoi.MaCuocChoi;
-                int userID = int.Parse(Session["IDs"].ToString());
-                
-                var selectlist = db.ChiTietCuocChois.Where(a=>a.UserID==userID && a.MaCuocChoi==machoi).ToList();
-                int count = selectlist.Count();
-                int? luotchotcu = selectlist.Sum(a => a.TrongSo);
-                int? luotchoimoi = count * ts;
+                    CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
 
-                User user = db.Users.SingleOrDefault(x => x.ID == userID);
+                    int machoi = cuocchoi.MaCuocChoi;
+                    int userID = int.Parse(Session["IDs"].ToString());
 
-                foreach (var i in selectlist)
-                {
-                    i.TrongSo = ts;
-                    db.SaveChanges();
-                }
+                    var selectlist = db.ChiTietCuocChois.Where(a => a.UserID == userID && a.MaCuocChoi == machoi).ToList();
+                    int count = selectlist.Count();
+                    int? luotchotcu = selectlist.Sum(a => a.TrongSo);
+                    int? luotchoimoi = count * ts;
 
-                user.soluotchoi = user.soluotchoi + luotchotcu - luotchoimoi;
-                db.SaveChanges();
-                
-                List<ChiTietChoiViewModel> model = new List<ChiTietChoiViewModel>();
-                var join = (from US in db.Users
-                            join CTC in db.ChiTietCuocChois
-                                on US.ID equals CTC.UserID
-                            join CC in db.CuocChois on CTC.MaCuocChoi equals CC.MaCuocChoi
-                            where US.ID == userID && CTC.MaCuocChoi == machoi
-                            select new
-                            {
-                                userID = US.ID,
-                                macuocchoi = CC.MaCuocChoi,
-                                userName = US.username,
-                                soDuDoan = CTC.SoDuDoan,
-                                ngayDoanSo = CC.NgayDoanSo,
-                                trongSo = CTC.TrongSo,
-                                id = CTC.id
-                            }).ToList();
-                foreach (var item in join)
-                {
-                    model.Add(new ChiTietChoiViewModel()
+                    User user = db.Users.SingleOrDefault(x => x.ID == userID);
+                    int luotchoiconlai = int.Parse(user.soluotchoi.ToString());
+                    if (luotchoimoi <= luotchoiconlai)
+
                     {
-                        maCuocChoi = item.macuocchoi,
-                        userID = userID,
-                        username = item.userName,
-                        SoDuDoan = item.soDuDoan,
-                        NgayDoanSo = item.ngayDoanSo,
-                        TrongSo = item.trongSo,
-                        id = item.id
-                    });
+                        foreach (var i in selectlist)
+                        {
+                            i.TrongSo = ts;
+                            db.SaveChanges();
+                        }
+
+                        user.soluotchoi = user.soluotchoi + luotchotcu - luotchoimoi;
+                        db.SaveChanges();
+
+                        List<ChiTietChoiViewModel> model = new List<ChiTietChoiViewModel>();
+                        var join = (from US in db.Users
+                                    join CTC in db.ChiTietCuocChois
+                                        on US.ID equals CTC.UserID
+                                    join CC in db.CuocChois on CTC.MaCuocChoi equals CC.MaCuocChoi
+                                    where US.ID == userID && CTC.MaCuocChoi == machoi
+                                    select new
+                                    {
+                                        userID = US.ID,
+                                        macuocchoi = CC.MaCuocChoi,
+                                        userName = US.username,
+                                        soDuDoan = CTC.SoDuDoan,
+                                        ngayDoanSo = CC.NgayDoanSo,
+                                        trongSo = CTC.TrongSo,
+                                        id = CTC.id
+                                    }).ToList();
+                        foreach (var item in join)
+                        {
+                            model.Add(new ChiTietChoiViewModel()
+                            {
+                                maCuocChoi = item.macuocchoi,
+                                userID = userID,
+                                username = item.userName,
+                                SoDuDoan = item.soDuDoan,
+                                NgayDoanSo = item.ngayDoanSo,
+                                TrongSo = item.trongSo,
+                                id = item.id
+                            });
 
 
+                        }
+                        return View(model);
+                    }
+                    else return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Tổng trọng số lớn hơn lượt chơi còn lại');" +
+                        "window.location= '/User/ThayDoiTrongSo';" +
+                        "</script>");
                 }
-                return View(model);
+                else return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Bạn phải nhập số mới hợp lệ!!!');" +
+                        "window.location= '/User/ThayDoiTrongSo';" +
+                        "</script>");
             }
             else return RedirectToAction("Login");
 

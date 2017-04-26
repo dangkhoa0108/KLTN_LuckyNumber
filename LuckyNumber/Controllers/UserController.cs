@@ -785,7 +785,7 @@ namespace LuckyNumber.Controllers
             int strLength = scr.Length;
             for (int i = 0; i < strLength; i++)
             {
-                if (scr[i] < '0' || scr[i] > '9')
+                if (scr[i] <= '0' || scr[i] > '9')
                     return false;
             }
             return true;

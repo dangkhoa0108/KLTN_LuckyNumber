@@ -24,11 +24,6 @@ namespace LuckyNumber.Controllers
         // GET: /User/
         public ActionResult Index()
         {
-            if (Session["userName"] == null)
-            {
-
-
-
 
                 //string day = DateTime.Now.Day.ToString(new System.Globalization.CultureInfo("en-US"));
                 //string month = DateTime.Now.Month.ToString(new System.Globalization.CultureInfo("en-US"));
@@ -72,16 +67,25 @@ namespace LuckyNumber.Controllers
                 //CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.MaCuocChoi == mamax);
 
                 int machoi;
+                if (cuocchoi != null)
 
-                if (cuocchoi.TrangThai == true)
                 {
-                    machoi = cuocchoi.MaCuocChoi - 1;
+                    if (cuocchoi.TrangThai == true)
+                    {
+                        machoi = cuocchoi.MaCuocChoi - 1;
 
+                    }
+                    //if (cuocchoi == null) machoi = 7;
+                    //else machoi = cuocchoi.MaCuocChoi;
+
+                    else machoi = cuocchoi.MaCuocChoi;
                 }
-                //if (cuocchoi == null) machoi = 7;
-                //else machoi = cuocchoi.MaCuocChoi;
 
-                else machoi = cuocchoi.MaCuocChoi;
+                else
+                {
+                    CuocChoi cuocchoi1 = db.CuocChois.OrderByDescending(x=>x.MaCuocChoi).Take(1).Single();
+                    machoi = cuocchoi1.MaCuocChoi;
+                }
 
                 string dayNow = day + "/" + month + "/" + year;
                 Session["dayNow"] = dayNow;
@@ -122,8 +126,6 @@ namespace LuckyNumber.Controllers
 
                 }
                 return View(model);
-            }
-            else return Redirect("~/User/userProfile");
         }
 
 

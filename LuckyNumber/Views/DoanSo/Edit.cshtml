@@ -71,139 +71,133 @@
 
 
 
-<!--[if lt IE 8]>
-    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
 
-<div class="background-wrap">
-    <video id="test-vid" preload="auto" autoplay="true" loop="loop" muted="muted">
-        <source src="~/assets1/Video Edit.mp4">
-    </video>
-</div>
-<!-- Page -->
-<div class="page animsition vertical-align text-center" data-animsition-in="fade-in"
-     data-animsition-out="fade-out">
-    <div class="page-content vertical-align-middle">
-        <div>
-            <img class="error-mark animation-slide-top" src="~/assets1/portraits/logo_TrongSo.png" alt="...">
-        </div>
+    <div class="background-wrap">
+        <video id="test-vid" preload="auto" autoplay="true" loop="loop" muted="muted">
+            <source src="~/assets1/Video Edit.mp4">
+        </video>
+    </div>
+    <!-- Page -->
+    <div class="page animsition vertical-align text-center" data-animsition-in="fade-in"
+         data-animsition-out="fade-out">
+        <div class="page-content vertical-align-middle">
+            <div>
+                <img class="error-mark animation-slide-top" src="~/assets1/portraits/logo_TrongSo.png" alt="...">
+            </div>
 
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-
-    @Html.ValidationSummary(true)
-
-    <div class="panel-body">
-        @Html.HiddenFor(model => model.UserID)
-
-        @Html.HiddenFor(model => model.MaCuocChoi)
-
-        @Html.HiddenFor(model => model.SoDuDoan)
-        @Html.HiddenFor(model => model.id)
-        <p class="font-size-20">Thay Đổi Trọng Số</p>
-        <form method="post" role="form">
+            <div class="panel-body">
+                @using (Html.BeginForm())
+            {
+                    @Html.AntiForgeryToken()
 
 
-            @*<div class="input-group">
-                    <input type="text" class="form-control last" placeholder="Nhập Vào Trọng Số Cần Thay Đổi">
-                    <span class="input-group-btn">
-                        <button type="submit" class="btn btn-animate btn-animate-vertical btn-success">
-                            <span><i class="icon wb-star" aria-hidden="true"></i>Đồng Ý</span>
-                        </button>
-                    </span>
-                </div>*@
+                    @Html.ValidationSummary(true)
+
+
+                    @Html.HiddenFor(model => model.UserID)
+
+                    @Html.HiddenFor(model => model.MaCuocChoi)
+
+                    @Html.HiddenFor(model => model.SoDuDoan)
+                    @Html.HiddenFor(model => model.id)
+                    <p class="font-size-20">Thay Đổi Trọng Số</p>
+                    <form method="post" role="form">
+
+
+                        @*<div class="input-group">
+                                <input type="text" class="form-control last" placeholder="Nhập Vào Trọng Số Cần Thay Đổi">
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-animate btn-animate-vertical btn-success">
+                                        <span><i class="icon wb-star" aria-hidden="true"></i>Đồng Ý</span>
+                                    </button>
+                                </span>
+                            </div>*@
 
 
 
-            <div class="input-group">
-                @Html.EditorFor(model => model.TrongSo, new {@class = "form-control last"})
-                @Html.ValidationMessageFor(model => model.TrongSo)
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-animate btn-animate-vertical btn-success" value="Save">
-                        <span><i class="icon wb-star" aria-hidden="true"></i>Đồng Ý</span>
+                        <div class="input-group">
+                            @Html.EditorFor(model => model.TrongSo, new { @class = "form-control last" })
+                            @Html.ValidationMessageFor(model => model.TrongSo)
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-animate btn-animate-vertical btn-success" value="Save">
+                                    <span><i class="icon wb-star" aria-hidden="true"></i>Đồng Ý</span>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+
+                }
+                <a href="~/User/ThayDoiTrongSo">
+                    <button class="btn btn-animate btn-animate-vertical btn-primary">
+                        <span><i class="icon wb-arrow-left" aria-hidden="true"></i>Quay Lại<i></i></span>
                     </button>
-                </span>
-            </div>
-
-            <p>
-
-            </p>
-
-
-        </form>
-        <a href="~/User/ThayDoiTrongSo">
-            <button type="submit" class="btn btn-animate btn-animate-vertical btn-primary">
-                <span><i class="icon wb-arrow-left" aria-hidden="true"></i>Quay Lại<i></i></span>
-            </button>
-        </a>
-    </div>
-}
-
-
-        <footer class="page-copyright">
-            <p>WEBSITE BY Lucky Number</p>
-            <p>© 2017. All RIGHT RESERVED.</p>
-            <div class="social">
-                <a href="javascript:void(0)">
-                    <i class="icon bd-twitter" aria-hidden="true"></i>
-                </a>
-                <a href="javascript:void(0)">
-                    <i class="icon bd-facebook" aria-hidden="true"></i>
-                </a>
-                <a href="javascript:void(0)">
-                    <i class="icon bd-dribbble" aria-hidden="true"></i>
                 </a>
             </div>
-        </footer>
+
+            <footer class="page-copyright">
+                <p>WEBSITE BY Lucky Number</p>
+                <p>© 2017. All RIGHT RESERVED.</p>
+                <div class="social">
+                    <a href="javascript:void(0)">
+                        <i class="icon bd-twitter" aria-hidden="true"></i>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <i class="icon bd-facebook" aria-hidden="true"></i>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <i class="icon bd-dribbble" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </footer>
+        </div>
     </div>
-</div>
 
-<!-- End Page -->
-<script src="~/assets1/vendor/jquery/jquery.js"></script>
-<script src="~/assets1/vendor/bootstrap/bootstrap.js"></script>
-<script src="~/assets1/vendor/animsition/jquery.animsition.js"></script>
-<script src="~/assets1/vendor/asscroll/jquery-asScroll.js"></script>
-<script src="~/assets1/vendor/mousewheel/jquery.mousewheel.js"></script>
-<script src="~/assets1/vendor/asscrollable/jquery.asScrollable.all.js"></script>
-<script src="~/assets1/vendor/ashoverscroll/jquery-asHoverScroll.js"></script>
+    <!-- End Page -->
+    <script src="~/assets1/vendor/jquery/jquery.js"></script>
+    <script src="~/assets1/vendor/bootstrap/bootstrap.js"></script>
+    <script src="~/assets1/vendor/animsition/jquery.animsition.js"></script>
+    <script src="~/assets1/vendor/asscroll/jquery-asScroll.js"></script>
+    <script src="~/assets1/vendor/mousewheel/jquery.mousewheel.js"></script>
+    <script src="~/assets1/vendor/asscrollable/jquery.asScrollable.all.js"></script>
+    <script src="~/assets1/vendor/ashoverscroll/jquery-asHoverScroll.js"></script>
 
-<!-- Plugins -->
-<script src="~/assets1/vendor/switchery/switchery.min.js"></script>
-<script src="~/assets1/vendor/intro-js/intro.js"></script>
-<script src="~/assets1/vendor/screenfull/screenfull.js"></script>
-<script src="~/assets1/vendor/slidepanel/jquery-slidePanel.js"></script>
+    <!-- Plugins -->
+    <script src="~/assets1/vendor/switchery/switchery.min.js"></script>
+    <script src="~/assets1/vendor/intro-js/intro.js"></script>
+    <script src="~/assets1/vendor/screenfull/screenfull.js"></script>
+    <script src="~/assets1/vendor/slidepanel/jquery-slidePanel.js"></script>
 
-<script src="~/assets1/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+    <script src="~/assets1/vendor/jquery-placeholder/jquery.placeholder.js"></script>
 
-<!-- Scripts -->
-<script src="~/assets1/js/core.js"></script>
-<script src="~/assets1/js/site.js"></script>
+    <!-- Scripts -->
+    <script src="~/assets1/js/core.js"></script>
+    <script src="~/assets1/js/site.js"></script>
 
-<script src="~/assets1/js/sections/menu.js"></script>
-<script src="~/assets1/js/sections/menubar.js"></script>
-<script src="~/assets1/js/sections/sidebar.js"></script>
+    <script src="~/assets1/js/sections/menu.js"></script>
+    <script src="~/assets1/js/sections/menubar.js"></script>
+    <script src="~/assets1/js/sections/sidebar.js"></script>
 
-<script src="~/assets1/js/configs/config-colors.js"></script>
-<script src="~/assets1/js/configs/config-tour.js"></script>
+    <script src="~/assets1/js/configs/config-colors.js"></script>
+    <script src="~/assets1/js/configs/config-tour.js"></script>
 
-<script src="~/assets1/js/components/asscrollable.js"></script>
-<script src="~/assets1/js/components/animsition.js"></script>
-<script src="~/assets1/js/components/slidepanel.js"></script>
-<script src="~/assets1/js/components/switchery.js"></script>
-<script src="~/assets1/js/components/jquery-placeholder.js"></script>
+    <script src="~/assets1/js/components/asscrollable.js"></script>
+    <script src="~/assets1/js/components/animsition.js"></script>
+    <script src="~/assets1/js/components/slidepanel.js"></script>
+    <script src="~/assets1/js/components/switchery.js"></script>
+    <script src="~/assets1/js/components/jquery-placeholder.js"></script>
 
-<script>
-    (function(document, window, $) {
-        'use strict';
+    <script>
+        (function (document, window, $) {
+            'use strict';
 
-        var Site = window.Site;
-        $(document).ready(function() {
-            Site.run();
-        });
-    })(document, window, jQuery);
-</script>
+            var Site = window.Site;
+            $(document).ready(function () {
+                Site.run();
+            });
+        })(document, window, jQuery);
+    </script>
 </body>
 </html>

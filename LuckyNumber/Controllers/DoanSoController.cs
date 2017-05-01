@@ -58,6 +58,10 @@ namespace LuckyNumber.Controllers
 
                 if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
 
+                int soluotchoi = int.Parse(user.soluotchoi.ToString());
+                int soluotchoi_km = int.Parse(user.soluotchoi_km.ToString());
+                int sumluotchoi = soluotchoi + soluotchoi_km;
+
                 //if (DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)
                 //{
                 //    return Redirect("~/DoanSo/Error3");
@@ -65,14 +69,14 @@ namespace LuckyNumber.Controllers
                 //if (DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)
                 //    return Redirect("~/DoanSo/Error3");
 
-                if (user.soluotchoi > 0 && user.xacnhan == true && cuocchoi.TrangThai == true)
+                if (sumluotchoi > 0 && user.xacnhan == true && cuocchoi.TrangThai == true)
                 {
 
                     return View();
                 }
 
-                else if (user.soluotchoi > 0 && user.xacnhan == true && cuocchoi.TrangThai == false) return Redirect("~/DoanSo/Error3");
-                else if (user.soluotchoi <= 0 && user.xacnhan == true) return Redirect("~/DoanSo/Error1");
+                else if (sumluotchoi > 0 && user.xacnhan == true && cuocchoi.TrangThai == false) return Redirect("~/DoanSo/Error3");
+                else if (sumluotchoi <= 0 && user.xacnhan == true) return Redirect("~/DoanSo/Error1");
 
                 else return Redirect("~/DoanSo/Error2");
             }
@@ -111,17 +115,21 @@ namespace LuckyNumber.Controllers
                 int userID = int.Parse(Session["IDs"].ToString());
                 User user = db.Users.SingleOrDefault(x => x.ID == userID);
 
+                int soluotchoi = int.Parse(user.soluotchoi.ToString());
+                int soluotchoi_km = int.Parse(user.soluotchoi_km.ToString());
+                int sumluotchoi = soluotchoi + soluotchoi_km;
+
                 DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
                 CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
                 if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
-                if (user.soluotchoi >= 10 && user.xacnhan == true && /*((DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) < 0)||*/cuocchoi.TrangThai == true)
+                if (sumluotchoi >= 10 && user.xacnhan == true && /*((DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) < 0)||*/cuocchoi.TrangThai == true)
                 {
 
                     return View();
                 }
 
-                else if (user.soluotchoi >= 10 && user.xacnhan == true && /*(DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)*/cuocchoi.TrangThai == false) return Redirect("~/DoanSo/Error3");
-                else if (user.soluotchoi < 10 && user.xacnhan == true) return Redirect("~/DoanSo/Error1");
+                else if (sumluotchoi >= 10 && user.xacnhan == true && /*(DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)*/cuocchoi.TrangThai == false) return Redirect("~/DoanSo/Error3");
+                else if (sumluotchoi < 10 && user.xacnhan == true) return Redirect("~/DoanSo/Error1");
 
                 else return Redirect("~/DoanSo/Error2");
             }
@@ -158,17 +166,21 @@ namespace LuckyNumber.Controllers
                 int userID = int.Parse(Session["IDs"].ToString());
                 User user = db.Users.SingleOrDefault(x => x.ID == userID);
 
+                int soluotchoi = int.Parse(user.soluotchoi.ToString());
+                int soluotchoi_km = int.Parse(user.soluotchoi_km.ToString());
+                int sumluotchoi = soluotchoi + soluotchoi_km;
+
                 DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
                 CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
                 if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
-                if (user.soluotchoi >= 100 && user.xacnhan == true && cuocchoi.TrangThai == true)
+                if (sumluotchoi >= 100 && user.xacnhan == true && cuocchoi.TrangThai == true)
                 {
 
                     return View();
                 }
 
-                else if (user.soluotchoi >= 100 && user.xacnhan == true && /*(DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)*/cuocchoi.TrangThai == false) return Redirect("~/DoanSo/Error3");
-                else if (user.soluotchoi < 100 && user.xacnhan == true) return Redirect("~/DoanSo/Error1");
+                else if (sumluotchoi >= 100 && user.xacnhan == true && /*(DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)*/cuocchoi.TrangThai == false) return Redirect("~/DoanSo/Error3");
+                else if (sumluotchoi < 100 && user.xacnhan == true) return Redirect("~/DoanSo/Error1");
 
                 else return Redirect("~/DoanSo/Error2");
             }
@@ -234,6 +246,8 @@ namespace LuckyNumber.Controllers
                 ViewBag.Name = name;
                 int userID = int.Parse(Session["IDs"].ToString());
                 User user = db.Users.SingleOrDefault(x => x.ID == userID);
+
+                
 
                 //string day = DateTime.Now.Day.ToString();
                 //string month = DateTime.Now.Month.ToString();
@@ -308,7 +322,11 @@ namespace LuckyNumber.Controllers
                         {
                             ChiTietCuocChoi chitietcuocchoi1 = new ChiTietCuocChoi();
                             int sodudoan = sodudoanDau * 100 + i * 10 + sodudoanCuoi;
-                            int trongsodefault = 1;                   
+                            int trongsodefault = 1;
+
+                            int soluotchoi = int.Parse(user.soluotchoi.ToString());
+                            int soluotchoi_km = int.Parse(user.soluotchoi_km.ToString());
+                            int sumluotchoi = soluotchoi + soluotchoi_km;
 
                             ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID && x.TrongSo==trongsodefault);
                             {
@@ -317,11 +335,23 @@ namespace LuckyNumber.Controllers
                                 chitietcuocchoi1.MaCuocChoi = machoi;
                                 chitietcuocchoi1.TrongSo = trongsodefault;
 
-                               
+                                
 
                                 db.ChiTietCuocChois.Add(chitietcuocchoi1);
-                                user.soluotchoi--;
+
+
+                                sumluotchoi--;
+                                if (sumluotchoi <= int.Parse(user.soluotchoi.ToString()))
+                                {
+                                    user.soluotchoi = sumluotchoi;
+                                    user.soluotchoi_km = 0;
+                                }
+                                else
+                                {
+                                    user.soluotchoi_km = sumluotchoi- int.Parse(user.soluotchoi.ToString());
+                                }
                                 Session["soLuotChoi"] = user.soluotchoi;
+                                Session["soLuotChoi_km"] = user.soluotchoi_km;
                                 db.SaveChanges();
 
                                 ds.Add(new DanhSachSoDaDoanViewModel()
@@ -330,7 +360,8 @@ namespace LuckyNumber.Controllers
                                     sodadoan = sodudoan,
                                     trongso = chitietcuocchoi1.TrongSo,  
                                     
-                                    luotchoi =int.Parse(Session["soLuotChoi"].ToString())
+                                    luotchoi =int.Parse(Session["soLuotChoi"].ToString()),
+                                    luotchoi_km=int.Parse(Session["soLuotChoi_km"].ToString())
                                 });
 
                             }
@@ -363,14 +394,26 @@ namespace LuckyNumber.Controllers
         public ActionResult Edit([Bind(Include = "UserID,MaCuocChoi,SoDuDoan,TrongSo,id")] ChiTietCuocChoi ct)
         {
             User user = db.Users.SingleOrDefault(x => x.ID == ct.UserID);
-            
+            int soluotchoi = int.Parse(user.soluotchoi.ToString());
+            int soluotchoi_km = int.Parse(user.soluotchoi_km.ToString());
+            int sumluotchoi = soluotchoi + soluotchoi_km;
+
             if (ModelState.IsValid)
             {               
                 db.Entry(ct).State = EntityState.Modified;
                 int trongsonew = int.Parse((ct.TrongSo).ToString());
-                int luotchoi = int.Parse(user.soluotchoi.ToString());
+                //int luotchoi = int.Parse(user.soluotchoi.ToString());
                 
-                user.soluotchoi = luotchoi + 1 - trongsonew;
+                sumluotchoi = sumluotchoi + 1 - trongsonew;
+                if(sumluotchoi<=int.Parse(user.soluotchoi.ToString()))
+                {
+                    user.soluotchoi = sumluotchoi;
+                    user.soluotchoi_km = 0;
+                }
+                else
+                {
+                    user.soluotchoi_km = sumluotchoi - int.Parse(user.soluotchoi.ToString());
+                }
                 db.SaveChanges();
                 return Redirect("~/User/LichSuDoanSo");
             }
@@ -464,6 +507,10 @@ namespace LuckyNumber.Controllers
                             int sodudoan = i * 100 + sodudoanGiua * 10 + sodudoanCuoi;
                             int trongsodefault = 1;
 
+                            int soluotchoi = int.Parse(user.soluotchoi.ToString());
+                            int soluotchoi_km = int.Parse(user.soluotchoi_km.ToString());
+                            int sumluotchoi = soluotchoi + soluotchoi_km;
+
                             ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID && x.TrongSo == trongsodefault);
                             {
                                 chitietcuocchoi1.SoDuDoan = sodudoan;
@@ -471,9 +518,21 @@ namespace LuckyNumber.Controllers
                                 chitietcuocchoi1.MaCuocChoi = machoi;
                                 chitietcuocchoi1.TrongSo = trongsodefault;
                                 db.ChiTietCuocChois.Add(chitietcuocchoi1);
-                                user.soluotchoi--;
+
+                                sumluotchoi--;
+                                if (sumluotchoi <= int.Parse(user.soluotchoi.ToString()))
+                                {
+                                    user.soluotchoi = sumluotchoi;
+                                    user.soluotchoi_km = 0;
+                                }
+                                else
+                                {
+                                    user.soluotchoi_km = sumluotchoi - int.Parse(user.soluotchoi.ToString());
+                                }
                                 Session["soLuotChoi"] = user.soluotchoi;
+                                Session["soLuotChoi_km"] = user.soluotchoi_km;
                                 db.SaveChanges();
+
 
                             }
 
@@ -482,9 +541,8 @@ namespace LuckyNumber.Controllers
                                 id = chitietcuocchoi1.id,
                                 sodadoan = sodudoan,
                                 trongso = chitietcuocchoi1.TrongSo,
-
-                                luotchoi = int.Parse(Session["soLuotChoi"].ToString())
-
+                                luotchoi = int.Parse(Session["soLuotChoi"].ToString()),
+                                luotchoi_km = int.Parse(Session["soLuotChoi_km"].ToString())
                             });
                         }
                         return View(ds);
@@ -580,7 +638,10 @@ namespace LuckyNumber.Controllers
                             int sodudoan = sodudoanDau * 100 + sodudoanGiữa * 10 + i;
                             int trongsodefault = 1;
 
-                            
+                            int soluotchoi = int.Parse(user.soluotchoi.ToString());
+                            int soluotchoi_km = int.Parse(user.soluotchoi_km.ToString());
+                            int sumluotchoi = soluotchoi + soluotchoi_km;
+
 
                             ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID && x.TrongSo == trongsodefault);
                             {
@@ -589,9 +650,20 @@ namespace LuckyNumber.Controllers
                                 chitietcuocchoi1.MaCuocChoi = machoi;
                                 chitietcuocchoi1.TrongSo = trongsodefault;
                                 db.ChiTietCuocChois.Add(chitietcuocchoi1);
-                                user.soluotchoi--;
+                                sumluotchoi--;
+                                if (sumluotchoi <= int.Parse(user.soluotchoi.ToString()))
+                                {
+                                    user.soluotchoi = sumluotchoi;
+                                    user.soluotchoi_km = 0;
+                                }
+                                else
+                                {
+                                    user.soluotchoi_km = sumluotchoi - int.Parse(user.soluotchoi.ToString());
+                                }
                                 Session["soLuotChoi"] = user.soluotchoi;
+                                Session["soLuotChoi_km"] = user.soluotchoi_km;
                                 db.SaveChanges();
+
 
                             }
                             ds.Add(new DanhSachSoDaDoanViewModel()
@@ -600,7 +672,8 @@ namespace LuckyNumber.Controllers
                                 sodadoan = sodudoan,
                                 trongso = chitietcuocchoi1.TrongSo,
 
-                                luotchoi = int.Parse(Session["soLuotChoi"].ToString())
+                                luotchoi = int.Parse(Session["soLuotChoi"].ToString()),
+                                luotchoi_km = int.Parse(Session["soLuotChoi_km"].ToString())
                             });
                         }
                         return View(ds);
@@ -677,7 +750,10 @@ namespace LuckyNumber.Controllers
                             ChiTietCuocChoi chitietcuocchoi1 = new ChiTietCuocChoi();
                             int sodudoan = sodudoanDau * 100 + i * 10 + j;
                             int trongsodefault = 1;
-                            
+
+                            int soluotchoi = int.Parse(user.soluotchoi.ToString());
+                            int soluotchoi_km = int.Parse(user.soluotchoi_km.ToString());
+                            int sumluotchoi = soluotchoi + soluotchoi_km;
 
                             ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID && x.TrongSo == trongsodefault );
                             {
@@ -686,8 +762,18 @@ namespace LuckyNumber.Controllers
                                 chitietcuocchoi1.MaCuocChoi = machoi;
                                 chitietcuocchoi1.TrongSo = trongsodefault;
                                 db.ChiTietCuocChois.Add(chitietcuocchoi1);
-                                user.soluotchoi--;
+                                sumluotchoi--;
+                                if (sumluotchoi <= int.Parse(user.soluotchoi.ToString()))
+                                {
+                                    user.soluotchoi = sumluotchoi;
+                                    user.soluotchoi_km = 0;
+                                }
+                                else
+                                {
+                                    user.soluotchoi_km = sumluotchoi - int.Parse(user.soluotchoi.ToString());
+                                }
                                 Session["soLuotChoi"] = user.soluotchoi;
+                                Session["soLuotChoi_km"] = user.soluotchoi_km;
                                 db.SaveChanges();
 
                             }
@@ -698,7 +784,8 @@ namespace LuckyNumber.Controllers
                                 sodadoan = sodudoan,
                                 trongso = chitietcuocchoi1.TrongSo,
 
-                                luotchoi = int.Parse(Session["soLuotChoi"].ToString())
+                                luotchoi = int.Parse(Session["soLuotChoi"].ToString()),
+                                luotchoi_km = int.Parse(Session["soLuotChoi_km"].ToString())
                             });
 
                         }
@@ -771,7 +858,10 @@ namespace LuckyNumber.Controllers
                             ChiTietCuocChoi chitietcuocchoi1 = new ChiTietCuocChoi();
                             int sodudoan = i * 100 + sodudoanGiua * 10 + j;
                             int trongsodefault = 1;
-                            
+
+                            int soluotchoi = int.Parse(user.soluotchoi.ToString());
+                            int soluotchoi_km = int.Parse(user.soluotchoi_km.ToString());
+                            int sumluotchoi = soluotchoi + soluotchoi_km;
 
                             ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID && x.TrongSo == trongsodefault);
                             {
@@ -780,8 +870,18 @@ namespace LuckyNumber.Controllers
                                 chitietcuocchoi1.MaCuocChoi = machoi;
                                 chitietcuocchoi1.TrongSo = trongsodefault;
                                 db.ChiTietCuocChois.Add(chitietcuocchoi1);
-                                user.soluotchoi--;
+                                sumluotchoi--;
+                                if (sumluotchoi <= int.Parse(user.soluotchoi.ToString()))
+                                {
+                                    user.soluotchoi = sumluotchoi;
+                                    user.soluotchoi_km = 0;
+                                }
+                                else
+                                {
+                                    user.soluotchoi_km = sumluotchoi - int.Parse(user.soluotchoi.ToString());
+                                }
                                 Session["soLuotChoi"] = user.soluotchoi;
+                                Session["soLuotChoi_km"] = user.soluotchoi_km;
                                 db.SaveChanges();
 
                             }
@@ -792,7 +892,8 @@ namespace LuckyNumber.Controllers
                                 sodadoan = sodudoan,
                                 trongso = chitietcuocchoi1.TrongSo,
 
-                                luotchoi = int.Parse(Session["soLuotChoi"].ToString())
+                                luotchoi = int.Parse(Session["soLuotChoi"].ToString()),
+                                luotchoi_km = int.Parse(Session["soLuotChoi_km"].ToString())
                             });
                         }
                     return View(ds);
@@ -811,6 +912,8 @@ namespace LuckyNumber.Controllers
                 ViewBag.Name = name;
                 int userID = int.Parse(Session["IDs"].ToString());
                 User user = db.Users.SingleOrDefault(x => x.ID == userID);
+
+
 
                 //string day = DateTime.Now.Day.ToString();
                 //string month = DateTime.Now.Month.ToString();
@@ -865,7 +968,10 @@ namespace LuckyNumber.Controllers
                             ChiTietCuocChoi chitietcuocchoi1 = new ChiTietCuocChoi();
                             int sodudoan = i * 100 + j * 10 + sodudoanCuoi;
                             int trongsodefault = 1;
-                            
+
+                            int soluotchoi = int.Parse(user.soluotchoi.ToString());
+                            int soluotchoi_km = int.Parse(user.soluotchoi_km.ToString());
+                            int sumluotchoi = soluotchoi + soluotchoi_km;
 
                             ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID && x.TrongSo == trongsodefault);
                             {
@@ -874,8 +980,18 @@ namespace LuckyNumber.Controllers
                                 chitietcuocchoi1.MaCuocChoi = machoi;
                                 chitietcuocchoi1.TrongSo = trongsodefault;
                                 db.ChiTietCuocChois.Add(chitietcuocchoi1);
-                                user.soluotchoi--;
+                                sumluotchoi--;
+                                if (sumluotchoi <= int.Parse(user.soluotchoi.ToString()))
+                                {
+                                    user.soluotchoi = sumluotchoi;
+                                    user.soluotchoi_km = 0;
+                                }
+                                else
+                                {
+                                    user.soluotchoi_km = sumluotchoi - int.Parse(user.soluotchoi.ToString());
+                                }
                                 Session["soLuotChoi"] = user.soluotchoi;
+                                Session["soLuotChoi_km"] = user.soluotchoi_km;
                                 db.SaveChanges();
 
                             }
@@ -886,7 +1002,8 @@ namespace LuckyNumber.Controllers
                                 sodadoan = sodudoan,
                                 trongso = chitietcuocchoi1.TrongSo,
 
-                                luotchoi = int.Parse(Session["soLuotChoi"].ToString())
+                                luotchoi = int.Parse(Session["soLuotChoi"].ToString()),
+                                luotchoi_km = int.Parse(Session["soLuotChoi_km"].ToString())
                             });
                         }
                     return View(ds);
@@ -906,6 +1023,10 @@ namespace LuckyNumber.Controllers
                 int userID = int.Parse(Session["IDs"].ToString());
                 User user = db.Users.SingleOrDefault(x => x.ID == userID);
 
+
+                int soluotchoi = int.Parse(user.soluotchoi.ToString());
+                int soluotchoi_km = int.Parse(user.soluotchoi_km.ToString());
+                int sumluotchoi = soluotchoi + soluotchoi_km;
 
 
                 //string day = DateTime.Now.Day.ToString();
@@ -986,9 +1107,19 @@ namespace LuckyNumber.Controllers
                         chitietcuocchoi.UserID = int.Parse(Session["IDs"].ToString());
                         chitietcuocchoi.MaCuocChoi = machoi;
                         db.ChiTietCuocChois.Add(chitietcuocchoi);
-                        int tongluot= int.Parse( user.soluotchoi.ToString())-soTrongSo;
-                        user.soluotchoi = tongluot;
+
+                        int tongluot= sumluotchoi - soTrongSo;
+                        if (tongluot <= int.Parse(user.soluotchoi.ToString()))
+                        {
+                            user.soluotchoi = tongluot;
+                            user.soluotchoi_km = 0;
+                        }
+                        else
+                        {
+                            user.soluotchoi_km = tongluot;
+                        }
                         Session["soLuotChoi"] = user.soluotchoi;
+                        Session["soLuotChoi_km"] = user.soluotchoi_km;
                         db.SaveChanges();
 
 

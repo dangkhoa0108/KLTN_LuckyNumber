@@ -12,5 +12,6 @@ namespace LuckyNumber.ViewModel
         public int? trongso { get; set; }
 
         public int? luotchoi { get; set; }
+        public int? luotchoi_km { get; set; }
     }
 }

@@ -88,15 +88,15 @@
                 <img class="error-mark animation-slide-top" src="~/assets1/portraits/logo_TrongSo.png" alt="...">
             </div>
 
-
-            @using (Html.BeginForm())
+            <div class="panel-body">
+                @using (Html.BeginForm())
             {
-                @Html.AntiForgeryToken()
+                    @Html.AntiForgeryToken()
 
 
-                @Html.ValidationSummary(true)
+                    @Html.ValidationSummary(true)
 
-                <div class="panel-body">
+
                     @Html.HiddenFor(model => model.UserID)
 
                     @Html.HiddenFor(model => model.MaCuocChoi)
@@ -134,15 +134,16 @@
 
 
                     </form>
-                    <a href="~/User/ThayDoiTrongSo">
-                        <button type="submit" class="btn btn-animate btn-animate-vertical btn-primary">
-                            <span><i class="icon wb-arrow-left" aria-hidden="true"></i>Quay Lại<i></i></span>
-                        </button>
-                    </a>
-                </div>
 
 
-            }
+
+                }
+                <a href="~/User/ThayDoiTrongSo">
+                    <button class="btn btn-animate btn-animate-vertical btn-primary">
+                        <span><i class="icon wb-arrow-left" aria-hidden="true"></i>Quay Lại<i></i></span>
+                    </button>
+                </a>
+            </div>
 
             <footer class="page-copyright">
                 <p>WEBSITE BY Lucky Number</p>
@@ -197,14 +198,14 @@
     <script src="~/assets1/js/components/jquery-placeholder.js"></script>
 
     <script>
-    (function(document, window, $) {
-        'use strict';
+        (function (document, window, $) {
+            'use strict';
 
-        var Site = window.Site;
-        $(document).ready(function() {
-            Site.run();
-        });
-    })(document, window, jQuery);
+            var Site = window.Site;
+            $(document).ready(function () {
+                Site.run();
+            });
+        })(document, window, jQuery);
     </script>
 </body>
 </html>

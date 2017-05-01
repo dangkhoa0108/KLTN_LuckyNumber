@@ -270,14 +270,16 @@ namespace LuckyNumber.Controllers
 
 
                 cuocchoi.TrangThai = false;
-                var list = from u in db.Users
-                           select u;
-                foreach (var i in list)
-                {
-                    i.soluotchoi = 5;
+
+                //var list = from u in db.Users
+                //           select u;
+                //foreach (var i in list)
+                //{
+                //    i.soluotchoi = 5;
 
 
-                }
+                //}
+
                 db.SaveChanges();
                 return Redirect("~/Admin/adminProfile");
             }

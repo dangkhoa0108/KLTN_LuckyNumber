@@ -212,8 +212,6 @@ namespace LuckyNumber.Controllers
             // ---------- End -------------------
 
             if (cuocchoi.TrangThai == true)
-
-
             {
                 int maChoi = int.Parse(cuocchoi.MaCuocChoi.ToString()); // Lấy ra mã cuộc chơi từ ngày chơi
 
@@ -223,9 +221,6 @@ namespace LuckyNumber.Controllers
                 int maDS = int.Parse(danhsach.MaDSTrungThuong.ToString());
 
                 // ----------- End --------------
-
-
-
 
                 var tongSoLan = from u in db.ChiTietCuocChois
                                 where u.MaCuocChoi == maChoi
@@ -267,8 +262,6 @@ namespace LuckyNumber.Controllers
                     }
                 }
 
-
-
                 cuocchoi.TrangThai = false;
 
                 //var list = from u in db.Users
@@ -276,9 +269,15 @@ namespace LuckyNumber.Controllers
                 //foreach (var i in list)
                 //{
                 //    i.soluotchoi = 5;
-
-
                 //}
+
+                var selectlist = db.Users.ToList();
+                foreach(var i in selectlist)
+                {
+                    i.diemdanh = 1;
+                    db.SaveChanges();
+                }
+
 
                 db.SaveChanges();
                 return Redirect("~/Admin/adminProfile");

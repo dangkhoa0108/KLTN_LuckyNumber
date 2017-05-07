@@ -62,7 +62,7 @@ namespace LuckyNumber.Controllers
 
 
 
-                CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
+                CuocChoi cuocchoi = db.CuocChois.FirstOrDefault(x => x.NgayDoanSo == datetime);
                 //int mamax = db.CuocChois.Max(x => x.MaCuocChoi);
                 //CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.MaCuocChoi == mamax);
 
@@ -207,16 +207,17 @@ namespace LuckyNumber.Controllers
                 }
             }
             cuocchoi.TrangThai = false;
-            var list = from u in db.Users
-                       select u;
-            foreach (var i in list)
+            var selectlist = db.Users.ToList();
+            foreach (var i in selectlist)
             {
-                i.soluotchoi = 50;
-
-
+                i.diemdanh = 1;
+                db.SaveChanges();
             }
+
             db.SaveChanges();
         }
+
+
         public ActionResult CreateUser()
         {
             return View();
@@ -277,6 +278,7 @@ namespace LuckyNumber.Controllers
                 User user2 = db.Users.SingleOrDefault(x => x.username == user.username && x.password == user.password);
                 if (user2 != null)
                 {
+
                     string Role = "User";
                     Session["Role"] = Role; 
                     Session["userName"] = user2.nickname;
@@ -287,6 +289,19 @@ namespace LuckyNumber.Controllers
                     Session["soLuotChoi_km"] = user2.soluotchoi_km.ToString();
                     Session["taiKhoan"] = user2.taikhoan.ToString();
                     Session["maMoi"] = user2.mamoi.ToString();
+
+                    int diemdanh = user2.diemdanh.Value;
+                    if (diemdanh == 1)
+                    {
+                        user2.diemdanh = 0;
+                        user2.soluotchoi_km = int.Parse(Session["soLuotChoi_km"].ToString()) + 5;
+                        db.SaveChanges();
+                        return Content("<script language='javascript' type='text/javascript'> " +
+                            "alert('Bạn đã điểm danh thành công và được cộng thêm 5 lượt vào tk khuyến mãi');" +
+                            "window.location= '/User/userProfile';" +
+                            "</script>");
+
+                    }
 
                     return Redirect("~/User/userProfile");
                 }
@@ -495,6 +510,7 @@ namespace LuckyNumber.Controllers
                 user.soluotchoi_km = 5;
                 user.xacnhan = true;
                 user.taikhoan = 0;
+                user.fb = 1;
                 db.Users.Add(user);
 
                 db.SaveChanges();
@@ -563,6 +579,7 @@ namespace LuckyNumber.Controllers
                         user.taikhoan = 0;
                         user.soluotchoi = 0;
                         user.phone = null;
+                        user.fb = 1;
 
 
                         Session["userName"] = user.username;
@@ -593,6 +610,7 @@ namespace LuckyNumber.Controllers
                         user.soluotchoi = dbUs.soluotchoi;
                         user.mamoi = dbUs.mamoi;
                         user.nickname = firstname + " " + midname + " " + lastname;
+                        user.fb = 1;
 
                         Session["userName"] = user.username;
                         Session["IDs"] = user.ID;

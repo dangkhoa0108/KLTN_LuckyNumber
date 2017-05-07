@@ -51,6 +51,12 @@ namespace LuckyNumber.Models
 
         public int? checktt { get; set; }
 
+        public int? diemdanh { get; set; }
+
+        public int? online { get; set; }
+
+        public int? fb { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietCuocChoi> ChiTietCuocChois { get; set; }
 

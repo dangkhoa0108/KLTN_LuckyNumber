@@ -54,7 +54,7 @@ namespace LuckyNumber.Controllers
                 User user = db.Users.SingleOrDefault(x => x.ID == userID);
 
                 DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
-                CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
+                CuocChoi cuocchoi = db.CuocChois.FirstOrDefault(x => x.NgayDoanSo == datetime);
 
                 if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
 

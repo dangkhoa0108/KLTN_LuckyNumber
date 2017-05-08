@@ -1689,6 +1689,7 @@
     <Content Include="assets1\vendor\x-editable\images\loading.gif" />
     <Content Include="assets1\vendor\x-editable\x-editable.css" />
     <Content Include="assets1\vendor\x-editable\x-editable.min.css" />
+    <Content Include="assets1\Video Diem Danh.mp4" />
     <Content Include="assets1\Video Edit.mp4" />
     <Content Include="assets1\Video Invite.mp4" />
     <Content Include="assets\css\breadcumbs.css" />
@@ -2335,7 +2336,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\CreateUser.cshtml" />
@@ -2390,9 +2390,12 @@
     <Content Include="Views\User\ThayDoiTrongSo.cshtml" />
     <Content Include="Views\DoanSo\Edit.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\DiemDanh.cshtml" />
+    <Content Include="Views\User\DaDiemDanh.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

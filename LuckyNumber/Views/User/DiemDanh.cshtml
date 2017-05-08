@@ -1,0 +1,210 @@
+﻿@using System.Web.UI.WebControls
+@model LuckyNumber.Models.ChiTietCuocChoi
+
+@{
+    Layout = null;
+}
+@{
+    ViewBag.Title = "Edit";
+
+}
+<!DOCTYPE html>
+<html class="no-js before-run" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="bootstrap admin template">
+    <meta name="author" content="">
+
+    <title>Điểm Danh</title>
+
+    <link rel="apple-touch-icon" href="~/assets1/images/apple-touch-icon.png">
+    <link rel="icon" href="~/images/icon/fav_icon.png">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="~/assets1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets1/css/bootstrap-extend.min.css">
+    <link rel="stylesheet" href="~/assets1/css/site.min.css">
+
+    <link rel="stylesheet" href="~/assets1/vendor/animsition/animsition.css">
+    <link rel="stylesheet" href="~/assets1/vendor/asscrollable/asScrollable.css">
+    <link rel="stylesheet" href="~/assets1/vendor/switchery/switchery.css">
+    <link rel="stylesheet" href="~/assets1/vendor/intro-js/introjs.css">
+    <link rel="stylesheet" href="~/assets1/vendor/slidepanel/slidePanel.css">
+    <link rel="stylesheet" href="~/assets1/vendor/flag-icon-css/flag-icon.css">
+    <style type="text/css">
+        #test-vid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            min-height: 100%;
+            min-width: 100%;
+        }
+
+        .test-wid {
+            position: absolute;
+            min-height: 100%;
+            min-width: 100%;
+            z-index: 1000;
+            padding-top: 100pt;
+            background-color: rgba(0,0,0,0.5);
+        }
+    </style>
+    <!-- Page -->
+    <link rel="stylesheet" href="~/assets1/css/pages/lockscreen.css">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="~/assets1/fonts/web-icons/web-icons.min.css">
+    <link rel="stylesheet" href="~/assets1/fonts/brand-icons/brand-icons.min.css">
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
+    <!-- Scripts -->
+    <script src="~/assets1/vendor/modernizr/modernizr.js"></script>
+    <script src="~/assets1/vendor/breakpoints/breakpoints.js"></script>
+    <script>
+        Breakpoints();
+    </script>
+</head>
+<body class="page-locked layout-full">
+
+
+
+
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="background-wrap">
+        <video id="test-vid" preload="auto" autoplay="true" loop="loop" muted="muted">
+            <source src="~/assets1/Video Diem Danh.mp4">
+        </video>
+    </div>
+    <!-- Page -->
+    <div class="page animsition vertical-align text-center" data-animsition-in="fade-in" data-animsition-out="fade-out">
+        <div class="page-content vertical-align-middle">
+            <div>
+                <img class="error-mark animation-slide-top" src="~/assets1/portraits/logo_TrongSo.png" alt="...">
+
+                <p class="font-size-40">Điểm Danh Nhận Thưởng</p>
+            </div>
+
+            <div class="panel-body">
+                @*<button type="button" class="btn btn-outline btn-default" id="exampleSuccessMessage"
+                        data-plugin="sweetalert" data-title="Chúc Mừng!" data-text="N!"
+                        data-type="success">
+                    Điểm Danh
+                </button>
+                <button type="button" class="btn btn-outline btn-default" id="exampleCustomIcon"
+                        data-plugin="sweetalert" data-title="Sweet!" data-text="Here's a custom image."
+                        data-image-url="http://i.imgur.com/4NZ6uLY.jpg">
+                    Custom icon
+                </button>*@
+                <button class="btn btn-danger btn-animate btn-animate-side" data-target="#quaylai" data-toggle="modal" type="button">
+                    <span><i class="icon wb-arrow-left" aria-hidden="true"></i>Quay Lại</span>
+                </button>
+                <button class="btn btn-success btn-animate btn-animate-side" data-target="#diemdanh" data-toggle="modal" type="button">
+                    <span><i class="icon wb-pencil" aria-hidden="true"></i>Điểm Danh</span>
+                </button>
+            </div>
+
+            <footer class="page-copyright">
+                <p>WEBSITE BY Lucky Number</p>
+                <p>© 2017. All RIGHT RESERVED.</p>
+                <div class="social">
+                    <a href="javascript:void(0)">
+                        <i class="icon bd-twitter" aria-hidden="true"></i>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <i class="icon bd-facebook" aria-hidden="true"></i>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <i class="icon bd-dribbble" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade modal-success modal-3d-slit" id="diemdanh" aria-hidden="true" aria-labelledby="exampleModalSuccess"
+         role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Nhấn Đồng Ý để được nhận 5 lượt khuyến mãi</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <a href="#">
+                        <button type="button" class="btn btn-success">Đồng Ý</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+
+    <!-- Modal -->
+    <div class="modal fade modal-danger modal-3d-slit" id="quaylai" aria-hidden="true" aria-labelledby="exampleModalSuccess"
+         role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Hôm nay bạn chưa điểm danh. Bạn có thật sự muốn quay lại không?</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <a href="~/User/userProfile">
+                        <button type="button" class="btn btn-danger">Quay Lại</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+
+    <!-- End Page -->
+    <script src="~/assets1/vendor/jquery/jquery.js"></script>
+    <script src="~/assets1/vendor/bootstrap/bootstrap.js"></script>
+    <script src="~/assets1/vendor/animsition/jquery.animsition.js"></script>
+    <script src="~/assets1/vendor/asscroll/jquery-asScroll.js"></script>
+    <script src="~/assets1/vendor/mousewheel/jquery.mousewheel.js"></script>
+    <script src="~/assets1/vendor/asscrollable/jquery.asScrollable.all.js"></script>
+    <script src="~/assets1/vendor/ashoverscroll/jquery-asHoverScroll.js"></script>
+
+    <!-- Plugins -->
+    <script src="~/assets1/vendor/switchery/switchery.min.js"></script>
+    <script src="~/assets1/vendor/intro-js/intro.js"></script>
+    <script src="~/assets1/vendor/screenfull/screenfull.js"></script>
+    <script src="~/assets1/vendor/slidepanel/jquery-slidePanel.js"></script>
+
+    <script src="~/assets1/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+
+    <!-- Scripts -->
+    <script src="~/assets1/js/core.js"></script>
+    <script src="~/assets1/js/site.js"></script>
+
+    <script src="~/assets1/js/sections/menu.js"></script>
+    <script src="~/assets1/js/sections/menubar.js"></script>
+    <script src="~/assets1/js/sections/sidebar.js"></script>
+
+    <script src="~/assets1/js/configs/config-colors.js"></script>
+    <script src="~/assets1/js/configs/config-tour.js"></script>
+
+    <script src="~/assets1/js/components/asscrollable.js"></script>
+    <script src="~/assets1/js/components/animsition.js"></script>
+    <script src="~/assets1/js/components/slidepanel.js"></script>
+    <script src="~/assets1/js/components/switchery.js"></script>
+    <script src="~/assets1/js/components/jquery-placeholder.js"></script>
+    <script>
+        (function (document, window, $) {
+            'use strict';
+
+            var Site = window.Site;
+            $(document).ready(function () {
+                Site.run();
+            });
+        })(document, window, jQuery);
+    </script>
+</body>
+</html>

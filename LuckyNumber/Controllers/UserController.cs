@@ -217,6 +217,15 @@ namespace LuckyNumber.Controllers
             db.SaveChanges();
         }
 
+        public ActionResult DiemDanh()
+        {
+            return View();
+        }
+
+        public ActionResult DaDiemDanh()
+        {
+            return View();
+        }
 
         public ActionResult CreateUser()
         {
@@ -1165,7 +1174,7 @@ namespace LuckyNumber.Controllers
             }
             else return RedirectToAction("Login");
         }
-
+        
 
         public ActionResult DoiThuongPage()
         {

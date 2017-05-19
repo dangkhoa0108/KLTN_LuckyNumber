@@ -412,6 +412,7 @@ namespace LuckyNumber.Controllers
             User us = db.Users.SingleOrDefault(x => x.ID == temp);
             if (us != null)
             {
+                us.token = null;
                 us.online = 0;
                 db.SaveChanges();
             }

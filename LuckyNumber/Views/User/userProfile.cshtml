@@ -472,6 +472,7 @@
                                                             <div class="media-body">
                                                                 <h4 class="media-heading">
                                                                     <span style="padding-left: 55px;"><i style="top: -2px;"></i>&nbsp &nbsp &nbsp @ViewBag.SoDu</span>
+                                                                    <button class="btn btn-floating btn-primary btn-sm icon wb-edit" data-target="#thongbaotrungthuong" data-toggle="modal" type="button"></button>
                                                                 </h4>
                                                             </div>
                                                             <div class="media-body">
@@ -523,6 +524,33 @@
         </div>
     </div>
     <!-- End Edit Ho Ten -->
+
+        <!-- Thông Báo Trúng Thưởng -->
+        <div class="modal fade modal-success" id="thongbaotrungthuong" aria-hidden="true" aria-labelledby="examplePositionCenter"
+             role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-center">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title">Xin Chúc Mừng</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Bạn là người chiến thắng trong phiên chơi vừa rồi. Giải thưởng của bạn là xxx. Bạn có muốn chia sẻ kết quả lên Facebook không?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-animate btn-animate-vertical btn-danger" data-dismiss="modal">
+                            <span><i class="icon wb-close" aria-hidden="true"></i>Đóng</span>
+                        </button>
+                        <button type="button" class="btn btn-animate btn-animate-vertical btn-primary">
+                            <span><i type="submit" class="icon bd-facebook" aria-hidden="true"></i>Chia Sẻ</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Thông Báo Trúng Thưởng -->
     <!-- Core -->
     <script src="~/assets1/vendor/jquery/jquery.js"></script>
     <script src="~/assets1/vendor/bootstrap/bootstrap.js"></script>

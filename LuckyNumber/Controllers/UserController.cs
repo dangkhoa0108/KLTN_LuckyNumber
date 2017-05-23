@@ -222,8 +222,25 @@ namespace LuckyNumber.Controllers
             return View();
         }
 
-        public ActionResult DaDiemDanh()
+        public ActionResult DaDiemDanh(User us)
         {
+            int userID = int.Parse(Session["IDs"].ToString());
+            var selectlist = db.Users.Where(a => a.ID == userID).ToList();
+            foreach(var i in selectlist)
+            {
+                i.diemdanh = 0;
+                i.soluotchoi_km= int.Parse(Session["soLuotChoi_km"].ToString()) + 5;
+                db.SaveChanges();
+
+
+                //user2.diemdanh = 0;
+                //user2.soluotchoi_km = int.Parse(Session["soLuotChoi_km"].ToString()) + 5;
+                //db.SaveChanges();
+                //return Content("<script language='javascript' type='text/javascript'> " +
+                //    "alert('Bạn đã điểm danh thành công và được cộng thêm 5 lượt vào tk khuyến mãi');" +
+                //    "window.location= '/User/userProfile';" +
+                //    "</script>");
+            }
             return View();
         }
 
@@ -318,18 +335,22 @@ namespace LuckyNumber.Controllers
                         user2.online = 1;
                         db.SaveChanges();
                         Session["token"] = user2.token;
+                        Session["diemdanh"] = user2.diemdanh;
                         int diemdanh = user2.diemdanh.Value;
                         if (diemdanh == 1)
                         {
-                            user2.diemdanh = 0;
-                            user2.soluotchoi_km = int.Parse(Session["soLuotChoi_km"].ToString()) + 5;
-                            db.SaveChanges();
-                            return Content("<script language='javascript' type='text/javascript'> " +
-                                "alert('Bạn đã điểm danh thành công và được cộng thêm 5 lượt vào tk khuyến mãi');" +
-                                "window.location= '/User/userProfile';" +
-                                "</script>");
+                            //user2.diemdanh = 0;
+                            //user2.soluotchoi_km = int.Parse(Session["soLuotChoi_km"].ToString()) + 5;
+                            //db.SaveChanges();
+                            //return Content("<script language='javascript' type='text/javascript'> " +
+                            //    "alert('Bạn đã điểm danh thành công và được cộng thêm 5 lượt vào tk khuyến mãi');" +
+                            //    "window.location= '/User/userProfile';" +
+                            //    "</script>");
+                            return RedirectToAction("DiemDanh");
+
 
                         }
+
 
                         return Redirect("~/User/userProfile");
                     }

@@ -25,60 +25,64 @@ namespace LuckyNumber.Controllers
         {
             if (Session["userName"] != null)
             {
-                string name = Session["userName"].ToString();
-                ViewBag.Name = name;
-
-                //string day = DateTime.Now.Day.ToString();
-                //string month = DateTime.Now.Month.ToString();
-                //string year = DateTime.Now.Year.ToString();
-
-                DateTime serverTime = DateTime.Now;
-                DateTime utcTime = DateTime.UtcNow;
-
-                TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
-                DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
-                string timeNow = localTime.ToString("t");
-
-                ////////////////////////////////////
-
-                string day = localTime.ToString("dd");
-                string month = localTime.ToString("MM");
-                string year = localTime.ToString("yyyy");
-
-
-
-
-                //string timeNow = DateTime.Now.ToString("t");
-
-                int userID = int.Parse(Session["IDs"].ToString());
-                User user = db.Users.SingleOrDefault(x => x.ID == userID);
-
-                DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
-                CuocChoi cuocchoi = db.CuocChois.FirstOrDefault(x => x.NgayDoanSo == datetime);
-
-                if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
-
-                int soluotchoi = int.Parse(user.soluotchoi.ToString());
-                int soluotchoi_km = int.Parse(user.soluotchoi_km.ToString());
-                int sumluotchoi = soluotchoi + soluotchoi_km;
-
-                //if (DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)
-                //{
-                //    return Redirect("~/DoanSo/Error3");
-                //}
-                //if (DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)
-                //    return Redirect("~/DoanSo/Error3");
-
-                if (sumluotchoi > 0 && user.xacnhan == true && cuocchoi.TrangThai == true)
+                if (int.Parse(Session["diemdanh"].ToString()) == 0)
                 {
+                    string name = Session["userName"].ToString();
+                    ViewBag.Name = name;
 
-                    return View();
+                    //string day = DateTime.Now.Day.ToString();
+                    //string month = DateTime.Now.Month.ToString();
+                    //string year = DateTime.Now.Year.ToString();
+
+                    DateTime serverTime = DateTime.Now;
+                    DateTime utcTime = DateTime.UtcNow;
+
+                    TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+                    DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
+                    string timeNow = localTime.ToString("t");
+
+                    ////////////////////////////////////
+
+                    string day = localTime.ToString("dd");
+                    string month = localTime.ToString("MM");
+                    string year = localTime.ToString("yyyy");
+
+
+
+
+                    //string timeNow = DateTime.Now.ToString("t");
+
+                    int userID = int.Parse(Session["IDs"].ToString());
+                    User user = db.Users.SingleOrDefault(x => x.ID == userID);
+
+                    DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
+                    CuocChoi cuocchoi = db.CuocChois.FirstOrDefault(x => x.NgayDoanSo == datetime);
+
+                    if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
+
+                    int soluotchoi = int.Parse(user.soluotchoi.ToString());
+                    int soluotchoi_km = int.Parse(user.soluotchoi_km.ToString());
+                    int sumluotchoi = soluotchoi + soluotchoi_km;
+
+                    //if (DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)
+                    //{
+                    //    return Redirect("~/DoanSo/Error3");
+                    //}
+                    //if (DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)
+                    //    return Redirect("~/DoanSo/Error3");
+
+                    if (sumluotchoi > 0 && user.xacnhan == true && cuocchoi.TrangThai == true)
+                    {
+
+                        return View();
+                    }
+
+                    else if (sumluotchoi > 0 && user.xacnhan == true && cuocchoi.TrangThai == false) return Redirect("~/DoanSo/Error3");
+                    else if (sumluotchoi <= 0 && user.xacnhan == true) return Redirect("~/DoanSo/Error1");
+
+                    else return Redirect("~/DoanSo/Error2");
                 }
-
-                else if (sumluotchoi > 0 && user.xacnhan == true && cuocchoi.TrangThai == false) return Redirect("~/DoanSo/Error3");
-                else if (sumluotchoi <= 0 && user.xacnhan == true) return Redirect("~/DoanSo/Error1");
-
-                else return Redirect("~/DoanSo/Error2");
+                else return Redirect("~/User/DiemDanh");
             }
             else return Redirect("~/User/Login");
             
@@ -88,50 +92,54 @@ namespace LuckyNumber.Controllers
         {
             if (Session["userName"] != null)
             {
-                string name = Session["userName"].ToString();
-                ViewBag.Name = name;
-                //string day = DateTime.Now.Day.ToString();
-                //string month = DateTime.Now.Month.ToString();
-                //string year = DateTime.Now.Year.ToString();
-
-                DateTime serverTime = DateTime.Now;
-                DateTime utcTime = DateTime.UtcNow;
-
-                TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
-                DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
-                string timeNow = localTime.ToString("t");
-
-                ////////////////////////////////////
-
-                string day = localTime.ToString("dd");
-                string month = localTime.ToString("MM");
-                string year = localTime.ToString("yyyy");
-
-
-
-                string time = DateTime.Parse("11:00 PM").ToString("t");
-                //string timeNow = DateTime.Now.ToString("t");
-
-                int userID = int.Parse(Session["IDs"].ToString());
-                User user = db.Users.SingleOrDefault(x => x.ID == userID);
-
-                int soluotchoi = int.Parse(user.soluotchoi.ToString());
-                int soluotchoi_km = int.Parse(user.soluotchoi_km.ToString());
-                int sumluotchoi = soluotchoi + soluotchoi_km;
-
-                DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
-                CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
-                if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
-                if (sumluotchoi >= 10 && user.xacnhan == true && /*((DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) < 0)||*/cuocchoi.TrangThai == true)
+                if (int.Parse(Session["diemdanh"].ToString()) == 0)
                 {
+                    string name = Session["userName"].ToString();
+                    ViewBag.Name = name;
+                    //string day = DateTime.Now.Day.ToString();
+                    //string month = DateTime.Now.Month.ToString();
+                    //string year = DateTime.Now.Year.ToString();
 
-                    return View();
+                    DateTime serverTime = DateTime.Now;
+                    DateTime utcTime = DateTime.UtcNow;
+
+                    TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+                    DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
+                    string timeNow = localTime.ToString("t");
+
+                    ////////////////////////////////////
+
+                    string day = localTime.ToString("dd");
+                    string month = localTime.ToString("MM");
+                    string year = localTime.ToString("yyyy");
+
+
+
+                    string time = DateTime.Parse("11:00 PM").ToString("t");
+                    //string timeNow = DateTime.Now.ToString("t");
+
+                    int userID = int.Parse(Session["IDs"].ToString());
+                    User user = db.Users.SingleOrDefault(x => x.ID == userID);
+
+                    int soluotchoi = int.Parse(user.soluotchoi.ToString());
+                    int soluotchoi_km = int.Parse(user.soluotchoi_km.ToString());
+                    int sumluotchoi = soluotchoi + soluotchoi_km;
+
+                    DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
+                    CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
+                    if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
+                    if (sumluotchoi >= 10 && user.xacnhan == true && /*((DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) < 0)||*/cuocchoi.TrangThai == true)
+                    {
+
+                        return View();
+                    }
+
+                    else if (sumluotchoi >= 10 && user.xacnhan == true && /*(DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)*/cuocchoi.TrangThai == false) return Redirect("~/DoanSo/Error3");
+                    else if (sumluotchoi < 10 && user.xacnhan == true) return Redirect("~/DoanSo/Error1");
+
+                    else return Redirect("~/DoanSo/Error2");
                 }
-
-                else if (sumluotchoi >= 10 && user.xacnhan == true && /*(DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)*/cuocchoi.TrangThai == false) return Redirect("~/DoanSo/Error3");
-                else if (sumluotchoi < 10 && user.xacnhan == true) return Redirect("~/DoanSo/Error1");
-
-                else return Redirect("~/DoanSo/Error2");
+                else return Redirect("~/User/DiemDanh");
             }
             else return Redirect("~/User/Login");
         }
@@ -140,49 +148,53 @@ namespace LuckyNumber.Controllers
         {
             if (Session["userName"] != null)
             {
-                string name = Session["userName"].ToString();
-                ViewBag.Name = name;
-                //string day = DateTime.Now.Day.ToString();
-                //string month = DateTime.Now.Month.ToString();
-                //string year = DateTime.Now.Year.ToString();
-
-                DateTime serverTime = DateTime.Now;
-                DateTime utcTime = DateTime.UtcNow;
-
-                TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
-                DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
-
-                ////////////////////////////////////
-
-                string day = localTime.ToString("dd");
-                string month = localTime.ToString("MM");
-                string year = localTime.ToString("yyyy");
-
-
-
-                
-                //string timeNow = DateTime.Now.ToString("t");
-
-                int userID = int.Parse(Session["IDs"].ToString());
-                User user = db.Users.SingleOrDefault(x => x.ID == userID);
-
-                int soluotchoi = int.Parse(user.soluotchoi.ToString());
-                int soluotchoi_km = int.Parse(user.soluotchoi_km.ToString());
-                int sumluotchoi = soluotchoi + soluotchoi_km;
-
-                DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
-                CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
-                if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
-                if (sumluotchoi >= 100 && user.xacnhan == true && cuocchoi.TrangThai == true)
+                if (int.Parse(Session["diemdanh"].ToString()) == 0)
                 {
+                    string name = Session["userName"].ToString();
+                    ViewBag.Name = name;
+                    //string day = DateTime.Now.Day.ToString();
+                    //string month = DateTime.Now.Month.ToString();
+                    //string year = DateTime.Now.Year.ToString();
 
-                    return View();
+                    DateTime serverTime = DateTime.Now;
+                    DateTime utcTime = DateTime.UtcNow;
+
+                    TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+                    DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
+
+                    ////////////////////////////////////
+
+                    string day = localTime.ToString("dd");
+                    string month = localTime.ToString("MM");
+                    string year = localTime.ToString("yyyy");
+
+
+
+
+                    //string timeNow = DateTime.Now.ToString("t");
+
+                    int userID = int.Parse(Session["IDs"].ToString());
+                    User user = db.Users.SingleOrDefault(x => x.ID == userID);
+
+                    int soluotchoi = int.Parse(user.soluotchoi.ToString());
+                    int soluotchoi_km = int.Parse(user.soluotchoi_km.ToString());
+                    int sumluotchoi = soluotchoi + soluotchoi_km;
+
+                    DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
+                    CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
+                    if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
+                    if (sumluotchoi >= 100 && user.xacnhan == true && cuocchoi.TrangThai == true)
+                    {
+
+                        return View();
+                    }
+
+                    else if (sumluotchoi >= 100 && user.xacnhan == true && /*(DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)*/cuocchoi.TrangThai == false) return Redirect("~/DoanSo/Error3");
+                    else if (sumluotchoi < 100 && user.xacnhan == true) return Redirect("~/DoanSo/Error1");
+
+                    else return Redirect("~/DoanSo/Error2");
                 }
-
-                else if (sumluotchoi >= 100 && user.xacnhan == true && /*(DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)*/cuocchoi.TrangThai == false) return Redirect("~/DoanSo/Error3");
-                else if (sumluotchoi < 100 && user.xacnhan == true) return Redirect("~/DoanSo/Error1");
-
-                else return Redirect("~/DoanSo/Error2");
+                else return Redirect("~/User/DiemDanh");
             }
             else return Redirect("~/User/Login");
         }

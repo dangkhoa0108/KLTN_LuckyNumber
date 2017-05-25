@@ -219,7 +219,9 @@ namespace LuckyNumber.Controllers
 
         public ActionResult DiemDanh()
         {
-            return View();
+            if (int.Parse(Session["diemdanh"].ToString()) == 1)
+                return View();
+            else return RedirectToAction("DaDiemDanh");
         }
 
         public ActionResult DaDiemDanh(User us)
@@ -229,18 +231,15 @@ namespace LuckyNumber.Controllers
             foreach(var i in selectlist)
             {
                 i.diemdanh = 0;
-                i.soluotchoi_km= int.Parse(Session["soLuotChoi_km"].ToString()) + 5;
+                int temp_km = int.Parse(Session["soLuotChoi_km"].ToString()) + 5;
+                if (temp_km < 30)
+                {
+                    i.soluotchoi_km = temp_km;
+                }
+                else i.soluotchoi_km = 30 ;
                 db.SaveChanges();
-
-
-                //user2.diemdanh = 0;
-                //user2.soluotchoi_km = int.Parse(Session["soLuotChoi_km"].ToString()) + 5;
-                //db.SaveChanges();
-                //return Content("<script language='javascript' type='text/javascript'> " +
-                //    "alert('Bạn đã điểm danh thành công và được cộng thêm 5 lượt vào tk khuyến mãi');" +
-                //    "window.location= '/User/userProfile';" +
-                //    "</script>");
             }
+            Session["diemdanh"] = 0;
             return View();
         }
 
@@ -1012,67 +1011,74 @@ namespace LuckyNumber.Controllers
                     int? sumluotchoi_conlai = soluotchoi + soluotchoi_km;
 
                     int luotchoiconlai = int.Parse(user.soluotchoi.ToString());
-                    if (luotchoimoi <= sumluotchoi_conlai)
-
+                    if (luotchoimoi > luotchotcu)
                     {
-                        foreach (var i in selectlist)
+                        if (luotchoimoi <= sumluotchoi_conlai)
+
                         {
-                            i.TrongSo = ts;
-                            db.SaveChanges();
-                        }
-
-
-                        sumluotchoi_conlai = sumluotchoi_conlai + luotchotcu - luotchoimoi;
-                        if(sumluotchoi_conlai<=int.Parse(user.soluotchoi.ToString()))
-                        {
-                            user.soluotchoi = sumluotchoi_conlai;
-                            user.soluotchoi_km = 0;
-                        }
-                        else
-                        {
-                            user.soluotchoi_km = sumluotchoi_conlai - int.Parse(user.soluotchoi.ToString());
-                        }
-
-
-                        db.SaveChanges();
-
-                        List<ChiTietChoiViewModel> model = new List<ChiTietChoiViewModel>();
-                        var join = (from US in db.Users
-                                    join CTC in db.ChiTietCuocChois
-                                        on US.ID equals CTC.UserID
-                                    join CC in db.CuocChois on CTC.MaCuocChoi equals CC.MaCuocChoi
-                                    where US.ID == userID && CTC.MaCuocChoi == machoi
-                                    select new
-                                    {
-                                        userID = US.ID,
-                                        macuocchoi = CC.MaCuocChoi,
-                                        userName = US.username,
-                                        soDuDoan = CTC.SoDuDoan,
-                                        ngayDoanSo = CC.NgayDoanSo,
-                                        trongSo = CTC.TrongSo,
-                                        id = CTC.id
-                                    }).ToList();
-                        foreach (var item in join)
-                        {
-                            model.Add(new ChiTietChoiViewModel()
+                            foreach (var i in selectlist)
                             {
-                                maCuocChoi = item.macuocchoi,
-                                userID = userID,
-                                username = item.userName,
-                                SoDuDoan = item.soDuDoan,
-                                NgayDoanSo = item.ngayDoanSo,
-                                TrongSo = item.trongSo,
-                                id = item.id
-                            });
+                                i.TrongSo = ts;
+                                db.SaveChanges();
+                            }
 
 
+                            sumluotchoi_conlai = sumluotchoi_conlai + luotchotcu - luotchoimoi;
+                            if (sumluotchoi_conlai <= int.Parse(user.soluotchoi.ToString()))
+                            {
+                                user.soluotchoi = sumluotchoi_conlai;
+                                user.soluotchoi_km = 0;
+                            }
+                            else
+                            {
+                                user.soluotchoi_km = sumluotchoi_conlai - int.Parse(user.soluotchoi.ToString());
+                            }
+
+
+                            db.SaveChanges();
+
+                            List<ChiTietChoiViewModel> model = new List<ChiTietChoiViewModel>();
+                            var join = (from US in db.Users
+                                        join CTC in db.ChiTietCuocChois
+                                            on US.ID equals CTC.UserID
+                                        join CC in db.CuocChois on CTC.MaCuocChoi equals CC.MaCuocChoi
+                                        where US.ID == userID && CTC.MaCuocChoi == machoi
+                                        select new
+                                        {
+                                            userID = US.ID,
+                                            macuocchoi = CC.MaCuocChoi,
+                                            userName = US.username,
+                                            soDuDoan = CTC.SoDuDoan,
+                                            ngayDoanSo = CC.NgayDoanSo,
+                                            trongSo = CTC.TrongSo,
+                                            id = CTC.id
+                                        }).ToList();
+                            foreach (var item in join)
+                            {
+                                model.Add(new ChiTietChoiViewModel()
+                                {
+                                    maCuocChoi = item.macuocchoi,
+                                    userID = userID,
+                                    username = item.userName,
+                                    SoDuDoan = item.soDuDoan,
+                                    NgayDoanSo = item.ngayDoanSo,
+                                    TrongSo = item.trongSo,
+                                    id = item.id
+                                });
+
+
+                            }
+                            return View(model);
                         }
-                        return View(model);
+                        else return Content("<script language='javascript' type='text/javascript'> " +
+                            "alert('Tổng trọng số lớn hơn lượt chơi còn lại');" +
+                            "window.location= '/User/ThayDoiTrongSo';" +
+                            "</script>");
                     }
                     else return Content("<script language='javascript' type='text/javascript'> " +
-                        "alert('Tổng trọng số lớn hơn lượt chơi còn lại');" +
-                        "window.location= '/User/ThayDoiTrongSo';" +
-                        "</script>");
+                           "alert('Không thể thay đổi trọng số nhỏ hơn trọng số cũ.');" +
+                           "window.location= '/User/ThayDoiTrongSo';" +
+                           "</script>");
                 }
                 else return Content("<script language='javascript' type='text/javascript'> " +
                         "alert('Bạn phải nhập số mới hợp lệ!!!');" +
@@ -1132,17 +1138,31 @@ namespace LuckyNumber.Controllers
                 int luotchoi = int.Parse(user.soluotchoi.ToString());
 
                 sumluotchoi = sumluotchoi + trongsoold - trongsonew;
-                if(sumluotchoi<=int.Parse(user.soluotchoi.ToString()))
+                if (trongsonew > trongsoold)
                 {
-                    user.soluotchoi = sumluotchoi;
-                    user.soluotchoi_km = 0;
+                    if (sumluotchoi > 0)
+                    {
+                        if (sumluotchoi <= int.Parse(user.soluotchoi.ToString()))
+                        {
+                            user.soluotchoi = sumluotchoi;
+                            user.soluotchoi_km = 0;
+                        }
+                        else
+                        {
+                            user.soluotchoi_km = sumluotchoi - int.Parse(user.soluotchoi.ToString());
+                        }
+                        db.SaveChanges();
+                        return Redirect("~/User/ThayDoiTrongSo");
+                    }
+                    else return Content("<script language='javascript' type='text/javascript'> " +
+                            "alert('Không thể thay đổi trọng số. Trọng số lớn hơn lượt còn lại');" +
+                            "window.location= '/User/ThayDoiTrongSo';" +
+                            "</script>");
                 }
-                else
-                {
-                    user.soluotchoi_km = sumluotchoi - int.Parse(user.soluotchoi.ToString());
-                }
-                db.SaveChanges();
-                return Redirect("~/User/ThayDoiTrongSo");
+                else return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Trọng số không được nhỏ hơn trọng số cũ');" +
+                        "window.location= '/User/ThayDoiTrongSo';" +
+                        "</script>");
             }
             return View(ct);
         }

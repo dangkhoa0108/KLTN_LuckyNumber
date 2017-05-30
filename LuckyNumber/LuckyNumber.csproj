@@ -2392,6 +2392,7 @@
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\DiemDanh.cshtml" />
     <Content Include="Views\User\DaDiemDanh.cshtml" />
+    <Content Include="Views\User\ShareTrungThuong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

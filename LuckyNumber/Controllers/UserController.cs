@@ -217,6 +217,10 @@ namespace LuckyNumber.Controllers
             db.SaveChanges();
         }
 
+        public ActionResult ShareTrungThuong()
+        {
+            return View();
+        }
         public ActionResult DiemDanh()
         {
             if (int.Parse(Session["diemdanh"].ToString()) == 1)

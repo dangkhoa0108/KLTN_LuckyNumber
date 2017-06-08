@@ -564,20 +564,16 @@ namespace LuckyNumber.Controllers
                     sb.Append(c);
                 }
                 c1 = sb.ToString();
-
-                
-
                 user.mamoi = c1;
-                
-                //user.password = Session["MaMoi"].ToString();
-
-
                 user.phone = null;
                 user.soluotchoi = 0;
                 user.soluotchoi_km = 5;
                 user.xacnhan = true;
                 user.taikhoan = 0;
                 user.fb = 1;
+                user.token = "fb";
+                user.online = 1;
+                user.diemdanh = 0;
                 db.Users.Add(user);
 
                 db.SaveChanges();
@@ -611,8 +607,8 @@ namespace LuckyNumber.Controllers
 
         public ActionResult FacebookCallback(string code)
         {
-            try
-            {
+            //try
+            //{
                 var fb = new FacebookClient();
                 dynamic result = fb.Post("oauth/access_token", new
                 {
@@ -637,9 +633,7 @@ namespace LuckyNumber.Controllers
                     User dbUs = db.Users.SingleOrDefault(x => x.username == user.username);
 
                     user.email = email;
-
                     user.nickname = firstname + " " + midname + " " + lastname;
-
                     var resultInsert = new UserController().InsertForFacebook(user);
                     if (resultInsert > 0)
                     {
@@ -647,12 +641,14 @@ namespace LuckyNumber.Controllers
                         user.soluotchoi = 0;
                         user.phone = null;
                         user.fb = 1;
-
+                        user.token = "fb";
+                        user.diemdanh = 0;
+                        user.soluotchoi_km = 5;
 
                         Session["userName"] = user.username;
                         Session["IDs"] = user.ID;
                         Session["eMail"] = user.email;
-
+                        Session["diemdanh"] = user.diemdanh;
                         Session["soLuotChoi"] = user.soluotchoi.ToString();
                         Session["soLuotChoi_km"] = user.soluotchoi_km.ToString();
                         Session["maMoi"] = user.mamoi;
@@ -661,6 +657,7 @@ namespace LuckyNumber.Controllers
                         string Role = "User";
                         Session["Role"] = Role;
                         Session["maMoi"] = user.mamoi;
+                        Session["token"] = user.token;
                         return Content("<script language='javascript' type='text/javascript'> " +
                             "alert('Đăng nhập bằng Facebook thành công!!!');" +
                             "window.location= '/User/userProfile';" +
@@ -675,18 +672,25 @@ namespace LuckyNumber.Controllers
                         user.taikhoan = dbUs.taikhoan;
                         user.phone = dbUs.phone;
                         user.soluotchoi = dbUs.soluotchoi;
+                        user.soluotchoi_km = dbUs.soluotchoi_km;
                         user.mamoi = dbUs.mamoi;
                         user.nickname = firstname + " " + midname + " " + lastname;
-                        user.fb = 1;
+                        user.fb = 1;                       
+                        user.token = "fb";
+                        user.diemdanh = dbUs.diemdanh;
+                        dbUs.token = "fb";
+                        dbUs.online = 1;
+                        db.SaveChanges();
 
                         Session["userName"] = user.username;
                         Session["IDs"] = user.ID;
                         Session["eMail"] = user.email;
-
+                        Session["diemdanh"] = user.diemdanh;
                         Session["soLuotChoi"] = user.soluotchoi.ToString();
                         Session["soLuotChoi_km"] = user.soluotchoi_km.ToString();
                         Session["maMoi"] = user.mamoi;
                         Session["taiKhoan"] = user.taikhoan.ToString();
+                        Session["token"] = user.token;
                         string Role = "User";
                         Session["Role"] = Role;
                         Redirect("~/User/userProfile");
@@ -697,14 +701,14 @@ namespace LuckyNumber.Controllers
 
                 }
                 return Redirect("~/User/userProfile");
-            }
-            catch(Exception)
-            {
-                return Content("<script language='javascript' type='text/javascript'> " +
-                            "alert('Lỗi lạ');" +
-                            "window.location= '/User/Index';" +
-                            "</script>");
-            }
+            //}
+            //catch(Exception)
+            //{
+            //    return Content("<script language='javascript' type='text/javascript'> " +
+            //                "alert('Lỗi lạ');" +
+            //                "window.location= '/User/Index';" +
+            //                "</script>");
+            //}
         }
 
         private Uri RedirectUri
@@ -729,7 +733,8 @@ namespace LuckyNumber.Controllers
                     User user = db.Users.SingleOrDefault(x => x.ID == userID);
 
                     int online = int.Parse(user.online.ToString());
-                    if (online == 1&& Session["token"].ToString()==user.token.ToString())
+                    int fb = int.Parse(user.fb.ToString());
+                    if (online == 1&& Session["token"].ToString()==user.token.ToString()||fb==1)
                     {
                         string name = Session["userName"].ToString();
                         ViewBag.Name = name;

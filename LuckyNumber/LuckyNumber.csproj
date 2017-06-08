@@ -2401,6 +2401,7 @@
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\DiemDanh.cshtml" />
     <Content Include="Views\User\DaDiemDanh.cshtml" />
+    <Content Include="Views\User\ShareTrungThuong.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
   </ItemGroup>

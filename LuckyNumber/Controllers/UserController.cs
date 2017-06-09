@@ -228,11 +228,11 @@ namespace LuckyNumber.Controllers
             else return RedirectToAction("DaDiemDanh");
         }
 
-        public ActionResult DaDiemDanh(User us)
+        public ActionResult ThaoTacCongLuot(User us)
         {
             int userID = int.Parse(Session["IDs"].ToString());
             var selectlist = db.Users.Where(a => a.ID == userID).ToList();
-            foreach(var i in selectlist)
+            foreach (var i in selectlist)
             {
                 i.diemdanh = 0;
                 int temp_km = int.Parse(Session["soLuotChoi_km"].ToString()) + 5;
@@ -240,10 +240,15 @@ namespace LuckyNumber.Controllers
                 {
                     i.soluotchoi_km = temp_km;
                 }
-                else i.soluotchoi_km = 30 ;
+                else i.soluotchoi_km = 30;
                 db.SaveChanges();
             }
             Session["diemdanh"] = 0;
+            return RedirectToAction("userProfile");
+        }
+        public ActionResult DaDiemDanh(User us)
+        {
+            
             return View();
         }
 

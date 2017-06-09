@@ -274,6 +274,7 @@ namespace LuckyNumber.Controllers
             user.soluotchoi_km = 5;
             user.xacnhan = false;
             user.taikhoan = 0;
+            user.fb = 0;
             user.status = false;
             db.Users.Add(user);
             db.SaveChanges();
@@ -742,7 +743,7 @@ namespace LuckyNumber.Controllers
                     User user = db.Users.SingleOrDefault(x => x.ID == userID);
 
                     int online = int.Parse(user.online.ToString());
-                    int fb = int.Parse(user.fb.ToString());
+                    int? fb = int.Parse(user.fb.ToString());
                     if (online == 1&& Session["token"].ToString()==user.token.ToString()||fb==1)
                     {
                         string name = Session["userName"].ToString();

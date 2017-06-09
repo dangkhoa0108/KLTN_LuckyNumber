@@ -248,7 +248,6 @@ namespace LuckyNumber.Controllers
         }
         public ActionResult DaDiemDanh(User us)
         {
-            
             return View();
         }
 
@@ -274,6 +273,8 @@ namespace LuckyNumber.Controllers
             user.soluotchoi_km = 5;
             user.xacnhan = false;
             user.taikhoan = 0;
+            user.online = 0;
+            user.diemdanh = 0;
             user.fb = 0;
             user.status = false;
             db.Users.Add(user);
@@ -617,8 +618,8 @@ namespace LuckyNumber.Controllers
 
         public ActionResult FacebookCallback(string code)
         {
-            //try
-            //{
+            try
+            {
                 var fb = new FacebookClient();
                 dynamic result = fb.Post("oauth/access_token", new
                 {
@@ -667,7 +668,7 @@ namespace LuckyNumber.Controllers
                         string Role = "User";
                         Session["Role"] = Role;
                         Session["maMoi"] = user.mamoi;
-                        Session["token"] = user.token;
+                        Session["token"] = user.token;                        
                         return Content("<script language='javascript' type='text/javascript'> " +
                             "alert('Đăng nhập bằng Facebook thành công!!!');" +
                             "window.location= '/User/userProfile';" +
@@ -703,23 +704,28 @@ namespace LuckyNumber.Controllers
                         Session["token"] = user.token;
                         string Role = "User";
                         Session["Role"] = Role;
-                        Redirect("~/User/userProfile");
+                        int diemdanh = user.diemdanh.Value;
+                        if (diemdanh == 1)
+                        {
+                            return Redirect("~/User/DiemDanh");
+                        }
+                        else
+                        {
+                            return Redirect("~/User/userProfile");
+                        }
                     }
-
-
-
 
                 }
                 return Redirect("~/User/userProfile");
-            //}
-            //catch(Exception)
-            //{
-            //    return Content("<script language='javascript' type='text/javascript'> " +
-            //                "alert('Lỗi lạ');" +
-            //                "window.location= '/User/Index';" +
-            //                "</script>");
-            //}
         }
+            catch(Exception)
+            {
+                return Content("<script language='javascript' type='text/javascript'> " +
+                            "alert('Lỗi lạ');" +
+                            "window.location= '/User/Index';" +
+                            "</script>");
+    }
+}
 
         private Uri RedirectUri
         {

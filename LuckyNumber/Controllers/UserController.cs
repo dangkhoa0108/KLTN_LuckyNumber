@@ -276,6 +276,8 @@ namespace LuckyNumber.Controllers
             user.online = 0;
             user.diemdanh = 0;
             user.fb = 0;
+            user.diemdanh = 0;
+            user.online = 0;
             user.status = false;
             db.Users.Add(user);
             db.SaveChanges();
@@ -579,7 +581,8 @@ namespace LuckyNumber.Controllers
                 user.phone = null;
                 user.soluotchoi = 0;
                 user.soluotchoi_km = 5;
-                user.xacnhan = true;
+                user.xacnhan = false;
+                user.status = false;
                 user.taikhoan = 0;
                 user.fb = 1;
                 user.token = "fb";
@@ -654,6 +657,8 @@ namespace LuckyNumber.Controllers
                         user.fb = 1;
                         user.token = "fb";
                         user.diemdanh = 0;
+                        user.status = false;
+                        user.xacnhan = false;
                         user.soluotchoi_km = 5;
 
                         Session["userName"] = user.username;
@@ -688,6 +693,8 @@ namespace LuckyNumber.Controllers
                         user.nickname = firstname + " " + midname + " " + lastname;
                         user.fb = 1;                       
                         user.token = "fb";
+                        user.status = false;
+                        user.xacnhan = false;
                         user.diemdanh = dbUs.diemdanh;
                         dbUs.token = "fb";
                         dbUs.online = 1;
@@ -752,6 +759,7 @@ namespace LuckyNumber.Controllers
                     int? fb = int.Parse(user.fb.ToString());
                     if (online == 1&& Session["token"].ToString()==user.token.ToString()||fb==1)
                     {
+
                         string name = Session["userName"].ToString();
                         ViewBag.Name = name;
                         string mail = Session["eMail"].ToString();

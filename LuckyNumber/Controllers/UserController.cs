@@ -201,6 +201,7 @@ namespace LuckyNumber.Controllers
 
                     User user = db.Users.SingleOrDefault(x => x.ID == o.UserID);
                     user.taikhoan += tienThuong*o.TrongSo;
+                    user.checktt = 1;
                   
 
                     db.ChiTietTrungThuongs.Add(chiTietTrungThuong);
@@ -279,6 +280,7 @@ namespace LuckyNumber.Controllers
             user.diemdanh = 0;
             user.online = 0;
             user.status = false;
+            user.checktt = 0;
             db.Users.Add(user);
             db.SaveChanges();
             return Redirect("~/User");
@@ -320,7 +322,12 @@ namespace LuckyNumber.Controllers
                     int online = int.Parse(user2.online.ToString());
                     if (online == 0)
                     {
-
+                        Session["checktt"] = user2.checktt;
+                        if(int.Parse(Session["checktt"].ToString())==1)
+                        {
+                            user2.checktt = 0;
+                            db.SaveChanges();
+                        }
                         string Role = "User";
                         Session["Role"] = Role;
                         Session["userName"] = user2.nickname;
@@ -587,6 +594,7 @@ namespace LuckyNumber.Controllers
                 user.fb = 1;
                 user.token = "fb";
                 user.online = 1;
+                user.checktt = 0;
                 user.diemdanh = 0;
                 db.Users.Add(user);
 
@@ -659,8 +667,7 @@ namespace LuckyNumber.Controllers
                         user.diemdanh = 0;
                         user.status = false;
                         user.xacnhan = false;
-                        user.soluotchoi_km = 5;
-
+                        user.soluotchoi_km = 5;                      
                         Session["userName"] = user.username;
                         Session["IDs"] = user.ID;
                         Session["eMail"] = user.email;
@@ -673,7 +680,8 @@ namespace LuckyNumber.Controllers
                         string Role = "User";
                         Session["Role"] = Role;
                         Session["maMoi"] = user.mamoi;
-                        Session["token"] = user.token;                        
+                        Session["token"] = user.token;
+                        Session["checktt"] = 0;
                         return Content("<script language='javascript' type='text/javascript'> " +
                             "alert('Đăng nhập bằng Facebook thành công!!!');" +
                             "window.location= '/User/userProfile';" +
@@ -696,6 +704,7 @@ namespace LuckyNumber.Controllers
                         user.status = false;
                         user.xacnhan = false;
                         user.diemdanh = dbUs.diemdanh;
+                        user.checktt = dbUs.checktt;
                         dbUs.token = "fb";
                         dbUs.online = 1;
                         db.SaveChanges();
@@ -709,6 +718,7 @@ namespace LuckyNumber.Controllers
                         Session["maMoi"] = user.mamoi;
                         Session["taiKhoan"] = user.taikhoan.ToString();
                         Session["token"] = user.token;
+                        Session["checktt"] = user.checktt;
                         string Role = "User";
                         Session["Role"] = Role;
                         int diemdanh = user.diemdanh.Value;
@@ -759,35 +769,40 @@ namespace LuckyNumber.Controllers
                     int? fb = int.Parse(user.fb.ToString());
                     if (online == 1&& Session["token"].ToString()==user.token.ToString()||fb==1)
                     {
-
-                        string name = Session["userName"].ToString();
-                        ViewBag.Name = name;
-                        string mail = Session["eMail"].ToString();
-                        ViewBag.Mail = mail;
-                        string id = Session["IDs"].ToString();
-                        ViewBag.Id = id;
-                        string luotchoi = user.soluotchoi.ToString();
-                        ViewBag.LuotChoi = luotchoi;
-                        string luotchoi_km = user.soluotchoi_km.ToString();
-                        ViewBag.LuotChoi_km = luotchoi_km;
-                        string mamoi = Session["maMoi"].ToString();
-                        ViewBag.MaMoi = mamoi;
-                        string sodu = user.taikhoan.ToString();
-                        ViewBag.SoDu = sodu;
-
-                        if (user.phone == null)
+                        if (int.Parse(Session["checktt"].ToString()) == 1)
                         {
-                            string phone = "Bạn vui lòng xác nhận số điện thoại";
-                            //string phone = Session["pHone"].ToString();
-                            ViewBag.phone = phone;
+                            Session["checktt"] = 0;
+                            return RedirectToAction("ShareTrungThuong");
                         }
-                        else
-                        {
-                            string phone = user.phone.ToString();
-                            ViewBag.phone = phone;
-                        }
+                        else {
+                            string name = Session["userName"].ToString();
+                            ViewBag.Name = name;
+                            string mail = Session["eMail"].ToString();
+                            ViewBag.Mail = mail;
+                            string id = Session["IDs"].ToString();
+                            ViewBag.Id = id;
+                            string luotchoi = user.soluotchoi.ToString();
+                            ViewBag.LuotChoi = luotchoi;
+                            string luotchoi_km = user.soluotchoi_km.ToString();
+                            ViewBag.LuotChoi_km = luotchoi_km;
+                            string mamoi = Session["maMoi"].ToString();
+                            ViewBag.MaMoi = mamoi;
+                            string sodu = user.taikhoan.ToString();
+                            ViewBag.SoDu = sodu;
 
-                        return View();
+                            if (user.phone == null)
+                            {
+                                string phone = "Bạn vui lòng xác nhận số điện thoại";
+                                //string phone = Session["pHone"].ToString();
+                                ViewBag.phone = phone;
+                            }
+                            else
+                            {
+                                string phone = user.phone.ToString();
+                                ViewBag.phone = phone;
+                            }
+                            return View();
+                        }
                     }
                     else
                     {

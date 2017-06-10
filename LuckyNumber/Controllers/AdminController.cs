@@ -255,6 +255,7 @@ namespace LuckyNumber.Controllers
                             chiTietTrungThuong.TienThuong = tienThuong*o.TrongSo;
                             User user = db.Users.SingleOrDefault(x => x.ID == o.UserID);
                             user.taikhoan += tienThuong*o.TrongSo;
+                            user.checktt = 1;
 
 
                             db.ChiTietTrungThuongs.Add(chiTietTrungThuong);

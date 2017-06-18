@@ -70,8 +70,8 @@
                        1 ) Font Import From Google Fonts
                       -----------------------------------*/
 
-@import url(http://fonts.googleapis.com/css?family=Hind:300,500);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,400italic);
+@import url(//fonts.googleapis.com/css?family=Hind:300,500);
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400,400italic);
 
                     /*----------------------
                        2 ) Preloader Styles

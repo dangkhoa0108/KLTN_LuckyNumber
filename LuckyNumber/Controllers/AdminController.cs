@@ -23,7 +23,7 @@ namespace LuckyNumber.Controllers
         public ActionResult Logout()
         {
             Session.Clear();
-            return Redirect("~/Admin/Login");
+            return Redirect("~/User/Index");
         }
 
         [HttpPost]

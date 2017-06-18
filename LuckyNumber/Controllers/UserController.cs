@@ -31,7 +31,7 @@ namespace LuckyNumber.Controllers
                 //string timeNow = DateTime.Now.ToString("t", new System.Globalization.CultureInfo("en-US"));
 
                 string timeEnd = DateTime.Parse("11:58 PM").ToString("t");
-                string timeStart = DateTime.Parse("1:00 AM").ToString("t");
+                string timeStart = DateTime.Parse("12:05 AM").ToString("t");
                 
 
 
@@ -120,7 +120,7 @@ namespace LuckyNumber.Controllers
                 if (cuocchoi != null)
                 {
 
-                    if (cuocchoi.TrangThai == true && ((DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(timeEnd)) > 0) || (DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(timeStart)) < 0)))
+                    if (cuocchoi.TrangThai == true && ((DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(timeEnd)) > 0) && (DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(timeStart)) < 0)))
                         ketthucphien();
                     return View(model);
 

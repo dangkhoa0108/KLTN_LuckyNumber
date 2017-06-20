@@ -13,7 +13,7 @@ namespace LuckyNumber.SMSAPI
         public const int TYPE_CSKH = 2;
         public const int TYPE_BRANDNAME = 3;
         const String rootURL = "http://api.speedsms.vn/index.php";
-        private String accessToken = "Aw8ztwwu-p0zIJZ6P_bFas42r1uROf4E";
+        private String accessToken = "nPF0bn6Kvg83JUiAU3LZIr_Jovof7hpE";
 
         public SpeedSMSAPI()
         {

@@ -148,7 +148,7 @@
             </ul>
         </nav>
 
-        <div id="page-wrapper">
+        <div id="page-wrapper" style="min-height:inherit !important">
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">Lucky Number</h1>
@@ -170,9 +170,6 @@
                                         <th>ID</th>
                                         <th>Ngày Chơi</th>
                                         <!-- <th>Nội Dung</th> -->
-
-
-                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -181,23 +178,18 @@
                                         <tr class="odd gradeX">
                                             <td>@item.MaCuocChoi</td>
                                             @{
-                                        string ngayDoan = @item.NgayDoanSo.ToString();
-                                        string temp = ngayDoan.Substring(0, 10);
-                                        ngayDoan = ngayDoan.Substring(0, 10);
-                                        <td>@temp</td>
-}
-
-
-                                            
-
-
+                                                string ngayDoan = @item.NgayDoanSo.ToString();
+                                                string temp = ngayDoan.Substring(0, 10);
+                                                ngayDoan = ngayDoan.Substring(0, 10);
+                                                <td>@temp</td>
+                                            }
 
                                             <!-- <td><a href="editnews.jsp"><i class="fa fa-edit fa-fw"></i>Edit</a></td> -->
                                             <!-- <td class="center">4</td>
-                                            <td class="center">X</td> -->
+                <td class="center">X</td> -->
                                         </tr>
 
-                                    }
+                                                }
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->
@@ -222,76 +214,80 @@
                     <div class="col-lg-4">
                         <h1 class="page-header">Quản Lý Phiên Chơi</h1>
                     </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="col-lg-4"></div>
-                    <div class="col-lg-4">
-                        <div class="panel panel-success">
-                            <div class="panel-heading">
-                                Form Quản Lý Phiên Chơi
-                            </div>
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-lg-8">
-                                        <form action="~/Admin/ThemPhienChoi" method="post" role="form">
-                                            <div class="form-group">
-                                                <label>Nhập vào ngày chơi cần thêm</label>
-                                                <input name="NgayDoanSo" type="date" class="form-control" placeholder="Nhập ngày phiên chơi mới (dd/mm/yyyy)">
-
-
-                                            </div>
-
-
-                                            <button type="submit" class="btn btn-default">Hoàn thành</button>
-
-                                        </form>
-                                    </div>
-                                    <!-- /.col-lg-6 (nested) -->
-                                    <!-- /.col-lg-6 (nested) -->
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4">
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    Form Quản Lý Phiên Chơi
                                 </div>
-                                <!-- /.row (nested) -->
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <form action="~/Admin/ThemPhienChoi" method="post" role="form" name="frm">
+                                                <div class="form-group">
+                                                    <label>Nhập vào ngày chơi cần thêm</label>
+                                                    <input name="NgayDoanSo" type="date" class="form-control" placeholder="Nhập ngày phiên chơi mới (dd/mm/yyyy)">
+                                                </div>
+                                                <button onclick="return IsEmpty();" type="submit" class="btn btn-default">Hoàn thành</button>
+                                            </form>
+                                        </div>
+                                        <!-- /.col-lg-6 (nested) -->
+                                        <!-- /.col-lg-6 (nested) -->
+                                    </div>
+                                    <!-- /.row (nested) -->
+                                </div>
+                                <!-- /.panel-body -->
                             </div>
-                            <!-- /.panel-body -->
-                        </div>
-                        <!-- /.panel -->
+                            <!-- /.panel -->
                         </div>
                     </div>
-                <!-- /.col-lg-12 -->
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
             </div>
-            <!-- /.row -->
+
         </div>
 
-    </div>
+        <!-- /#wrapper -->
+        <!-- jQuery -->
+        <script src="~/Content/vendor/jquery/jquery.min.js"></script>
 
-    <!-- /#wrapper -->
-    <!-- jQuery -->
-    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="~/Content/vendor/metisMenu/metisMenu.min.js"></script>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="~/Content/vendor/metisMenu/metisMenu.min.js"></script>
+        <!-- DataTables JavaScript -->
+        <script src="~/Content/vendor/datatables/js/jquery.dataTables.min.js"></script>
+        <script src="~/Content/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+        <script src="~/Content/vendor/datatables-responsive/dataTables.responsive.js"></script>
 
-    <!-- DataTables JavaScript -->
-    <script src="~/Content/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="~/Content/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-    <script src="~/Content/vendor/datatables-responsive/dataTables.responsive.js"></script>
+        <!-- Custom Theme JavaScript -->
+        <script src="~/Content/dist/js/sb-admin-2.js"></script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="~/Content/dist/js/sb-admin-2.js"></script>
-
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
+        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+        <script>
             $(document).ready(function () {
                 $('#dataTables-example').DataTable({
                     responsive: true
                 });
             });
-    </script>
+        </script>
+        <script type="text/javascript">
+            function IsEmpty() {
+                if (document.forms['frm'].NgayDoanSo.value === "") {
+                    alert("Ngày chơi trống, vui lòng nhập lại");
+                    return false;
+                }
+                return true;
+            }
+        </script>
 
 </body>
 

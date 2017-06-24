@@ -64,8 +64,6 @@ namespace LuckyNumber.Controllers
             return View();
         }
 
-        
-
         public ActionResult QuanLyPhienChoi()
         {
             if (Session["userName"] != null && Session["Role"].ToString() == "Admin" )
@@ -82,7 +80,6 @@ namespace LuckyNumber.Controllers
         {
             db.CuocChois.Add(cuocchoi);
             cuocchoi.TrangThai = true;
-
             db.SaveChanges();
             int ma = cuocchoi.MaCuocChoi;
             DanhSachTrungThuong danhsach = new DanhSachTrungThuong();
@@ -92,6 +89,12 @@ namespace LuckyNumber.Controllers
             danhsach.TongTienThuong = 5000000;
             db.SaveChanges();
 
+            var selectlist = db.Users.ToList();
+            foreach (var i in selectlist)
+            {
+                i.diemdanh = 1;
+                db.SaveChanges();
+            }
             return Redirect("~/Admin/QuanLyPhienChoi");
         }
 
@@ -264,18 +267,10 @@ namespace LuckyNumber.Controllers
                 }
 
                 cuocchoi.TrangThai = false;
-
-                //var list = from u in db.Users
-                //           select u;
-                //foreach (var i in list)
-                //{
-                //    i.soluotchoi = 5;
-                //}
-
                 var selectlist = db.Users.ToList();
                 foreach(var i in selectlist)
                 {
-                    i.diemdanh = 1;
+                    i.diemdanh = 0;
                     db.SaveChanges();
                 }
 

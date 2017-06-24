@@ -33,7 +33,7 @@ namespace LuckyNumber.Controllers
 
             {
                 string timeEnd = DateTime.Parse("11:58 PM").ToString("t");
-                string timeStart = DateTime.Parse("12:05 AM").ToString("t");
+                string timeStart = DateTime.Parse("12:00 AM").ToString("t");
 
 
 
@@ -211,14 +211,13 @@ namespace LuckyNumber.Controllers
                     db.ChiTietTrungThuongs.Add(chiTietTrungThuong);
                 }
             }
-            cuocchoi.TrangThai = false;
             var selectlist = db.Users.ToList();
             foreach (var i in selectlist)
             {
-                i.diemdanh = 1;
+                i.diemdanh = 0;
                 db.SaveChanges();
             }
-
+            cuocchoi.TrangThai = false;
             db.SaveChanges();
         }
 

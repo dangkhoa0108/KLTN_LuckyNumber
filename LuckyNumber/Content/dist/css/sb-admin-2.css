@@ -13,6 +13,7 @@ body {
   padding: 0 15px;
   min-height: 568px;
   background-color: white;
+  min-height:inherit !important;
 }
 @media (min-width: 768px) {
   #page-wrapper {

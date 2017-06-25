@@ -221,6 +221,18 @@ namespace LuckyNumber.Controllers
             db.SaveChanges();
         }
 
+        public ActionResult AfterShare(User us)
+        {
+            int userID = int.Parse(Session["IDs"].ToString());
+            var selectlist = db.Users.Where(a => a.ID == userID).ToList();
+            foreach(var i in selectlist)
+            {
+                i.checktt = 0;
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("userProfile");
+        }
         public ActionResult ShareTrungThuong()
         {
             return View();
@@ -326,11 +338,11 @@ namespace LuckyNumber.Controllers
                     if (online == 0)
                     {
                         Session["checktt"] = user2.checktt;
-                        if(int.Parse(Session["checktt"].ToString())==1)
-                        {
-                            user2.checktt = 0;
-                            db.SaveChanges();
-                        }
+                        //if(int.Parse(Session["checktt"].ToString())==1)
+                        //{
+                        //    user2.checktt = 0;
+                        //    db.SaveChanges();
+                        //}
                         string Role = "User";
                         Session["Role"] = Role;
                         Session["userName"] = user2.nickname;
@@ -627,8 +639,6 @@ namespace LuckyNumber.Controllers
             });
             return Redirect(loginUrl.AbsoluteUri);
         }
-
-
 
         public ActionResult FacebookCallback(string code)
         {

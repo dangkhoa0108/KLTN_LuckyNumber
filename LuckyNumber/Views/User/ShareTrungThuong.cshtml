@@ -12,6 +12,16 @@
     <meta name="description" content="bootstrap admin template">
     <meta name="author" content="">
 
+
+    <meta property="fb:app_id" content="1159603104149803" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://luckynumber.me/user/index" />
+    <meta property="og:title" content="Lucky Number - Con số may mắn" />
+    <meta property="og:image" content="https://luckynumber.me/images/home_dp_test.jpg" />
+    <meta property="og:description" content="Wow, mới chơi mà đã trúng rồi, tham gia ngay với mình để cùng rinh quà nào các bạn...">
+
+
+
     <title>Chia Sẻ Trúng Thưởng</title>
 
     <link rel="apple-touch-icon" href="~/assets1/images/apple-touch-icon.png">
@@ -85,12 +95,22 @@
             </div>
 
             <div class="panel-body">
-                <button class="btn btn-danger btn-animate btn-animate-side" data-target="#quaylai" data-toggle="modal" type="button">
-                    <span><i class="icon wb-arrow-left" aria-hidden="true"></i>Quay Lại</span>
-                </button>
-                <button class="btn btn-primary btn-animate btn-animate-side" type="button">
-                    <span><i class="icon wb-share" aria-hidden="true"></i>Chia Sẻ</span>
-                </button>
+                <a href="@Url.Action("AfterShare", "User")">
+                    <button class="btn btn-danger btn-animate btn-animate-side" data-target="" data-toggle="modal" type="button">
+                        <span><i class="icon wb-arrow-left" aria-hidden="true"></i>Quay Lại</span>
+                    </button>
+                </a>
+                @*<button class="btn btn-primary btn-animate btn-animate-side" type="button">
+                    <span><i class="icon wb-share"  id="shareBtn" aria-hidden="true"></i>Chia Sẻ</span>
+                </button>*@
+
+                <div class="fb-share-button btn btn-primary btn-animate btn-animate-side sh-fb "
+                     data-href="https://luckynumber.me/user/index"
+                     data-layout="button"
+                     data-mobile-iframe="true"
+                     title="Send To Facebook !">
+
+                </div>
             </div>
 
             <footer class="page-copyright">
@@ -113,7 +133,7 @@
 
 
     <!-- Modal -->
-    <div class="modal fade modal-danger modal-3d-slit" id="quaylai" aria-hidden="true" aria-labelledby="exampleModalSuccess"
+    @*<div class="modal fade modal-danger modal-3d-slit" id="quaylai" aria-hidden="true" aria-labelledby="exampleModalSuccess"
          role="dialog" tabindex="-1">
         <div class="modal-dialog modal-center">
             <div class="modal-content">
@@ -128,7 +148,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
+
+
     <!-- End Modal -->
     <!-- End Page -->
     <script src="~/assets1/vendor/jquery/jquery.js"></script>
@@ -172,6 +194,19 @@
                 Site.run();
             });
         })(document, window, jQuery);
+    </script>
+
+    <script>
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=1159603104149803";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+
     </script>
 </body>
 </html>

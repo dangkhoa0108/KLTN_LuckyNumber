@@ -1996,7 +1996,7 @@ fieldset[disabled] .btn-raised {
           transform: translate(0px, 0px);
 }
 .btn-animate-side {
-  padding: 8px 28px;
+  /*padding: 8px 28px;*/
 }
 .btn-animate-side span {
   -webkit-transition: -webkit-transform .2s ease-out 0s;

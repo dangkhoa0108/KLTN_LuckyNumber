@@ -2476,6 +2476,16 @@ fieldset[disabled] .btn-default:hover {
     background-color: #62a8ea;
     border-color: #62a8ea
 }
+
+.fb-share-button.btn.btn-primary.btn-animate.btn-animate-side.sh-fb.fb_iframe_widget {
+    color: #fff;
+    background-color: #4267b2;
+    border-color: #4267b2;
+}
+.fb-share-button.btn.btn-primary.btn-animate.btn-animate-side.sh-fb.fb_iframe_widget:hover {
+        background: #365899;
+        border: 1px solid #365899;
+}
 .btn-primary.focus,
 .btn-primary:focus {
     color: #fff;

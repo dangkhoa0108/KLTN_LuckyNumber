@@ -223,6 +223,12 @@ namespace LuckyNumber.Controllers
             }
             catch(Exception)
             {
+                var selectlist = db.Users.ToList();
+                foreach (var i in selectlist)
+                {
+                    i.diemdanh = 0;
+                    db.SaveChanges();
+                }
                 cuocchoi.TrangThai = false;
                 db.SaveChanges();
             }

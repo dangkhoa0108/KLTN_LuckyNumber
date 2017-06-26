@@ -1081,85 +1081,91 @@ namespace LuckyNumber.Controllers
 
                 string duDoan = Request.Form["SoDuDoan"].ToString();
                 string trongSo = Request.Form["TrongSo"].ToString();
-                int temp_trongso = int.Parse(trongSo);
-                if (temp_trongso <= sumluotchoi)
+                if (isNumber(trongSo) == true)
                 {
-                    if (isNumber(duDoan) == false)
+                    int temp_trongso = int.Parse(trongSo);
+                    if (temp_trongso <= sumluotchoi)
                     {
-                        return Content("<script language='javascript' type='text/javascript'> " +
-                            "alert('Số dự đoán không hợp lệ');" +
-                            "window.location= '/DoanSo/DoanSoPage';" +
-                            "</script>");
-
-                    }
-                    if (isNumber(trongSo) == false)
-                    {
-                        return Content("<script language='javascript' type='text/javascript'> " +
-                            "alert('Trọng số không hợp lệ');" +
-                            "window.location= '/DoanSo/DoanSoPage';" +
-                            "</script>");
-
-                    }
-
-                    int soDuDoan = int.Parse(duDoan);
-                    int soTrongSo = int.Parse(trongSo);
-                    if (soDuDoan < 0 || soDuDoan > 999)
-                    {
-
-                        return Content("<script language='javascript' type='text/javascript'> " +
-                            "alert('Số dự đoán phải nằm trong khoảng từ 0 đến 999');" +
-                            "window.location= '/DoanSo/DoanSoPage';" +
-                            "</script>");
-
-                    }
-                    if (soTrongSo <= 0)
-                    {
-                        return Content("<script language='javascript' type='text/javascript'> " +
-                            "alert('Trọng số phải nằm trong khoảng từ 0 đến 99');" +
-                            "window.location= '/DoanSo/DoanSoPage';" +
-                            "</script>");
-                    }
-                    else
-                    {
-                        ChiTietCuocChoi chitiet2 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == soDuDoan && x.MaCuocChoi == machoi && x.UserID == userID && x.TrongSo == soTrongSo);
-                        if (chitiet2 != null)
+                        if (isNumber(duDoan) == false)
                         {
-                            return Redirect("~/DoanSo/Error4");
+                            return Content("<script language='javascript' type='text/javascript'> " +
+                                "alert('Số dự đoán không hợp lệ');" +
+                                "window.location= '/DoanSo/DoanSoPage';" +
+                                "</script>");
+
+                        }
+                        if (isNumber(trongSo) == false)
+                        {
+                            return Content("<script language='javascript' type='text/javascript'> " +
+                                "alert('Trọng số không hợp lệ');" +
+                                "window.location= '/DoanSo/DoanSoPage';" +
+                                "</script>");
+
                         }
 
+                        int soDuDoan = int.Parse(duDoan);
+                        int soTrongSo = int.Parse(trongSo);
+                        if (soDuDoan < 0 || soDuDoan > 999)
+                        {
+
+                            return Content("<script language='javascript' type='text/javascript'> " +
+                                "alert('Số dự đoán phải nằm trong khoảng từ 0 đến 999');" +
+                                "window.location= '/DoanSo/DoanSoPage';" +
+                                "</script>");
+
+                        }
+                        if (soTrongSo <= 0)
+                        {
+                            return Content("<script language='javascript' type='text/javascript'> " +
+                                "alert('Trọng số phải nằm trong khoảng từ 0 đến 99');" +
+                                "window.location= '/DoanSo/DoanSoPage';" +
+                                "</script>");
+                        }
                         else
                         {
-                            Session["soDuDoan"] = soDuDoan;
-                            Session["soTrongSo"] = soTrongSo;
-                            chitietcuocchoi.UserID = int.Parse(Session["IDs"].ToString());
-                            chitietcuocchoi.MaCuocChoi = machoi;
-                            db.ChiTietCuocChois.Add(chitietcuocchoi);
-
-                            int tongluot = sumluotchoi - soTrongSo;
-                            if (tongluot <= int.Parse(user.soluotchoi.ToString()))
+                            ChiTietCuocChoi chitiet2 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == soDuDoan && x.MaCuocChoi == machoi && x.UserID == userID && x.TrongSo == soTrongSo);
+                            if (chitiet2 != null)
                             {
-                                user.soluotchoi = tongluot;
-                                user.soluotchoi_km = 0;
+                                return Redirect("~/DoanSo/Error4");
                             }
+
                             else
                             {
-                                user.soluotchoi_km = tongluot;
+                                Session["soDuDoan"] = soDuDoan;
+                                Session["soTrongSo"] = soTrongSo;
+                                chitietcuocchoi.UserID = int.Parse(Session["IDs"].ToString());
+                                chitietcuocchoi.MaCuocChoi = machoi;
+                                db.ChiTietCuocChois.Add(chitietcuocchoi);
+
+                                int tongluot = sumluotchoi - soTrongSo;
+                                if (tongluot <= int.Parse(user.soluotchoi.ToString()))
+                                {
+                                    user.soluotchoi = tongluot;
+                                    user.soluotchoi_km = 0;
+                                }
+                                else
+                                {
+                                    user.soluotchoi_km = tongluot;
+                                }
+                                Session["soLuotChoi"] = user.soluotchoi;
+                                Session["soLuotChoi_km"] = user.soluotchoi_km;
+                                db.SaveChanges();
+
+
+
+                                return Redirect("~/DoanSo/ThongBaoPage");
+
                             }
-                            Session["soLuotChoi"] = user.soluotchoi;
-                            Session["soLuotChoi_km"] = user.soluotchoi_km;
-                            db.SaveChanges();
-
-
-
-                            return Redirect("~/DoanSo/ThongBaoPage");
-
                         }
                     }
-                }
-                else return Content("<script language='javascript' type='text/javascript'> " +
-                           "alert('Trọng số lớn hơn lượt chơi còn lại');" +
-                           "window.location= '/DoanSo/DoanSoPage';" +
-                           "</script>");
+                    else return Content("<script language='javascript' type='text/javascript'> " +
+                               "alert('Trọng số lớn hơn lượt chơi còn lại');" +
+                               "window.location= '/DoanSo/DoanSoPage';" +
+                               "</script>");
+                } else return Content("<script language='javascript' type='text/javascript'> " +
+                               "alert('Trọng số không hợp lệ');" +
+                               "window.location= '/DoanSo/DoanSoPage';" +
+                               "</script>");
             }
             else return Redirect("~User/Login");
             

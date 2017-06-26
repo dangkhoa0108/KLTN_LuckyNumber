@@ -319,21 +319,21 @@
                         </a>
                         <div class="font-size-20 white">Nhập Số Bạn Muốn Đoán Và Trọng Số </div>
                     </div>
-                    <form action="~/DoanSo/DoanSo" id="sky-form" class="sky-form" method="post">
+                    <form action="~/DoanSo/DoanSo" id="sky-form" class="sky-form" method="post" onsubmit="return validateForm()">
                         <div class="widget-footer bg-white padding-horizontal-30 padding-vertical-20 text-center container-fluid">
                             <div class="form-group form-material floating has-success">
                                 <div class="form-group form-material floating has-success">
                                     <div class="col-md-2">
                                         <div class="font-size-15 black">Số Dự Đoán</div>
                                     </div>
-                                    <input type="text" class="form-control" name="SoDuDoan">
+                                    <input type="text" class="form-control" name="SoDuDoan" id="SoDuDoan">
                                 </div>
                                 <div class="form-group form-material floating has-success">
                                     <div class="col-md-2">
                                         <div class="font-size-15 black">Trọng Số</div>
                                     </div>
 
-                                    <input type="text" class="form-control" name="TrongSo">
+                                    <input type="text" class="form-control" name="TrongSo" id="TrongSo">
                                 </div>
                                 </div>
                             <button type="submit" class="btn btn-animate btn-animate-vertical btn-success">
@@ -386,6 +386,28 @@
         <script src="~/assets1/js/components/jvectormap.js"></script>
         <!-- <script src="js/agency.js"></script>
         <script type="text/javascript" src="js/script.js"></script> -->
+
+
+        <script language="javascript">
+            function validateForm() {
+                var number = document.getElementById('SoDuDoan').value;
+                var trongso = document.getElementById('TrongSo').value;
+
+                // Bước 2: Kiểm tra dữ liệu hợp lệ hay không
+                if (number == '') {
+                    alert('Bạn chưa nhập số dự đoán');
+                }
+                else if (trongso == '') {
+                    alert('Bạn chưa nhập trọng số');
+                }
+                else {
+                    return true;
+                }
+
+                return false;
+            }
+        </script>
+
 
 
         <script>

@@ -170,55 +170,62 @@ namespace LuckyNumber.Controllers
             int maDS = int.Parse(danhsach.MaDSTrungThuong.ToString());
 
             // ----------- End --------------
-
-            var tongSoLan = from u in db.ChiTietCuocChois
-                            where u.MaCuocChoi == maChoi
-                            group u by u.SoDuDoan into Counted 
-                            select new
-                            {
-                                soDuDoan = Counted.Key,
-                                soLan = Counted.Count(),
-                                soTrongSo=Counted.Sum(u=>u.TrongSo) ?? 0
-                                
-                            };
-            int? soLanItNhat = tongSoLan.Min(x => x.soLan);
-            var tongSoLanItNhat = from t in tongSoLan
-                                  where t.soLan == soLanItNhat
-                                  select t;
-            int tongSoItNhat = tongSoLanItNhat.Count();
-            int? tongTrongSo = tongSoLanItNhat.Sum(x => x.soTrongSo);
-            float? tienThuong = float.Parse(danhsach.TongTienThuong.ToString()) / tongTrongSo; // số tiền
-
-            foreach (var i in tongSoLanItNhat)
+            try
             {
-                var danhSachTrung = from y in db.ChiTietCuocChois
-                                    where y.SoDuDoan == i.soDuDoan && y.MaCuocChoi == maChoi && y.TrongSo==i.soTrongSo
-                                    select y;
-                foreach (var o in danhSachTrung)
+                var tongSoLan = from u in db.ChiTietCuocChois
+                                where u.MaCuocChoi == maChoi
+                                group u by u.SoDuDoan into Counted
+                                select new
+                                {
+                                    soDuDoan = Counted.Key,
+                                    soLan = Counted.Count(),
+                                    soTrongSo = Counted.Sum(u => u.TrongSo) ?? 0
+
+                                };
+                int? soLanItNhat = tongSoLan.Min(x => x.soLan);
+                var tongSoLanItNhat = from t in tongSoLan
+                                      where t.soLan == soLanItNhat
+                                      select t;
+                int tongSoItNhat = tongSoLanItNhat.Count();
+                int? tongTrongSo = tongSoLanItNhat.Sum(x => x.soTrongSo);
+                float? tienThuong = float.Parse(danhsach.TongTienThuong.ToString()) / tongTrongSo; // số tiền
+
+                foreach (var i in tongSoLanItNhat)
                 {
-                    
-                    ChiTietTrungThuong chiTietTrungThuong = new ChiTietTrungThuong();
-                    chiTietTrungThuong.UserID = o.UserID;
-                    chiTietTrungThuong.MaDSTrungThuong = maDS;
-                    chiTietTrungThuong.SoDuDoan = o.SoDuDoan;
-                    chiTietTrungThuong.TienThuong = tienThuong*o.TrongSo;
+                    var danhSachTrung = from y in db.ChiTietCuocChois
+                                        where y.SoDuDoan == i.soDuDoan && y.MaCuocChoi == maChoi && y.TrongSo == i.soTrongSo
+                                        select y;
+                    foreach (var o in danhSachTrung)
+                    {
 
-                    User user = db.Users.SingleOrDefault(x => x.ID == o.UserID);
-                    user.taikhoan += tienThuong*o.TrongSo;
-                    user.checktt = 1;
-                  
+                        ChiTietTrungThuong chiTietTrungThuong = new ChiTietTrungThuong();
+                        chiTietTrungThuong.UserID = o.UserID;
+                        chiTietTrungThuong.MaDSTrungThuong = maDS;
+                        chiTietTrungThuong.SoDuDoan = o.SoDuDoan;
+                        chiTietTrungThuong.TienThuong = tienThuong * o.TrongSo;
 
-                    db.ChiTietTrungThuongs.Add(chiTietTrungThuong);
+                        User user = db.Users.SingleOrDefault(x => x.ID == o.UserID);
+                        user.taikhoan += tienThuong * o.TrongSo;
+                        user.checktt = 1;
+
+
+                        db.ChiTietTrungThuongs.Add(chiTietTrungThuong);
+                    }
                 }
-            }
-            var selectlist = db.Users.ToList();
-            foreach (var i in selectlist)
-            {
-                i.diemdanh = 0;
+                var selectlist = db.Users.ToList();
+                foreach (var i in selectlist)
+                {
+                    i.diemdanh = 0;
+                    db.SaveChanges();
+                }
+                cuocchoi.TrangThai = false;
                 db.SaveChanges();
             }
-            cuocchoi.TrangThai = false;
-            db.SaveChanges();
+            catch(Exception)
+            {
+                cuocchoi.TrangThai = false;
+                db.SaveChanges();
+            }
         }
 
         public ActionResult AfterShare(User us)

@@ -1440,6 +1440,33 @@ namespace LuckyNumber.Controllers
             else return RedirectToAction("Login");
         }
 
+        public ActionResult NhapGioiThieu()
+        {
+            int userID = int.Parse(Session["IDs"].ToString());
+            User user = db.Users.SingleOrDefault(x => x.ID == userID);
+            string MaGT = Request.Form["MaGioiThieu"].ToString();
+            var select = db.Users.ToList();
+            foreach(var i in select)
+            {
+                if (i.mamoi==MaGT)
+                {
+                    User us2 = db.Users.SingleOrDefault(x => x.mamoi == MaGT);                                 
+                    int temp_km = int.Parse(us2.soluotchoi_km.ToString()) + 5;
+                    if (temp_km < 30)
+                    {
+                        us2.soluotchoi_km = temp_km;
+                    }
+                    else us2.soluotchoi_km = 30;
+
+                    user.magioithieu = MaGT;
+                    user.soluotchoi_km += 5;
+                    user.status = true;
+                    db.SaveChanges();
+                }
+            }
+            return RedirectToAction("userProfile");
+        }
+
         public ActionResult DoiMatKhau()
         {
             if (Session["userName"] != null && Session["Role"].ToString() == "User") 
@@ -1456,17 +1483,20 @@ namespace LuckyNumber.Controllers
                 int userID = int.Parse(Session["IDs"].ToString());
                 User user = db.Users.SingleOrDefault(x => x.ID == userID);
 
-                string pass1 = Request.Form["pass1"].ToString();
-                string pass2 = Request.Form["pass2"].ToString();
-                string pass3 = Request.Form["pass3"].ToString();
+                string PassOld = Request.Form["txtPassOld"].ToString();
+                string Pass = Request.Form["txtPass"].ToString();
+                string RePass = Request.Form["txtRePass"].ToString();
+                if (PassOld == user.password && Pass == RePass)
+                {
+                    user.password = Pass;
+                    db.SaveChanges();
+                    return Redirect("~/User/userProfile");
+                }
 
-                if (user.password != pass1) return Json("Mật khẩu hiện tại của bạn không chính xác", JsonRequestBehavior.AllowGet);
-                else if (pass2 != pass3) return Json("Sai Mật Khẩu Nhập Lại", JsonRequestBehavior.AllowGet);
+                return Redirect("~/UserProfile/signError");
 
-                user.password = pass2;
-                db.SaveChanges();
-
-                return Redirect("~/User/userProfile");
+                if (user.password != PassOld) return Json("Mật khẩu hiện tại của bạn không chính xác", JsonRequestBehavior.AllowGet);
+                else if (Pass != RePass) return Json("Sai Mật Khẩu Nhập Lại", JsonRequestBehavior.AllowGet);           
             }
             else return RedirectToAction("Login");
         }

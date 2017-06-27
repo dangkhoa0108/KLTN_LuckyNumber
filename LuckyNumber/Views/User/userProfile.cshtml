@@ -277,7 +277,7 @@
     <div class="page">
     <div class="page-content padding-30 container-fluid">
     <div class="row" data-plugin="matchHeight" data-by-row="true">
-        <div class="col-xlg-6 col-md-12">
+        <div class="col-xlg-12 col-md-12">
             <!-- Panel Predictions -->
             <div class="widget widget-shadow widget-responsive" id="widgetLineareaColor">
                 <div class="widget-content widget-radius bg-white">
@@ -362,7 +362,7 @@
                                                             </div>
                                                             <div class="media-body">
                                                                 <h4 class="media-heading">
-                                                                    <a href="~/User/DoiMatKhau" target="_blank"><small class="pull-right"><button class="btn btn-floating btn-primary btn-sm icon wb-edit" type="button"></button></small></a>
+                                                                    <small class="pull-right"><button class="btn btn-floating btn-primary btn-sm icon wb-edit" data-target="#edit_pass" data-toggle="modal" type="button"></button></small>
                                                                 </h4>
                                                             </div>
                                                         </div>
@@ -524,32 +524,50 @@
     </div>
     <!-- End Edit Ho Ten -->
 
-        @*<!-- Thông Báo Trúng Thưởng -->
-        <div class="modal fade modal-success" id="thongbaotrungthuong" aria-hidden="true" aria-labelledby="examplePositionCenter"
-             role="dialog" tabindex="-1">
-            <div class="modal-dialog modal-center">
+        <!-- Edit Password -->
+        <div class="modal fade modal-3d-flip-horizontal" id="edit_pass" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog"
+             tabindex="-1">
+            <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
-                        <h4 class="modal-title">Xin Chúc Mừng</h4>
+                        <h3 class="panel-title" align="center">Cập Nhật Password</h3>
                     </div>
                     <div class="modal-body">
-                        <p>Bạn là người chiến thắng trong phiên chơi vừa rồi. Giải thưởng của bạn là xxx. Bạn có muốn chia sẻ kết quả lên Facebook không?</p>
+                        <div class="wizard-content">
+                            <div class="wizard-pane active" id="exampleAccount" role="tabpanel">
+                                <form class="form-group" action="~/User/ChangePass" method="post">
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" name="txtPassOld" autocomplete="off" placeholder="Mật khẩu hiện tại">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" name="txtPass" autocomplete="off" placeholder="Mật khẩu mới">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" name="txtRePass" autocomplete="off" placeholder="Nhập lại mật khẩu">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default margin-0" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </form>
+
+                                @*<div class="form-group">
+                                    <input type="password" class="form-control" name="pass_confirm" autocomplete="off" placeholder="Nhập lại mật khẩu">
+                                </div>*@
+                            </div>
+
+
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-animate btn-animate-vertical btn-danger" data-dismiss="modal">
-                            <span><i class="icon wb-close" aria-hidden="true"></i>Đóng</span>
-                        </button>
-                        <button type="button" class="btn btn-animate btn-animate-vertical btn-primary">
-                            <span><i type="submit" class="icon bd-facebook" aria-hidden="true"></i>Chia Sẻ</span>
-                        </button>
-                    </div>
+
                 </div>
             </div>
         </div>
-        <!-- End Thông Báo Trúng Thưởng -->*@
+        <!-- End Edit Password -->    
+
     <!-- Core -->
     <script src="~/assets1/vendor/jquery/jquery.js"></script>
     <script src="~/assets1/vendor/bootstrap/bootstrap.js"></script>

@@ -1486,17 +1486,26 @@ namespace LuckyNumber.Controllers
                 string PassOld = Request.Form["txtPassOld"].ToString();
                 string Pass = Request.Form["txtPass"].ToString();
                 string RePass = Request.Form["txtRePass"].ToString();
-                if (PassOld == user.password && Pass == RePass)
+                if(user.password!=PassOld)
+                {
+                    return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Mật khẩu cũ không chính xác. Vui lòng thử lại');"+
+                        "window.location= '/User/userProfile';" +
+                        "</script>");
+                }
+                else if(RePass!=Pass)
+                {
+                    return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Vui lòng nhập lại mật khẩu trùng với mật khẩu mới.');" +
+                        "window.location= '/User/userProfile';" +
+                        "</script>");
+                }
+                else
                 {
                     user.password = Pass;
                     db.SaveChanges();
                     return Redirect("~/User/userProfile");
                 }
-
-                return Redirect("~/UserProfile/signError");
-
-                if (user.password != PassOld) return Json("Mật khẩu hiện tại của bạn không chính xác", JsonRequestBehavior.AllowGet);
-                else if (Pass != RePass) return Json("Sai Mật Khẩu Nhập Lại", JsonRequestBehavior.AllowGet);           
             }
             else return RedirectToAction("Login");
         }

@@ -334,14 +334,14 @@
                                     <div class="col-md-2">
                                         <div class="font-size-15 black">Số Dự Đoán</div>
                                     </div>
-                                    <input type="text" class="form-control" name="SoDuDoan" id="SoDuDoan">
+                                    <input pattern=".{1,3}" required title="Vui lòng nhập số từ 0 đến 999 " type="number" class="form-control" name="SoDuDoan" id="SoDuDoan">
                                 </div>
                                 <div class="form-group form-material floating has-success">
                                     <div class="col-md-2">
                                         <div class="font-size-15 black">Trọng Số</div>
                                     </div>
 
-                                    <input type="text" class="form-control" name="TrongSo" id="TrongSo">
+                                    <input pattern=".{1,3}" required title="Vui lòng nhập số từ 1 đến 999 " type="number" class="form-control" name="TrongSo" id="TrongSo">
                                 </div>
                                 </div>
                             <button type="submit" class="btn btn-animate btn-animate-vertical btn-success">

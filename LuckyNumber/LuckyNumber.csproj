@@ -180,6 +180,7 @@
     <Compile Include="SMSAPI\SpeedSMSAPI.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\ChiTietChoiViewModel.cs" />
+    <Compile Include="ViewModel\DanhSachSoChuaDoanViewModel.cs" />
     <Compile Include="ViewModel\DanhSachSoDaDoanViewModel.cs" />
     <Compile Include="ViewModel\DanhSachTrungThuongViewModel.cs" />
     <Compile Include="ViewModel\DieuChinhGiaiThuongViewModel.cs" />

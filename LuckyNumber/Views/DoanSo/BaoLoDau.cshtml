@@ -1,4 +1,8 @@
-﻿@model List<LuckyNumber.ViewModel.DanhSachSoDaDoanViewModel>
+﻿@model IEnumerable<object>
+@{
+    List<LuckyNumber.ViewModel.DanhSachSoDaDoanViewModel> lst1 = Model.ToList()[0] as List<LuckyNumber.ViewModel.DanhSachSoDaDoanViewModel>;
+    List<LuckyNumber.ViewModel.DanhSachSoChuaDoanViewModel> lst2 = Model.ToList()[1] as List<LuckyNumber.ViewModel.DanhSachSoChuaDoanViewModel>;
+}
 
 
 @{
@@ -89,7 +93,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model)
+                                    @foreach (var item in lst1)
                                     {
                                         <tr class="odd gradeX">
                                             <td>@item.sodadoan</td>
@@ -104,6 +108,24 @@
                                         </tr>
 
                                     }
+                                </tbody>
+                            </table>
+
+
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>Số Dự Đoán Trùng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in lst2)
+                                    {
+                                        <tr class="odd gradeX">
+                                            <td>@item.sodadoan</td>
+                                        </tr>
+                                    }
+
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->

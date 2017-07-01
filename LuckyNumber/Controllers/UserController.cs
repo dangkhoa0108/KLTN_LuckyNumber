@@ -1448,7 +1448,7 @@ namespace LuckyNumber.Controllers
             var select = db.Users.ToList();
             foreach(var i in select)
             {
-                if (i.mamoi==MaGT)
+                if (i.mamoi==MaGT && user.mamoi != MaGT)
                 {
                     User us2 = db.Users.SingleOrDefault(x => x.mamoi == MaGT);                                 
                     int temp_km = int.Parse(us2.soluotchoi_km.ToString()) + 5;
@@ -1461,7 +1461,7 @@ namespace LuckyNumber.Controllers
                     user.magioithieu = MaGT;
                     user.soluotchoi_km += 5;
                     user.status = true;
-                    db.SaveChanges();
+                    db.SaveChanges();                
                 }
             }
             return RedirectToAction("userProfile");

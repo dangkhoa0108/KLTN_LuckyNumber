@@ -588,16 +588,17 @@ namespace LuckyNumber.Controllers
                                     db.SaveChanges();
 
 
-                                }
 
-                                ds.Add(new DanhSachSoDaDoanViewModel()
-                                {
-                                    id = chitietcuocchoi1.id,
-                                    sodadoan = sodudoan,
-                                    trongso = chitietcuocchoi1.TrongSo,
-                                    luotchoi = int.Parse(Session["soLuotChoi"].ToString()),
-                                    luotchoi_km = int.Parse(Session["soLuotChoi_km"].ToString())
-                                });
+
+                                    ds.Add(new DanhSachSoDaDoanViewModel()
+                                    {
+                                        id = chitietcuocchoi1.id,
+                                        sodadoan = sodudoan,
+                                        trongso = chitietcuocchoi1.TrongSo,
+                                        luotchoi = int.Parse(Session["soLuotChoi"].ToString()),
+                                        luotchoi_km = int.Parse(Session["soLuotChoi_km"].ToString())
+                                    });
+                                }
                             }
                         }
                      return View(oj);
@@ -735,16 +736,17 @@ namespace LuckyNumber.Controllers
                                     db.SaveChanges();
 
 
-                                }
-                                ds.Add(new DanhSachSoDaDoanViewModel()
-                                {
-                                    id = chitietcuocchoi1.id,
-                                    sodadoan = sodudoan,
-                                    trongso = chitietcuocchoi1.TrongSo,
 
-                                    luotchoi = int.Parse(Session["soLuotChoi"].ToString()),
-                                    luotchoi_km = int.Parse(Session["soLuotChoi_km"].ToString())
-                                });
+                                    ds.Add(new DanhSachSoDaDoanViewModel()
+                                    {
+                                        id = chitietcuocchoi1.id,
+                                        sodadoan = sodudoan,
+                                        trongso = chitietcuocchoi1.TrongSo,
+
+                                        luotchoi = int.Parse(Session["soLuotChoi"].ToString()),
+                                        luotchoi_km = int.Parse(Session["soLuotChoi_km"].ToString())
+                                    });
+                                }
                             }
                         }
                         return View(oj);
@@ -830,7 +832,7 @@ namespace LuckyNumber.Controllers
                             int soluotchoi_km = int.Parse(user.soluotchoi_km.ToString());
                             int sumluotchoi = soluotchoi + soluotchoi_km;
 
-                            ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID && x.TrongSo == trongsodefault);
+                            ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID);
                             {
                                 if (chitiet3 != null)
                                 {
@@ -861,18 +863,19 @@ namespace LuckyNumber.Controllers
                                     Session["soLuotChoi_km"] = user.soluotchoi_km;
                                     db.SaveChanges();
 
+
+
+                                    ds.Add(new DanhSachSoDaDoanViewModel()
+                                    {
+                                        id = chitietcuocchoi1.id,
+                                        sodadoan = sodudoan,
+                                        trongso = chitietcuocchoi1.TrongSo,
+
+                                        luotchoi = int.Parse(Session["soLuotChoi"].ToString()),
+                                        luotchoi_km = int.Parse(Session["soLuotChoi_km"].ToString())
+                                    });
+
                                 }
-
-                                ds.Add(new DanhSachSoDaDoanViewModel()
-                                {
-                                    id = chitietcuocchoi1.id,
-                                    sodadoan = sodudoan,
-                                    trongso = chitietcuocchoi1.TrongSo,
-
-                                    luotchoi = int.Parse(Session["soLuotChoi"].ToString()),
-                                    luotchoi_km = int.Parse(Session["soLuotChoi_km"].ToString())
-                                });
-
                             }
                         }
                     return View(oj);
@@ -953,7 +956,7 @@ namespace LuckyNumber.Controllers
                             int soluotchoi_km = int.Parse(user.soluotchoi_km.ToString());
                             int sumluotchoi = soluotchoi + soluotchoi_km;
 
-                            ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID && x.TrongSo == trongsodefault);
+                            ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID);
                             {
                                 if (chitiet3 != null)
                                 {
@@ -984,17 +987,18 @@ namespace LuckyNumber.Controllers
                                     Session["soLuotChoi_km"] = user.soluotchoi_km;
                                     db.SaveChanges();
 
+
+
+                                    ds.Add(new DanhSachSoDaDoanViewModel()
+                                    {
+                                        id = chitietcuocchoi1.id,
+                                        sodadoan = sodudoan,
+                                        trongso = chitietcuocchoi1.TrongSo,
+
+                                        luotchoi = int.Parse(Session["soLuotChoi"].ToString()),
+                                        luotchoi_km = int.Parse(Session["soLuotChoi_km"].ToString())
+                                    });
                                 }
-
-                                ds.Add(new DanhSachSoDaDoanViewModel()
-                                {
-                                    id = chitietcuocchoi1.id,
-                                    sodadoan = sodudoan,
-                                    trongso = chitietcuocchoi1.TrongSo,
-
-                                    luotchoi = int.Parse(Session["soLuotChoi"].ToString()),
-                                    luotchoi_km = int.Parse(Session["soLuotChoi_km"].ToString())
-                                });
                             }
                         }
                     return View(oj);
@@ -1078,7 +1082,7 @@ namespace LuckyNumber.Controllers
                             int soluotchoi_km = int.Parse(user.soluotchoi_km.ToString());
                             int sumluotchoi = soluotchoi + soluotchoi_km;
 
-                            ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID && x.TrongSo == trongsodefault);
+                            ChiTietCuocChoi chitiet3 = db.ChiTietCuocChois.SingleOrDefault(x => x.SoDuDoan == sodudoan && x.MaCuocChoi == machoi && x.UserID == userID);
                             {
                                 if (chitiet3 != null)
                                 {
@@ -1109,20 +1113,21 @@ namespace LuckyNumber.Controllers
                                     Session["soLuotChoi_km"] = user.soluotchoi_km;
                                     db.SaveChanges();
 
+
+
+                                    ds.Add(new DanhSachSoDaDoanViewModel()
+                                    {
+                                        id = chitietcuocchoi1.id,
+                                        sodadoan = sodudoan,
+                                        trongso = chitietcuocchoi1.TrongSo,
+
+                                        luotchoi = int.Parse(Session["soLuotChoi"].ToString()),
+                                        luotchoi_km = int.Parse(Session["soLuotChoi_km"].ToString())
+                                    });
                                 }
-
-                                ds.Add(new DanhSachSoDaDoanViewModel()
-                                {
-                                    id = chitietcuocchoi1.id,
-                                    sodadoan = sodudoan,
-                                    trongso = chitietcuocchoi1.TrongSo,
-
-                                    luotchoi = int.Parse(Session["soLuotChoi"].ToString()),
-                                    luotchoi_km = int.Parse(Session["soLuotChoi_km"].ToString())
-                                });
                             }
                         }
-                    return View(ds);
+                    return View(oj);
                 }
             }
             else return Redirect("~/User/Login");

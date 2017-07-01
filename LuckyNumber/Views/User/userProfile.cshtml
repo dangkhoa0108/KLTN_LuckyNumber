@@ -546,13 +546,13 @@
                             <div class="wizard-pane active" id="exampleAccount" role="tabpanel">
                                 <form class="form-group" action="~/User/ChangePass" method="post">
                                     <div class="form-group">
-                                        <input type="password" class="form-control" name="txtPassOld" autocomplete="off" placeholder="Mật khẩu hiện tại">
+                                        <input  pattern=".{1,}" required title="Không được bỏ trống! "type="password" class="form-control" name="txtPassOld" autocomplete="off" placeholder="Mật khẩu hiện tại">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control" name="txtPass" autocomplete="off" placeholder="Mật khẩu mới">
+                                        <input  pattern=".{3,}" required title="Mật khẩu tối thiểu là 3 số " type="password" class="form-control" name="txtPass" autocomplete="off" placeholder="Mật khẩu mới">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control" name="txtRePass" autocomplete="off" placeholder="Nhập lại mật khẩu">
+                                        <input  pattern=".{3,}" required title="Mật khẩu tối thiểu là 3 số " type="password" class="form-control" name="txtRePass" autocomplete="off" placeholder="Nhập lại mật khẩu">
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default margin-0" data-dismiss="modal">Close</button>

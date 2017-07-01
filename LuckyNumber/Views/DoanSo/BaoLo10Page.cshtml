@@ -427,11 +427,11 @@
                     <form class="form-group" action="~/DoanSo/BaoLoDauCuoi" method="post">
                         <div class="modal-body">
                             <div class="form-group">
-                                <input type="text" class="form-control" name="sodau" autocomplete="off" placeholder="Số đầu (0-9)">
+                                <input pattern=".{1,1}" required title="Vui lòng nhập số từ 0 đến 9 " type="number" class="form-control" name="sodau" autocomplete="off" placeholder="Số đầu (0-9)">
                                 @ViewBag.Javascript
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="socuoi" autocomplete="off" placeholder="Số cuối (0-9)">
+                                <input pattern=".{1,1}" required title="Vui lòng nhập số từ 0 đến 9 " type="number" class="form-control" name="socuoi" autocomplete="off" placeholder="Số cuối (0-9)">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -456,10 +456,10 @@
                     <form class="form-group" action="~/DoanSo/BaoLoGiuaCuoi" method="post">
                         <div class="modal-body">
                             <div class="form-group">
-                                <input type="text" class="form-control" name="sogiua" autocomplete="off" placeholder="Số giữa (0-9)">
+                                <input pattern=".{1,1}" required title="Vui lòng nhập số từ 0 đến 9 " type="number" class="form-control" name="sogiua" autocomplete="off" placeholder="Số giữa (0-9)">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="socuoi" autocomplete="off" placeholder="Số cuối (0-9)">
+                                <input pattern=".{1,1}" required title="Vui lòng nhập số từ 0 đến 9 " type="number" class="form-control" name="socuoi" autocomplete="off" placeholder="Số cuối (0-9)">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -484,10 +484,10 @@
                     <form class="form-group" action="~/DoanSo/BaoLoDauGiua" method="post">
                         <div class="modal-body">
                             <div class="form-group">
-                                <input type="text" class="form-control" name="sodau" autocomplete="off" placeholder="Số đầu (0-9)">
+                                <input pattern=".{1,1}" required title="Vui lòng nhập số từ 0 đến 9 " type="number" class="form-control" name="sodau" autocomplete="off" placeholder="Số đầu (0-9)">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="sogiua" autocomplete="off" placeholder="Số giữa (0-9)">
+                                <input pattern=".{1,1}" required title="Vui lòng nhập số từ 0 đến 9 " type="number" class="form-control" name="sogiua" autocomplete="off" placeholder="Số giữa (0-9)">
                             </div>
                         </div>
                         <div class="modal-footer">

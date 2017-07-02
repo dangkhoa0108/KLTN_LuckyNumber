@@ -23,7 +23,7 @@ namespace LuckyNumber.Controllers
 
         public ActionResult DoanSoPage()
         {
-            if (Session["userName"] != null)
+            if (Session["userName"] != null && Session["Role"].ToString() == "User")
             {
                 if (int.Parse(Session["diemdanh"].ToString()) == 0)
                 {
@@ -90,7 +90,7 @@ namespace LuckyNumber.Controllers
 
         public ActionResult BaoLo10Page()
         {
-            if (Session["userName"] != null)
+            if (Session["userName"] != null && Session["Role"].ToString() == "User")
             {
                 if (int.Parse(Session["diemdanh"].ToString()) == 0)
                 {
@@ -146,7 +146,7 @@ namespace LuckyNumber.Controllers
 
         public ActionResult BaoLo100Page()
         {
-            if (Session["userName"] != null)
+            if (Session["userName"] != null && Session["Role"].ToString() == "User")
             {
                 if (int.Parse(Session["diemdanh"].ToString()) == 0)
                 {
@@ -398,23 +398,27 @@ namespace LuckyNumber.Controllers
                     }
                 }
             }
-            else return Redirect("~User/Login");
+            else return Redirect("~/User/Login");
 
         }
 
 
         public ActionResult Edit(int? id)
         {
-            if(id==null)
+            if (Session["userName"] != null && Session["Role"].ToString() == "User")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                ChiTietCuocChoi ct = db.ChiTietCuocChois.SingleOrDefault(m => m.id == id);
+                if (ct == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(ct);
             }
-            ChiTietCuocChoi ct = db.ChiTietCuocChois.SingleOrDefault(m=> m.id==id);
-            if (ct==null)
-            {
-                return HttpNotFound();
-            }
-            return View(ct);
+            else return Redirect("~/User/Login");
         }
 
         [HttpPost]
@@ -469,7 +473,7 @@ namespace LuckyNumber.Controllers
             List<object> oj = new List<object>();
             oj.Add(ds);
             oj.Add(ds2);
-            if (Session["userName"] != null)
+            if (Session["userName"] != null && Session["Role"].ToString() == "User")
             {
                 string name = Session["userName"].ToString();
                 ViewBag.Name = name;
@@ -617,7 +621,7 @@ namespace LuckyNumber.Controllers
             List<object> oj = new List<object>();
             oj.Add(ds);
             oj.Add(ds2);
-            if (Session["userName"] != null)
+            if (Session["userName"] != null && Session["Role"].ToString() == "User")
             {
                 string name = Session["userName"].ToString();
                 ViewBag.Name = name;
@@ -753,7 +757,7 @@ namespace LuckyNumber.Controllers
                     }
                 }
             }
-            else return Redirect("~User/Login");
+            else return Redirect("~/User/Login");
 
         }
 
@@ -765,7 +769,7 @@ namespace LuckyNumber.Controllers
             List<object> oj = new List<object>();
             oj.Add(ds);
             oj.Add(ds2);
-            if (Session["userName"] != null)
+            if (Session["userName"] != null && Session["Role"].ToString() == "User")
             {
                 string name = Session["userName"].ToString();
                 ViewBag.Name = name;
@@ -891,7 +895,7 @@ namespace LuckyNumber.Controllers
             List<object> oj = new List<object>();
             oj.Add(ds);
             oj.Add(ds2);
-            if (Session["userName"] != null)
+            if (Session["userName"] != null && Session["Role"].ToString() == "User")
             {
                 string name = Session["userName"].ToString();
                 ViewBag.Name = name;
@@ -1015,7 +1019,7 @@ namespace LuckyNumber.Controllers
             List<object> oj = new List<object>();
             oj.Add(ds);
             oj.Add(ds2);
-            if (Session["userName"] != null)
+            if (Session["userName"] != null && Session["Role"].ToString() == "User")
             {
                 string name = Session["userName"].ToString();
                 ViewBag.Name = name;
@@ -1137,7 +1141,7 @@ namespace LuckyNumber.Controllers
 
         public ActionResult DoanSo(ChiTietCuocChoi chitietcuocchoi)
         {
-            if (Session["userName"] != null)
+            if (Session["userName"] != null && Session["Role"].ToString() == "User")
             {
                 string name = Session["userName"].ToString();
                 ViewBag.Name = name;
@@ -1271,7 +1275,7 @@ namespace LuckyNumber.Controllers
 
         public ActionResult ThongBaoPage()
         {
-            if (Session["IDs"] != null)
+            if (Session["userName"] != null && Session["Role"].ToString() == "User")
             {
                 //string day = DateTime.Now.Day.ToString();
                 //string month = DateTime.Now.Month.ToString();

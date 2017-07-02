@@ -1537,5 +1537,15 @@ namespace LuckyNumber.Controllers
             else
                 return RedirectToAction("Login");
         }
+
+        public ActionResult ShareFacebook()
+        {
+            return View();
+        }
+
+        public ActionResult DaShareFacebook()
+        {
+            return View();
+        }
     }
 }

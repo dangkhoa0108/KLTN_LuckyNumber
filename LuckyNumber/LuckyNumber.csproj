@@ -272,6 +272,7 @@
     <Content Include="assets1\images\confused.png" />
     <Content Include="assets1\images\logo.png" />
     <Content Include="assets1\images\right.png" />
+    <Content Include="assets1\images\shareface.png" />
     <Content Include="assets1\images\wrong.png" />
     <Content Include="assets1\ISS Timelapse - The English Channel and beyond.mp4" />
     <Content Include="assets1\js\angular\app.js" />

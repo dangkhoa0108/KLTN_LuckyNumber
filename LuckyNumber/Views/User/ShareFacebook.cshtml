@@ -15,6 +15,14 @@
     <meta name="description" content="bootstrap admin template">
     <meta name="author" content="">
 
+    <meta property="og:site_name" content="LUCKY NUMBER"/>
+    <meta property="fb:app_id" content="1159603104149803" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://luckynumber.me/User/ShareFacebook" />
+    <meta property="og:title" content="Lucky Number - Con số may mắn" />
+    <meta property="og:image" content="https://luckynumber.me/images/home_dp_test.jpg" />
+    <meta property="og:image:secure_url" content="image/jpg"/>
+    <meta property="og:description" content="Wow, mới chơi mà đã trúng rồi, tham gia ngay với mình để cùng rinh quà nào các bạn...">
     <title>Thông Báo</title>
 
     <link rel="icon" href="~/images/icon/fav_icon.png">
@@ -65,9 +73,15 @@
         <div class="page-content vertical-align-middle">
             <img class="error-mark animation-slide-top" src="~/assets1/images/shareface.png" alt="...">
             <h2>SHARE FACEBOOK</h2>
-            <h3 class="error-advise">BẠN CÓ MUỐN CHIA SẺ ĐỂ NHẬN THÊM 5 LƯỢT CHƠI KHUYẾN MÃI KHÔNG?</h3>
-            <a class="btn btn-danger btn-round" href="~/User/userProfile">KHÔNG</a>
-            <a class="btn btn-primary btn-round" href="~/User/NapThePage">SHARE</a>
+            <h3 class="error-advise">HÃY CHIA SẺ LÊN FACEBOOK ĐỂ MỌI NGƯỜI CÓ THỂ BIẾT ĐẾN CHÚNG TÔI.</h3>
+            <a class="btn btn-danger btn-animate btn-animate-side" href="~/User/userProfile">TRỞ VỀ</a>
+            <div class="fb-share-button btn btn-primary btn-animate btn-animate-side sh-fb "
+                 data-href="https://luckynumber.me/User/ShareFacebook/"
+                 data-layout="button"
+                 data-mobile-iframe="true"
+                 title="Send To Facebook !">
+
+            </div>
 
             <footer class="page-copyright">
                 <p>WEBSITE BY Lucky Number</p>
@@ -130,7 +144,18 @@
             });
         })(document, window, jQuery);
     </script>
+    <script>
 
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=1159603104149803";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+
+
+    </script>
 </body>
 
 </html>

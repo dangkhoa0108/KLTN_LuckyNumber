@@ -90,7 +90,7 @@ namespace LuckyNumber.Controllers
 
                 db.DanhSachTrungThuongs.Add(danhsach);
                 danhsach.MaCuocChoi = ma;
-                danhsach.TongTienThuong = 5000000;
+                danhsach.TongTienThuong = 50000;
                 db.SaveChanges();
                 var selectlist = db.Users.ToList();
                 foreach (var i in selectlist)

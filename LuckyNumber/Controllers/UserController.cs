@@ -820,6 +820,32 @@ namespace LuckyNumber.Controllers
                     }
                     else
                     {
+                        DateTime serverTime = DateTime.Now;
+                        DateTime utcTime = DateTime.UtcNow;
+
+                        TimeZoneInfo tzi = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+                        DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, tzi);
+                        string timeNow = localTime.ToString("t");
+
+                        ////////////////////////////////////
+
+                        string day = localTime.ToString("dd");
+                        string month = localTime.ToString("MM");
+                        string year = localTime.ToString("yyyy");
+
+                        DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
+                        var select = from ds in db.CuocChois
+                                     join tt in db.DanhSachTrungThuongs on ds.MaCuocChoi equals tt.MaCuocChoi
+                                     where (ds.NgayDoanSo == datetime)
+                                     select tt.TongTienThuong;
+                        foreach (var i in select)
+                        {
+                            Session["tt"] = i;
+                        }
+                        string ttt = Session["tt"].ToString();
+                        ViewBag.ttt = ttt;
+
+
                         string name = Session["userName"].ToString();
                         ViewBag.Name = name;
                         string mail = Session["eMail"].ToString();

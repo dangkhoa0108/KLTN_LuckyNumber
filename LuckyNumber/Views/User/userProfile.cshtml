@@ -100,6 +100,15 @@
                         </a>
                     </li>
                 </ul>
+                <ul style="
+                        float: left;
+                        display: block;
+                        position: absolute;
+                        top: 22px;
+                        left: 253px;">
+                    <marquee style="width: 550px;
+                    ">Chào mừng @ViewBag.Name. Tổng giải thưởng hôm nay lên đến @ViewBag.ttt đ. Chơi ngay nào.</marquee>
+                </ul>
                 <!-- End Navbar Toolbar -->
                 <!-- Navbar Toolbar Right -->
                 <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
@@ -261,7 +270,7 @@
                             <span class="site-menu-title">Liên Hệ</span>
                             <span class="site-menu-arrow"></span>
                         </a>
-                        <ul class="site-menu-sub"> 
+                        <ul class="site-menu-sub">
                             <li class="site-menu-item">
                                 <a class="animsition-link" href="~/User/LienHe" data-slug="contact_admin">
                                     <i class="site-menu-icon " aria-hidden="true"></i>
@@ -271,7 +280,6 @@
                         </ul>
                     </li>
                     <!-- End Danh Sách Trúng Thưởng -->
-
                     <!-- Share Face -->
                     <li class="site-menu-item">
                         <a class="animsition-link" href="~/User/ShareFacebook" data-slug="lucky_number">
@@ -287,185 +295,31 @@
 
     <!-- Profile Page -->
     <div class="page">
-    <div class="page-content padding-30 container-fluid">
-    <div class="row" data-plugin="matchHeight" data-by-row="true">
-        <div class="col-xlg-12 col-md-12">
-            <!-- Panel Predictions -->
-            <div class="widget widget-shadow widget-responsive" id="widgetLineareaColor">
-                <div class="widget-content widget-radius bg-white">
-                    <div class="padding-top-30 padding-30" style="height: calc(100% - 250px);">
-                        <div class="row">
-                            <div class="panel-heading" align="center">
-                                <h3 class="panel-title">Thông Tin Cá Nhân</h3>
-                            </div>
-                            <!-- Username -->
-                            <div>
-                                <div class="col-md-12">
-                                    <div class="panel">
-                                        <div class="form-group">
-                                            <li class="list-group-item">
-                                                <div class="row">
-                                                    <p class="col-xs-4 col-md-2">ID:</p>
-                                                    <div class="col-xs-12 col-md-6">
-                                                        <h4 class="media-heading">
-                                                            <span></i>@ViewBag.Id</span>
-                                                        </h4>
-                                                    </div>
-                                                    <div class="col-xs-4 col-md-4">
-                                                        <h4 class="media-heading"></h4>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </div>
+        <div class="page-content padding-30 container-fluid">
+            <div class="row" data-plugin="matchHeight" data-by-row="true">
+                <div class="col-xlg-12 col-md-12">
+                    <!-- Panel Predictions -->
+                    <div class="widget widget-shadow widget-responsive" id="widgetLineareaColor">
+                        <div class="widget-content widget-radius bg-white">
+                            <div class="padding-top-30 padding-30" style="height: calc(100% - 250px);">
+                                <div class="row">
+                                    <div class="panel-heading" align="center">
+                                        <h3 class="panel-title">Thông Tin Cá Nhân</h3>
                                     </div>
-                                </div>
-                            </div>
-                            <!-- End Username -->
-                            <!-- Mail -->
-                            <div>
-                                <div class="col-md-12">
-                                    <div class="panel">
-                                        <div class="form-group">
-                                            <li class="list-group-item">
-                                                <div class="row">
-                                                    <p class="col-xs-4 col-md-2">E-mail:</p>
-                                                    <div class="col-xs-12 col-md-6">
-                                                        <h4 class="media-heading">
-                                                            <span></i>@ViewBag.Mail</span>
-                                                        </h4>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Mail -->
-                                <!-- SĐT -->
-                                <div>
-                                    <div class="col-md-12">
-                                        <div class="panel">
-                                            <div class="form-group form-material">
-                                                <li class="list-group-item">
-                                                    <div class="row">
-                                                        <p class="col-xs-12 col-md-2">Số điện thoại:</p>
-                                                        <div class="col-xs-12 col-md-6">
-                                                            <h4 class="media-heading">
-                                                                <span>@ViewBag.phone</span>
-                                                            </h4>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End SĐT -->
-                                    <!-- Password -->
+                                    <!-- Username -->
                                     <div>
                                         <div class="col-md-12">
                                             <div class="panel">
                                                 <div class="form-group">
                                                     <li class="list-group-item">
                                                         <div class="row">
-                                                            <p class="col-xs-4 col-md-2">Password:</p>
+                                                            <p class="col-xs-4 col-md-2">ID:</p>
                                                             <div class="col-xs-12 col-md-6">
                                                                 <h4 class="media-heading">
-                                                                    <span>******</span>
+                                                                    <span></i>@ViewBag.Id</span>
                                                                 </h4>
                                                             </div>
                                                             <div class="col-xs-4 col-md-4">
-                                                                <h4 class="media-heading">
-                                                                    <small class="pull-right"><button class="btn btn-floating btn-primary btn-sm icon wb-edit" data-target="#edit_pass" data-toggle="modal" type="button"></button></small>
-                                                                </h4>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Password -->
-                                    <div>
-                                        <div class="col-md-12">
-                                            <div class="panel">
-                                                <div class="form-group">
-                                                    <li class="list-group-item">
-                                                        <div class="row">
-                                                            <p class="col-xs-12 col-md-2">Họ Tên:</p>
-                                                            <div class="col-xs-12 col-md-6">
-                                                                <h4 class="media-heading">
-                                                                    <span>@ViewBag.Name</span>
-                                                                </h4>
-                                                            </div>
-                                                            <div class="col-xs-4 col-md-4">
-                                                                <h4 class="media-heading">
-                                                                    <small class="pull-right"><button class="btn btn-floating btn-primary btn-sm icon wb-edit" data-target="#edit_nickname" data-toggle="modal" type="button"></button></small>
-                                                                </h4>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Mã Mời -->
-                                    <div>
-                                        <div class="col-md-12">
-                                            <div class="panel">
-                                                <div class="form-group">
-                                                    <li class="list-group-item">
-                                                        <div class="row">
-                                                            <p class="col-xs-12 col-md-2">Mã Mời:</p>
-                                                            <div class="col-xs-12 col-md-6">
-                                                                <h4 class="media-heading">
-                                                                    <span>@ViewBag.MaMoi</span>
-                                                                </h4>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Ma Moi -->
-                                    <!-- So Luot -->
-                                    <div>
-                                        <div class="col-md-12">
-                                            <div class="panel">
-                                                <div class="form-group">
-                                                    <li class="list-group-item">
-                                                        <div class="row">
-                                                            <p class="col-xs-12 col-md-2">Số Lượt Còn Lại:</p>
-                                                            <div class="col-xs-12 col-md-6">
-                                                                <h4 class="media-heading">
-                                                                    <span> @ViewBag.LuotChoi</span>
-                                                                </h4>
-                                                            </div>
-                                                            <div class="col-xs-4 col-md-4">
-                                                                <h4 class="media-heading">
-                                                                   <a class="animsition-link" href="~/User/NapThePage"><small class="pull-right"><button class="btn btn-floating btn-primary btn-sm icon wb-plus" type="button"></button></small></a>
-                                                                </h4>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End So Luot -->
-                                    <!--So Luot Choi KM -->
-                                    <div>
-                                        <div class="col-md-12">
-                                            <div class="panel">
-                                                <div class="form-group">
-                                                    <li class="list-group-item">
-                                                        <div class="row">
-                                                            <p class="col-xs-12 col-md-2">Số Lượt KM Còn Lại:</p>
-                                                            <div class="col-xs-12 col-md-6">
-                                                                <h4 class="media-heading">
-                                                                    <span>@ViewBag.LuotChoi_km</span>
-                                                                </h4>
-                                                            </div>
-                                                            <div class="media-body">
                                                                 <h4 class="media-heading"></h4>
                                                             </div>
                                                         </div>
@@ -474,23 +328,18 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!--End So Luot Choi KM-->
-                                    <!-- So Du TK -->
+                                    <!-- End Username -->
+                                    <!-- Mail -->
                                     <div>
                                         <div class="col-md-12">
                                             <div class="panel">
                                                 <div class="form-group">
                                                     <li class="list-group-item">
                                                         <div class="row">
-                                                            <p class="col-xs-12 col-md-2">Số Dư Tài Khoản:</p>
+                                                            <p class="col-xs-4 col-md-2">E-mail:</p>
                                                             <div class="col-xs-12 col-md-6">
                                                                 <h4 class="media-heading">
-                                                                    <span>@ViewBag.SoDu</span>
-                                                                </h4>
-                                                            </div>
-                                                            <div class="col-xs-4 col-md-4">
-                                                                <h4 class="media-heading">
-                                                                    <a class="animsition-link" href="~/User/DoiThuongPage"><small class="pull-right"><button class="btn btn-floating btn-primary btn-sm icon wb-star" type="button"></button></small></a>
+                                                                    <span></i>@ViewBag.Mail</span>
                                                                 </h4>
                                                             </div>
                                                         </div>
@@ -498,148 +347,305 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- End Mail -->
+                                        <!-- SĐT -->
+                                        <div>
+                                            <div class="col-md-12">
+                                                <div class="panel">
+                                                    <div class="form-group form-material">
+                                                        <li class="list-group-item">
+                                                            <div class="row">
+                                                                <p class="col-xs-12 col-md-2">Số điện thoại:</p>
+                                                                <div class="col-xs-12 col-md-6">
+                                                                    <h4 class="media-heading">
+                                                                        <span>@ViewBag.phone</span>
+                                                                    </h4>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End SĐT -->
+                                            <!-- Password -->
+                                            <div>
+                                                <div class="col-md-12">
+                                                    <div class="panel">
+                                                        <div class="form-group">
+                                                            <li class="list-group-item">
+                                                                <div class="row">
+                                                                    <p class="col-xs-4 col-md-2">Password:</p>
+                                                                    <div class="col-xs-12 col-md-6">
+                                                                        <h4 class="media-heading">
+                                                                            <span>******</span>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="col-xs-4 col-md-4">
+                                                                        <h4 class="media-heading">
+                                                                            <small class="pull-right"><button class="btn btn-floating btn-primary btn-sm icon wb-edit" data-target="#edit_pass" data-toggle="modal" type="button"></button></small>
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Password -->
+                                            <div>
+                                                <div class="col-md-12">
+                                                    <div class="panel">
+                                                        <div class="form-group">
+                                                            <li class="list-group-item">
+                                                                <div class="row">
+                                                                    <p class="col-xs-12 col-md-2">Họ Tên:</p>
+                                                                    <div class="col-xs-12 col-md-6">
+                                                                        <h4 class="media-heading">
+                                                                            <span>@ViewBag.Name</span>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="col-xs-4 col-md-4">
+                                                                        <h4 class="media-heading">
+                                                                            <small class="pull-right"><button class="btn btn-floating btn-primary btn-sm icon wb-edit" data-target="#edit_nickname" data-toggle="modal" type="button"></button></small>
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Mã Mời -->
+                                            <div>
+                                                <div class="col-md-12">
+                                                    <div class="panel">
+                                                        <div class="form-group">
+                                                            <li class="list-group-item">
+                                                                <div class="row">
+                                                                    <p class="col-xs-12 col-md-2">Mã Mời:</p>
+                                                                    <div class="col-xs-12 col-md-6">
+                                                                        <h4 class="media-heading">
+                                                                            <span>@ViewBag.MaMoi</span>
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Ma Moi -->
+                                            <!-- So Luot -->
+                                            <div>
+                                                <div class="col-md-12">
+                                                    <div class="panel">
+                                                        <div class="form-group">
+                                                            <li class="list-group-item">
+                                                                <div class="row">
+                                                                    <p class="col-xs-12 col-md-2">Số Lượt Còn Lại:</p>
+                                                                    <div class="col-xs-12 col-md-6">
+                                                                        <h4 class="media-heading">
+                                                                            <span> @ViewBag.LuotChoi</span>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="col-xs-4 col-md-4">
+                                                                        <h4 class="media-heading">
+                                                                            <a class="animsition-link" href="~/User/NapThePage"><small class="pull-right"><button class="btn btn-floating btn-primary btn-sm icon wb-plus" type="button"></button></small></a>
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End So Luot -->
+                                            <!--So Luot Choi KM -->
+                                            <div>
+                                                <div class="col-md-12">
+                                                    <div class="panel">
+                                                        <div class="form-group">
+                                                            <li class="list-group-item">
+                                                                <div class="row">
+                                                                    <p class="col-xs-12 col-md-2">Số Lượt KM Còn Lại:</p>
+                                                                    <div class="col-xs-12 col-md-6">
+                                                                        <h4 class="media-heading">
+                                                                            <span>@ViewBag.LuotChoi_km</span>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <h4 class="media-heading"></h4>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--End So Luot Choi KM-->
+                                            <!-- So Du TK -->
+                                            <div>
+                                                <div class="col-md-12">
+                                                    <div class="panel">
+                                                        <div class="form-group">
+                                                            <li class="list-group-item">
+                                                                <div class="row">
+                                                                    <p class="col-xs-12 col-md-2">Số Dư Tài Khoản:</p>
+                                                                    <div class="col-xs-12 col-md-6">
+                                                                        <h4 class="media-heading">
+                                                                            <span>@ViewBag.SoDu</span>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="col-xs-4 col-md-4">
+                                                                        <h4 class="media-heading">
+                                                                            <a class="animsition-link" href="~/User/DoiThuongPage"><small class="pull-right"><button class="btn btn-floating btn-primary btn-sm icon wb-star" type="button"></button></small></a>
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End So Du TK -->
+                                            <!-- End Panel Profile -->
+                                        </div>
                                     </div>
-                                    <!-- End So Du TK -->
-                                    <!-- End Panel Profile -->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- End Page -->
-    <!-- Edit Ho Ten -->
-    <div class="modal fade modal-3d-flip-horizontal" id="edit_nickname" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog"
-         tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <h3 class="panel-title" align="center">Nickname</h3>
-                </div>
-                <form class="form-group" action="ChangeName" method="post">
-                    <div class="modal-body">
-
-                        <input type="text" class="form-control" name="nickname_current" autocomplete="off" placeholder="@ViewBag.Name" disabled="true">
-
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="newname" autocomplete="off" placeholder="Nickname Mới">
+            <!-- End Page -->
+            <!-- Edit Ho Ten -->
+            <div class="modal fade modal-3d-flip-horizontal" id="edit_nickname" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog"
+                 tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <h3 class="panel-title" align="center">Nickname</h3>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default margin-0" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- End Edit Ho Ten -->
+                        <form class="form-group" action="ChangeName" method="post">
+                            <div class="modal-body">
 
-        <!-- Edit Password -->
-        <div class="modal fade modal-3d-flip-horizontal" id="edit_pass" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog"
-             tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                        <h3 class="panel-title" align="center">Cập Nhật Password</h3>
-                    </div>
-                    <div class="modal-body">
-                        <div class="wizard-content">
-                            <div class="wizard-pane active" id="exampleAccount" role="tabpanel">
-                                <form class="form-group" action="~/User/ChangePass" method="post">
-                                    <div class="form-group">
-                                        <input  pattern=".{1,}" required title="Không được bỏ trống! "type="password" class="form-control" name="txtPassOld" autocomplete="off" placeholder="Mật khẩu hiện tại">
-                                    </div>
-                                    <div class="form-group">
-                                        <input  pattern=".{3,}" required title="Mật khẩu tối thiểu là 3 số " type="password" class="form-control" name="txtPass" autocomplete="off" placeholder="Mật khẩu mới">
-                                    </div>
-                                    <div class="form-group">
-                                        <input  pattern=".{3,}" required title="Mật khẩu tối thiểu là 3 số " type="password" class="form-control" name="txtRePass" autocomplete="off" placeholder="Nhập lại mật khẩu">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default margin-0" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                </form>
+                                <input type="text" class="form-control" name="nickname_current" autocomplete="off" placeholder="@ViewBag.Name" disabled="true">
 
-                                @*<div class="form-group">
-                                    <input type="password" class="form-control" name="pass_confirm" autocomplete="off" placeholder="Nhập lại mật khẩu">
-                                </div>*@
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="newname" autocomplete="off" placeholder="Nickname Mới">
+                                </div>
                             </div>
-
-
-                        </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default margin-0" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
                     </div>
-
                 </div>
             </div>
+            <!-- End Edit Ho Ten -->
+            <!-- Edit Password -->
+            <div class="modal fade modal-3d-flip-horizontal" id="edit_pass" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog"
+                 tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <h3 class="panel-title" align="center">Cập Nhật Password</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="wizard-content">
+                                <div class="wizard-pane active" id="exampleAccount" role="tabpanel">
+                                    <form class="form-group" action="~/User/ChangePass" method="post">
+                                        <div class="form-group">
+                                            <input pattern=".{1,}" required title="Không được bỏ trống! " type="password" class="form-control" name="txtPassOld" autocomplete="off" placeholder="Mật khẩu hiện tại">
+                                        </div>
+                                        <div class="form-group">
+                                            <input pattern=".{3,}" required title="Mật khẩu tối thiểu là 3 số " type="password" class="form-control" name="txtPass" autocomplete="off" placeholder="Mật khẩu mới">
+                                        </div>
+                                        <div class="form-group">
+                                            <input pattern=".{3,}" required title="Mật khẩu tối thiểu là 3 số " type="password" class="form-control" name="txtRePass" autocomplete="off" placeholder="Nhập lại mật khẩu">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default margin-0" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
+
+                                    @*<div class="form-group">
+                                            <input type="password" class="form-control" name="pass_confirm" autocomplete="off" placeholder="Nhập lại mật khẩu">
+                                        </div>*@
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- End Edit Password -->
+            <!-- Core -->
+            <script src="~/assets1/vendor/jquery/jquery.js"></script>
+            <script src="~/assets1/vendor/bootstrap/bootstrap.js"></script>
+            <script src="~/assets1/vendor/animsition/jquery.animsition.js"></script>
+            <script src="~/assets1/vendor/asscroll/jquery-asScroll.js"></script>
+            <script src="~/assets1/vendor/mousewheel/jquery.mousewheel.js"></script>
+            <script src="~/assets1/vendor/asscrollable/jquery.asScrollable.all.js"></script>
+            <script src="~/assets1/vendor/ashoverscroll/jquery-asHoverScroll.js"></script>
+
+            <!-- Plugins -->
+            <script src="~/assets1/vendor/switchery/switchery.min.js"></script>
+            <script src="~/assets1/vendor/intro-js/intro.js"></script>
+            <script src="~/assets1/vendor/screenfull/screenfull.js"></script>
+            <script src="~/assets1/vendor/slidepanel/jquery-slidePanel.js"></script>
+
+            <script src="~/assets1/vendor/skycons/skycons.js"></script>
+            <script src="~/assets1/vendor/chartist-js/chartist.min.js"></script>
+            <script src="~/assets1/vendor/aspieprogress/jquery-asPieProgress.min.js"></script>
+            <script src="~/assets1/vendor/jvectormap/jquery-jvectormap.min.js"></script>
+            <script src="~/assets1/vendor/jvectormap/maps/jquery-jvectormap-ca-lcc-en.js"></script>
+            <script src="~/assets1/vendor/matchheight/jquery.matchHeight-min.js"></script>
+
+            <!-- Scripts -->
+            <script src="~/assets1/js/core.js"></script>
+            <script src="~/assets1/js/site.js"></script>
+
+            <script src="~/assets1/js/sections/menu.js"></script>
+            <script src="~/assets1/js/sections/menubar.js"></script>
+            <script src="~/assets1/js/sections/sidebar.js"></script>
+
+            <script src="~/assets1/js/configs/config-colors.js"></script>
+            <script src="~/assets1/js/configs/config-tour.js"></script>
+
+            <script src="~/assets1/js/components/asscrollable.js"></script>
+            <script src="~/assets1/js/components/animsition.js"></script>
+            <script src="~/assets1/js/components/slidepanel.js"></script>
+            <script src="~/assets1/js/components/switchery.js"></script>
+            <script src="~/assets1/js/components/matchheight.js"></script>
+            <script src="~/assets1/js/components/jvectormap.js"></script>
+            <!-- <script src="js/agency.js"></script>
+            <script type="text/javascript" src="js/script.js"></script> -->
+
+
+            <script>
+                (function (document, window, $) {
+                    'use strict';
+
+                    var Site = window.Site;
+                    $(document).ready(function () {
+                        Site.run();
+                    });
+                })(document, window, jQuery);
+            </script>
+            <script type="text/javascript" src="~/js/jquery-1.11.3.min.js"></script>
+            <script type="text/javascript" src="~/js/script.js"></script> <!-- Use in class: x-btn -->
         </div>
-        <!-- End Edit Password -->    
-
-    <!-- Core -->
-    <script src="~/assets1/vendor/jquery/jquery.js"></script>
-    <script src="~/assets1/vendor/bootstrap/bootstrap.js"></script>
-    <script src="~/assets1/vendor/animsition/jquery.animsition.js"></script>
-    <script src="~/assets1/vendor/asscroll/jquery-asScroll.js"></script>
-    <script src="~/assets1/vendor/mousewheel/jquery.mousewheel.js"></script>
-    <script src="~/assets1/vendor/asscrollable/jquery.asScrollable.all.js"></script>
-    <script src="~/assets1/vendor/ashoverscroll/jquery-asHoverScroll.js"></script>
-
-    <!-- Plugins -->
-    <script src="~/assets1/vendor/switchery/switchery.min.js"></script>
-    <script src="~/assets1/vendor/intro-js/intro.js"></script>
-    <script src="~/assets1/vendor/screenfull/screenfull.js"></script>
-    <script src="~/assets1/vendor/slidepanel/jquery-slidePanel.js"></script>
-
-    <script src="~/assets1/vendor/skycons/skycons.js"></script>
-    <script src="~/assets1/vendor/chartist-js/chartist.min.js"></script>
-    <script src="~/assets1/vendor/aspieprogress/jquery-asPieProgress.min.js"></script>
-    <script src="~/assets1/vendor/jvectormap/jquery-jvectormap.min.js"></script>
-    <script src="~/assets1/vendor/jvectormap/maps/jquery-jvectormap-ca-lcc-en.js"></script>
-    <script src="~/assets1/vendor/matchheight/jquery.matchHeight-min.js"></script>
-
-    <!-- Scripts -->
-    <script src="~/assets1/js/core.js"></script>
-    <script src="~/assets1/js/site.js"></script>
-
-    <script src="~/assets1/js/sections/menu.js"></script>
-    <script src="~/assets1/js/sections/menubar.js"></script>
-    <script src="~/assets1/js/sections/sidebar.js"></script>
-
-    <script src="~/assets1/js/configs/config-colors.js"></script>
-    <script src="~/assets1/js/configs/config-tour.js"></script>
-
-    <script src="~/assets1/js/components/asscrollable.js"></script>
-    <script src="~/assets1/js/components/animsition.js"></script>
-    <script src="~/assets1/js/components/slidepanel.js"></script>
-    <script src="~/assets1/js/components/switchery.js"></script>
-    <script src="~/assets1/js/components/matchheight.js"></script>
-    <script src="~/assets1/js/components/jvectormap.js"></script>
-    <!-- <script src="js/agency.js"></script>
-    <script type="text/javascript" src="js/script.js"></script> -->
-
-
-    <script>
-        (function(document, window, $) {
-            'use strict';
-
-            var Site = window.Site;
-            $(document).ready(function() {
-                Site.run();
-            });
-        })(document, window, jQuery);
-    </script>
-    <script type="text/javascript" src="~/js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="~/js/script.js"></script> <!-- Use in class: x-btn -->
-    </div>
     </div>
 </body>
 

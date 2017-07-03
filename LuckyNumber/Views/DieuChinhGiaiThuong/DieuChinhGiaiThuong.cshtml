@@ -127,7 +127,7 @@
 
 
                         <!-- /.nav-second-level -->
-                        
+
 
                     </ul>
                 </div>
@@ -178,7 +178,7 @@
                                         <th>Ngày Chơi</th>
                                         <!-- <th>Nội Dung</th> -->
 
-                                       
+
                                         <th>Tiền Thưởng</th>
                                     </tr>
                                 </thead>
@@ -188,15 +188,15 @@
                                         <tr class="odd gradeX">
                                             <td>@item.MaDSTrungThuong</td>
                                             @{
-                                        string ngayDoan = @item.NgayDoanSo.ToString();
-                                        string temp = ngayDoan.Substring(0, 10);
-                                        ngayDoan = ngayDoan.Substring(0, 10);
-                                        <td>@temp</td>
-}
+                                                string ngayDoan = @item.NgayDoanSo.ToString();
+                                                string temp = ngayDoan.Substring(0, 10);
+                                                ngayDoan = ngayDoan.Substring(0, 10);
+                                                <td>@temp</td>
+                                            }
 
 
                                             <td>@item.TienThuong</td>
-                                           
+
 
 
                                             <!-- <td><a href="editnews.jsp"><i class="fa fa-edit fa-fw"></i>Edit</a></td> -->
@@ -204,7 +204,7 @@
                                             <td class="center">X</td> -->
                                         </tr>
 
-                                    }
+                                                }
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->
@@ -223,55 +223,47 @@
         </div>
         <!-- /#page-wrapper -->
         <div id="page-wrapper">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">Điều Chỉnh Giải Thưởng</h1>
-                    </div>
-                    <!-- /.col-lg-12 -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Điều Chỉnh Giải Thưởng</h1>
                 </div>
-                <!-- /.row -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Form điều chỉnh giải thưởng
-                            </div>
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <form action="~/Admin/DieuChinhGiaiThuong" method="post" role="form">
-                                            <div class="form-group">
-                                                <label>Nhập vào mã DS trúng thưởng</label>
-                                                <input name="mads" class="form-control">
-
-
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Nhập vào giá trị tiền thưởng</label>
-                                                <input name="giaithuong" class="form-control">
-
-
-                                            </div>
-
-                                            <button type="submit" class="btn btn-default">Hoàn thành</button>
-
-                                        </form>
-                                    </div>
-                                    <!-- /.col-lg-6 (nested) -->
-                                    <!-- /.col-lg-6 (nested) -->
-                                </div>
-                                <!-- /.row (nested) -->
-                            </div>
-                            <!-- /.panel-body -->
-                        </div>
-                        <!-- /.panel -->
-                    </div>
-                    <!-- /.col-lg-12 -->
-                </div>
-                <!-- /.row -->
+                <!-- /.col-lg-12 -->
             </div>
-
-
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Form điều chỉnh giải thưởng
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <form action="~/Admin/DieuChinhGiaiThuong" method="post" role="form">
+                                        <div class="form-group">
+                                            <label>Nhập vào mã DS trúng thưởng</label>
+                                            <input name="mads" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Nhập vào giá trị tiền thưởng</label>
+                                            <input name="giaithuong" class="form-control">
+                                        </div>
+                                        <button type="submit" class="btn btn-default">Hoàn thành</button>
+                                    </form>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
     </div>
 
     <!-- /#wrapper -->

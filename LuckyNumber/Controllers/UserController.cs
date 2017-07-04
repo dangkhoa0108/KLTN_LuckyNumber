@@ -820,6 +820,7 @@ namespace LuckyNumber.Controllers
                     }
                     else
                     {
+                        DateTime? ngaychoi;
                         DateTime serverTime = DateTime.Now;
                         DateTime utcTime = DateTime.UtcNow;
 
@@ -832,20 +833,27 @@ namespace LuckyNumber.Controllers
                         string day = localTime.ToString("dd");
                         string month = localTime.ToString("MM");
                         string year = localTime.ToString("yyyy");
-
+                        CuocChoi cuocchoi1 = db.CuocChois.OrderByDescending(x => x.MaCuocChoi).Take(1).Single();
+                        ngaychoi = cuocchoi1.NgayDoanSo;
                         DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
-                        var select = from ds in db.CuocChois
-                                     join tt in db.DanhSachTrungThuongs on ds.MaCuocChoi equals tt.MaCuocChoi
-                                     where (ds.NgayDoanSo == datetime)
-                                     select tt.TongTienThuong;
-                        foreach (var i in select)
+
+                        if (ngaychoi == datetime)
                         {
-                            Session["tt"] = i;
+                            var select = from ds in db.CuocChois
+                                         join tt in db.DanhSachTrungThuongs on ds.MaCuocChoi equals tt.MaCuocChoi
+                                         where (ds.NgayDoanSo == datetime)
+                                         select tt.TongTienThuong;
+                            foreach (var i in select)
+                            {
+                                Session["tt"] = i;
+                            }
+                            string ttt = Session["tt"].ToString();
+                            ViewBag.ttt = ttt;
                         }
-                        string ttt = Session["tt"].ToString();
-                        ViewBag.ttt = ttt;
-
-
+                        else {
+                            Session["tt"] = null;
+                            ViewBag.ttt = null;
+                        }
                         string name = Session["userName"].ToString();
                         ViewBag.Name = name;
                         string mail = Session["eMail"].ToString();

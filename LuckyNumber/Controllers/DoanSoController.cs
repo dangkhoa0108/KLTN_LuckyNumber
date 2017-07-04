@@ -29,6 +29,13 @@ namespace LuckyNumber.Controllers
                 {
                     string name = Session["userName"].ToString();
                     ViewBag.Name = name;
+                    if (Session["tt"] != null)
+                    {
+                        string tt = Session["tt"].ToString();
+                        ViewBag.ttt = tt;
+                    }
+                    else ViewBag.ttt = null;
+                
 
                     //string day = DateTime.Now.Day.ToString();
                     //string month = DateTime.Now.Month.ToString();

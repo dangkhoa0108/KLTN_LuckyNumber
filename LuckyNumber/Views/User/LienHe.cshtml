@@ -102,6 +102,30 @@
                         </a>
                     </li>
                 </ul>
+                @if (ViewBag.ttt != null)
+                {<ul style="
+                        float: left;
+                        display: block;
+                        position: absolute;
+                        top: 33%;
+                        left: 15%;
+                        right: 15%;">
+                    <marquee style="width: 100%;
+                    ">Chào mừng @ViewBag.Name. Tổng giải thưởng hôm nay lên đến @ViewBag.ttt đ. Chơi ngay nào.</marquee>
+                </ul>}
+                else
+                {
+                    <ul style="
+                        float: left;
+                        display: block;
+                        position: absolute;
+                        top: 33%;
+                        left: 15%;
+                        right:15%;">
+                        <marquee style="width: 100%;
+                    ">Phiên chơi hôm nay chưa được mở. Vui lòng quay lại sau.</marquee>
+                    </ul>
+                }
                 <!-- End Navbar Toolbar -->
                 <!-- Navbar Toolbar Right -->
                 <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">

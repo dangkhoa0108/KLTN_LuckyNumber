@@ -1584,10 +1584,7 @@ namespace LuckyNumber.Controllers
 
         public ActionResult ShareFacebook()
         {
-            if (Session["IDs"] != null && Session["Role"].ToString() == "User")
                 return View();
-            else
-                return RedirectToAction("Login");
         }    
     }
 }

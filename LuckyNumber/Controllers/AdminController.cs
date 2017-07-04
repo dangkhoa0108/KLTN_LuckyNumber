@@ -61,9 +61,7 @@ namespace LuckyNumber.Controllers
 
         public ActionResult signError()
         {
-            if (Session["userName"] != null && Session["Role"].ToString() == "Admin")
                 return View();
-            else return RedirectToAction("Login");
         }
 
         public ActionResult QuanLyPhienChoi()

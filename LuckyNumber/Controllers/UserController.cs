@@ -252,9 +252,7 @@ namespace LuckyNumber.Controllers
         }
         public ActionResult ShareTrungThuong()
         {
-            if (Session["IDs"] != null)
                 return View();
-            else return RedirectToAction("Login");
         }
         public ActionResult DiemDanh()
         {
@@ -380,6 +378,8 @@ namespace LuckyNumber.Controllers
         {
             if (Session["userName"] != null && Session["Role"].ToString() == "User")
             {
+                string ttt = Session["tt"].ToString();
+                ViewBag.ttt = ttt;
                 string name = Session["userName"].ToString();
                 ViewBag.Name = name;
                 return View();

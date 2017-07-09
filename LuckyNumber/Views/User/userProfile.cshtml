@@ -646,7 +646,18 @@
             <script src="~/assets1/js/components/jvectormap.js"></script>
             <!-- <script src="js/agency.js"></script>
             <script type="text/javascript" src="js/script.js"></script> -->
+            <script>
 
+                (function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); js.id = id;
+                    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=1159603104149803";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));
+
+
+            </script>
 
             <script>
                 (function (document, window, $) {

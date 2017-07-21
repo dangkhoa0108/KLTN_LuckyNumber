@@ -1875,6 +1875,7 @@
     <Content Include="images\reg\signin.jpg" />
     <Content Include="images\reg\signin3.jpg" />
     <Content Include="images\reg\signup2.jpg" />
+    <Content Include="images\win.jpg" />
     <Content Include="js\agency.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\cbpAnimatedHeader.js" />

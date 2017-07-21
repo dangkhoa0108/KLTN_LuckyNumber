@@ -6,6 +6,31 @@
 body {
     background-color: #263238;
 }
+
+.viewluotchoi {
+    margin-top:20px;
+    padding-top: 19px;
+    padding-bottom:5px;
+    box-shadow: 1px 1px 4px 0px rgb(36, 201, 252);
+    color: #97afab;
+    width: 93%;
+}
+
+    .viewluotchoi .danhsach li {
+        list-style: none;
+    }
+
+    .viewluotchoi ul {
+        padding-left: 12px;
+    }
+    .viewluotchoi .data {
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+        .viewluotchoi .data span {
+            font-weight: bold;
+        }
 #wrapper {
   width: 100%;
 }

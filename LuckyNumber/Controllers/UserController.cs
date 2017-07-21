@@ -1017,7 +1017,7 @@ namespace LuckyNumber.Controllers
                 ViewBag.Name = name;
 
                 int userID = int.Parse(Session["IDs"].ToString());
-
+                User user = db.Users.SingleOrDefault(x => x.ID == userID);
                 DateTime serverTime = DateTime.Now;
                 DateTime utcTime = DateTime.UtcNow;
 
@@ -1035,7 +1035,8 @@ namespace LuckyNumber.Controllers
 
 
                 CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
-
+                Session["km_view"] = user.soluotchoi_km.ToString();
+                Session["ct_view"] = user.soluotchoi.ToString();
                 int machoi = cuocchoi.MaCuocChoi;
 
 

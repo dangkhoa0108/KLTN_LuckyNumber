@@ -70,6 +70,8 @@ namespace LuckyNumber.Controllers
                     int soluotchoi = int.Parse(user.soluotchoi.ToString());
                     int soluotchoi_km = int.Parse(user.soluotchoi_km.ToString());
                     int sumluotchoi = soluotchoi + soluotchoi_km;
+                    Session["km_view"] = soluotchoi_km;
+                    Session["ct_view"] = soluotchoi;
 
                     //if (DateTime.Compare(DateTime.Parse(timeNow), DateTime.Parse(time)) > 0)
                     //{
@@ -137,7 +139,8 @@ namespace LuckyNumber.Controllers
                     int soluotchoi = int.Parse(user.soluotchoi.ToString());
                     int soluotchoi_km = int.Parse(user.soluotchoi_km.ToString());
                     int sumluotchoi = soluotchoi + soluotchoi_km;
-
+                    Session["km_view"] = soluotchoi_km;
+                    Session["ct_view"] = soluotchoi;
                     DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
                     CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
                     if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
@@ -198,7 +201,8 @@ namespace LuckyNumber.Controllers
                     int soluotchoi = int.Parse(user.soluotchoi.ToString());
                     int soluotchoi_km = int.Parse(user.soluotchoi_km.ToString());
                     int sumluotchoi = soluotchoi + soluotchoi_km;
-
+                    Session["km_view"] = soluotchoi_km;
+                    Session["ct_view"] = soluotchoi;
                     DateTime datetime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
                     CuocChoi cuocchoi = db.CuocChois.SingleOrDefault(x => x.NgayDoanSo == datetime);
                     if (cuocchoi == null) return Redirect("~/DoanSo/Error5");
@@ -1265,7 +1269,8 @@ namespace LuckyNumber.Controllers
                                 }
                                 else
                                 {
-                                    user.soluotchoi_km = tongluot;
+                                    user.soluotchoi = soluotchoi;
+                                    user.soluotchoi_km = soluotchoi_km-soTrongSo;
                                 }
                                 Session["soLuotChoi"] = user.soluotchoi;
                                 Session["soLuotChoi_km"] = user.soluotchoi_km;

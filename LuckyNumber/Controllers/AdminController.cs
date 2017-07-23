@@ -80,23 +80,40 @@ namespace LuckyNumber.Controllers
         {
             if (Session["userName"] != null && Session["Role"].ToString() == "Admin")
             {
-                db.CuocChois.Add(cuocchoi);
-                cuocchoi.TrangThai = true;
-                db.SaveChanges();
-                int ma = cuocchoi.MaCuocChoi;
-                DanhSachTrungThuong danhsach = new DanhSachTrungThuong();
-
-                db.DanhSachTrungThuongs.Add(danhsach);
-                danhsach.MaCuocChoi = ma;
-                danhsach.TongTienThuong = 50000;
-                db.SaveChanges();
-                var selectlist = db.Users.ToList();
-                foreach (var i in selectlist)
+                int trangthai=0;
+                DateTime ngaychoi = DateTime.Parse(Request.Form["NgayDoanSo"]);
+                var list = from u in db.CuocChois select u;
+                foreach(var i in list)
                 {
-                    i.diemdanh = 1;
-                    db.SaveChanges();
+                    if (i.NgayDoanSo==ngaychoi)
+                    {
+                        trangthai = 1;
+                    }
                 }
-                return Redirect("~/Admin/QuanLyPhienChoi");
+                if (trangthai != 1)
+                {
+                    db.CuocChois.Add(cuocchoi);
+                    cuocchoi.TrangThai = true;
+                    db.SaveChanges();
+                    int ma = cuocchoi.MaCuocChoi;
+                    DanhSachTrungThuong danhsach = new DanhSachTrungThuong();
+
+                    db.DanhSachTrungThuongs.Add(danhsach);
+                    danhsach.MaCuocChoi = ma;
+                    danhsach.TongTienThuong = 50000;
+                    db.SaveChanges();
+                    var selectlist = db.Users.ToList();
+                    foreach (var i in selectlist)
+                    {
+                        i.diemdanh = 1;
+                        db.SaveChanges();
+                    }
+                    return Redirect("~/Admin/QuanLyPhienChoi");
+                }
+                else return Content("<script language='javascript' type='text/javascript'> " +
+                        "alert('Ngày chơi bị trùng');" +
+                        "window.location= '/Admin/QuanLyPhienChoi';" +
+                        "</script>");
             }
             else return RedirectToAction("Login");
         }

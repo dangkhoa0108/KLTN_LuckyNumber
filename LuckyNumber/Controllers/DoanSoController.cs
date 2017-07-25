@@ -402,6 +402,8 @@ namespace LuckyNumber.Controllers
                                     }
                                     Session["soLuotChoi"] = user.soluotchoi;
                                     Session["soLuotChoi_km"] = user.soluotchoi_km;
+                                    Session["km_view"] = user.soluotchoi_km.ToString();
+                                    Session["ct_view"] = user.soluotchoi.ToString();
                                     db.SaveChanges();
 
                                     ds.Add(new DanhSachSoDaDoanViewModel()
@@ -612,6 +614,8 @@ namespace LuckyNumber.Controllers
                                     }
                                     Session["soLuotChoi"] = user.soluotchoi;
                                     Session["soLuotChoi_km"] = user.soluotchoi_km;
+                                    Session["km_view"] = user.soluotchoi_km.ToString();
+                                    Session["ct_view"] = user.soluotchoi.ToString();
                                     db.SaveChanges();
 
 
@@ -760,6 +764,8 @@ namespace LuckyNumber.Controllers
                                     }
                                     Session["soLuotChoi"] = user.soluotchoi;
                                     Session["soLuotChoi_km"] = user.soluotchoi_km;
+                                    Session["km_view"] = user.soluotchoi_km.ToString();
+                                    Session["ct_view"] = user.soluotchoi.ToString();
                                     db.SaveChanges();
 
 
@@ -798,7 +804,6 @@ namespace LuckyNumber.Controllers
                 ViewBag.Name = name;
                 int userID = int.Parse(Session["IDs"].ToString());
                 User user = db.Users.SingleOrDefault(x => x.ID == userID);
-
                 //string day = DateTime.Now.Day.ToString();
                 //string month = DateTime.Now.Month.ToString();
                 //string year = DateTime.Now.Year.ToString();
@@ -888,6 +893,8 @@ namespace LuckyNumber.Controllers
                                     }
                                     Session["soLuotChoi"] = user.soluotchoi;
                                     Session["soLuotChoi_km"] = user.soluotchoi_km;
+                                    Session["km_view"] = user.soluotchoi_km.ToString();
+                                    Session["ct_view"] = user.soluotchoi.ToString();
                                     db.SaveChanges();
 
 
@@ -1012,6 +1019,8 @@ namespace LuckyNumber.Controllers
                                     }
                                     Session["soLuotChoi"] = user.soluotchoi;
                                     Session["soLuotChoi_km"] = user.soluotchoi_km;
+                                    Session["km_view"] = user.soluotchoi_km.ToString();
+                                    Session["ct_view"] = user.soluotchoi.ToString();
                                     db.SaveChanges();
 
 
@@ -1138,6 +1147,8 @@ namespace LuckyNumber.Controllers
                                     }
                                     Session["soLuotChoi"] = user.soluotchoi;
                                     Session["soLuotChoi_km"] = user.soluotchoi_km;
+                                    Session["km_view"] = user.soluotchoi_km.ToString();
+                                    Session["ct_view"] = user.soluotchoi.ToString();
                                     db.SaveChanges();
 
 

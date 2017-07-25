@@ -86,7 +86,13 @@
                 <img class="error-mark animation-slide-top" src="~/assets1/portraits/logo_TrongSo.png" alt="...">
 
                 <p class="font-size-40">Điểm Danh Nhận Thưởng</p>
-                <p class="font-size-30">Wow! Giá trị phần thưởng hôm nay đã lên đến @ViewBag.ttt đ . Tham gia đoán số ngay nào...</p>
+                
+                @if (ViewBag.ttt != null)
+                {<p class="font-size-30">Wow! Giá trị phần thưởng hôm nay đã lên đến @ViewBag.ttt đ . Tham gia đoán số ngay nào...</p>}
+                else
+                {
+                    <p class="font-size-30">Phiên chơi hôm nay chưa được mở. Vui lòng quay lại sau.</p>
+                }
             </div>
 
             <div class="panel-body">
